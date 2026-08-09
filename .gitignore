@@ -1,0 +1,59 @@
+# Arquivos do sistema e arquivos locais
+.DS_Store
+**/.DS_Store
+
+# Material privado, histórico e dados de produção
+ARQUIVO_SENSIVEL/
+ARQUIVO_HISTORICO/
+BACKUPS/
+BANCOS_DE_DADOS/
+cgi-bin/
+desize/
+document_errors/
+logs/
+stats/
+assets-staging/
+
+# Configurações, credenciais e dumps
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+**/*.sql
+**/*.sql.gz
+**/*.dump
+**/*.bak
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
+**/*.crt
+**/*.log
+**/error_log
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Arquivos operacionais/diagnósticos e cópias antigas do site
+public_html/.ftpquota
+public_html/_diag_*.php
+public_html/F7FB73FF1114B42269632FD7B28401FF.txt
+public_html/apagar/
+public_html/mascote-teste/
+public_html/header-tentativa-de-estilo-de-menu.inc.php
+public_html/header.inc.php030818
+public_html/.htaccess_*
+public_html/menu_lateral-18-12-2018.inc.php
+public_html/menu_lateral.inc-14-12-2018.php
+public_html/noticias_ler.php-04-12-2017
+public_html/noticias_ler.php310517
+public_html/css/main.css *
+public_html/css/main.css-*
+public_html/css/main.css_*
+public_html/css/main_old.css
+public_html/js/*.js[0-9]*
+
+# Pacotes/artefatos grandes de deploy, mantidos fora do código-fonte
+INFRA/ajudinha/deploy_*/

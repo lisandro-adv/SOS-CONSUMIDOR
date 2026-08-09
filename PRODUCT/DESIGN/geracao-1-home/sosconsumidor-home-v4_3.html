@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S.O.S Consumidor - Serviço de Orientação ao Consumidor</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#CC0000;--red-dark:#A30000;--red-darker:#880000;--red-light:#D94040;--red-hero:#B52020;--red-bg:#FFF5F5;--white:#FFF;--cream:#F5F5F5;--dark:#1A1A1A;--text:#333;--text-light:#666;--text-muted:#999;--border:#E5E5E5;--shadow-sm:0 1px 4px rgba(0,0,0,.06);--shadow-md:0 4px 16px rgba(0,0,0,.1);--shadow-lg:0 8px 32px rgba(0,0,0,.12);--radius:12px;--radius-sm:8px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Source Sans 3',sans-serif;color:var(--text);background:var(--cream);line-height:1.6}
+.container{max-width:1200px;margin:0 auto;padding:0 28px}
+
+/* HEADER */
+header{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+.logo-wrap{display:flex;flex-direction:column}
+.logo-main{font-family:'Crimson Pro',serif;font-size:2.2rem;font-weight:800;color:var(--dark);line-height:1;display:flex;align-items:center;gap:2px}
+.logo-consumidor{color:var(--dark);font-family:'Crimson Pro',serif;font-weight:800;margin-left:4px}
+.logo-main .dot{color:var(--dark);margin:0 1px}
+.logo-boia{width:38px;height:38px;margin:0 1px;position:relative;top:2px}
+.logo-sub{font-size:.7rem;font-weight:400;color:#777;text-transform:none;letter-spacing:.02em;margin-top:3px}
+nav{display:flex;align-items:center;gap:6px}
+nav a{color:var(--text);text-decoration:none;font-size:.9rem;font-weight:500;padding:8px 14px;border-radius:var(--radius-sm);transition:all .2s}
+nav a:hover{background:var(--cream);color:var(--red)}
+.header-search{display:flex;align-items:center;background:var(--cream);border-radius:50px;padding:8px 16px;gap:8px;border:1px solid var(--border)}
+.header-search input{border:none;background:none;font-size:.88rem;font-family:inherit;outline:none;width:140px;color:var(--text)}
+.header-search input::placeholder{color:var(--text-muted)}
+.header-search svg{width:18px;height:18px;color:var(--text-muted)}
+.mobile-menu{display:none;background:none;border:none;cursor:pointer;padding:6px}
+.mobile-menu svg{width:28px;height:28px;stroke:var(--dark)}
+
+/* HERO */
+.hero{background:linear-gradient(160deg,var(--red-darker) 0%,var(--red-hero) 50%,var(--red-light) 100%);padding:70px 0 50px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-30%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(255,255,255,.06) 0%,transparent 70%);border-radius:50%}
+.hero-content{position:relative;z-index:2;max-width:650px}
+.hero h1{font-family:'Crimson Pro',serif;font-size:3.2rem;font-weight:800;color:var(--white);line-height:1.1;margin-bottom:18px;letter-spacing:-.02em;animation:fadeInUp .6s ease-out}
+.hero h1 u{text-decoration:none;border-bottom:3px solid rgba(255,255,255,.4);padding-bottom:2px}
+.hero p{font-size:1.12rem;color:rgba(255,255,255,.78);line-height:1.7;margin-bottom:30px;max-width:520px;animation:fadeInUp .6s ease-out .1s both}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;animation:fadeInUp .6s ease-out .2s both}
+.btn-white{display:inline-flex;align-items:center;gap:8px;background:var(--white);color:var(--red);padding:14px 28px;border:none;border-radius:var(--radius-sm);font-size:.95rem;font-weight:700;cursor:pointer;transition:all .25s;text-decoration:none}
+.btn-white:hover{background:#f5f5f5;transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--white);padding:14px 28px;border:1.5px solid rgba(255,255,255,.4);border-radius:var(--radius-sm);font-size:.95rem;font-weight:600;cursor:pointer;transition:all .25s;text-decoration:none}
+.btn-outline:hover{border-color:rgba(255,255,255,.7);background:rgba(255,255,255,.08)}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;animation:fadeInUp .6s ease-out .3s both}
+.hero-stat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.15);border-radius:var(--radius);padding:20px;display:flex;align-items:center;gap:14px}
+.hero-stat-icon{width:42px;height:42px;background:rgba(255,255,255,.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.hero-stat-number{font-family:'Crimson Pro',serif;font-size:1.6rem;font-weight:800;color:var(--white);line-height:1}
+.hero-stat-label{font-size:.78rem;color:rgba(255,255,255,.7);font-weight:500}
+
+/* SECTIONS */
+.section{padding:55px 0}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+.section-title{font-family:'Crimson Pro',serif;font-size:1.8rem;font-weight:800;color:var(--dark)}
+.section-link{display:inline-flex;align-items:center;gap:6px;color:var(--red);font-weight:600;font-size:.92rem;text-decoration:none;transition:gap .2s}
+.section-link:hover{gap:10px}
+
+/* FEATURED NEWS + SIDEBAR */
+.featured-grid{display:grid;grid-template-columns:1fr 1fr 320px;gap:22px}
+.featured-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);text-decoration:none;color:inherit;transition:all .3s}
+.featured-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
+.featured-card-img{width:100%;height:220px;object-fit:cover;display:block}
+.featured-card-body{padding:20px}
+.tag{display:inline-block;background:var(--red);color:white;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:4px 10px;border-radius:5px}
+.featured-card .meta{display:flex;align-items:center;gap:10px;margin:10px 0 8px;font-size:.8rem;color:var(--text-muted)}
+.featured-card h3{font-family:'Crimson Pro',serif;font-size:1.2rem;font-weight:700;line-height:1.3;color:var(--dark);margin-bottom:8px}
+.featured-card p{font-size:.88rem;color:var(--text-light);line-height:1.55;margin-bottom:12px}
+.read-more{color:var(--red);font-weight:600;font-size:.88rem;text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:gap .2s}
+.read-more:hover{gap:8px}
+
+/* Sidebar */
+.sidebar{display:flex;flex-direction:column;gap:18px}
+.sidebar-newsletter{background:var(--white);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-sm)}
+.sidebar-newsletter-icon{width:44px;height:44px;background:var(--red);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.sidebar-newsletter-icon svg{width:22px;height:22px;color:white}
+.sidebar-newsletter h3{font-family:'Crimson Pro',serif;font-size:1.15rem;font-weight:700;color:var(--dark);margin-bottom:6px}
+.sidebar-newsletter p{font-size:.85rem;color:var(--text-light);margin-bottom:14px;line-height:1.5}
+.sidebar-newsletter input{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:.88rem;font-family:inherit;margin-bottom:10px;outline:none;transition:border .2s}
+.sidebar-newsletter input:focus{border-color:var(--red)}
+.btn-red{display:block;width:100%;padding:12px;background:var(--red);color:white;border:none;border-radius:var(--radius-sm);font-size:.92rem;font-weight:700;cursor:pointer;transition:background .2s;text-align:center}
+.btn-red:hover{background:var(--red-dark)}
+.sidebar-area{background:var(--white);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-sm)}
+.sidebar-area h3{font-family:'Crimson Pro',serif;font-size:1.15rem;font-weight:700;color:var(--dark);margin-bottom:16px}
+.sidebar-area-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);text-decoration:none;color:var(--text);font-size:.9rem;font-weight:500;transition:color .2s}
+.sidebar-area-item:last-child{border-bottom:none}
+.sidebar-area-item:hover{color:var(--red)}
+.sidebar-area-item .item-icon{width:32px;height:32px;background:var(--red-bg);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+
+/* NEWS LIST */
+.news-list-grid{display:grid;grid-template-columns:1fr 340px;gap:28px}
+.news-list{display:flex;flex-direction:column;gap:16px}
+.news-list-card{background:var(--white);border-radius:var(--radius);display:flex;overflow:hidden;box-shadow:var(--shadow-sm);text-decoration:none;color:inherit;transition:all .3s}
+.news-list-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.news-list-thumb-placeholder{width:180px;min-height:140px;background:linear-gradient(135deg,#ddd,#eee);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:2.2rem}
+.news-list-body{padding:18px 22px;display:flex;flex-direction:column;justify-content:center;flex:1}
+.news-list-body h4{font-family:'Crimson Pro',serif;font-size:1.08rem;font-weight:700;color:var(--dark);line-height:1.35;margin-bottom:6px}
+.news-list-body p{font-size:.85rem;color:var(--text-light);line-height:1.5;margin-bottom:10px}
+.news-list-footer{display:flex;justify-content:space-between;align-items:center;font-size:.8rem}
+.news-list-date{color:var(--text-muted);display:flex;align-items:center;gap:4px}
+
+/* Sidebar CPF + Contact */
+.sidebar-cpf{background:var(--red);border-radius:var(--radius);padding:28px 24px;color:white}
+.sidebar-cpf-icon{width:44px;height:44px;background:rgba(255,255,255,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:1.3rem}
+.sidebar-cpf h3{font-family:'Crimson Pro',serif;font-size:1.2rem;font-weight:700;margin-bottom:8px}
+.sidebar-cpf p{font-size:.88rem;color:rgba(255,255,255,.8);margin-bottom:18px;line-height:1.5}
+.btn-white-outline{display:block;text-align:center;padding:12px;background:var(--white);color:var(--red);border-radius:var(--radius-sm);font-weight:700;font-size:.92rem;text-decoration:none;transition:all .2s}
+.btn-white-outline:hover{background:#f5f5f5}
+.sidebar-contact{background:var(--white);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-sm)}
+.sidebar-contact h3{font-family:'Crimson Pro',serif;font-size:1.15rem;font-weight:700;color:var(--dark);margin-bottom:18px}
+.contact-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
+.contact-item:last-child{margin-bottom:0}
+.contact-icon{width:36px;height:36px;background:var(--red-bg);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--red);font-size:1rem}
+.contact-item strong{font-size:.88rem;color:var(--dark);display:block;margin-bottom:2px}
+.contact-item span{font-size:.84rem;color:var(--text-light)}
+
+/* FAQ */
+.faq-section{background:var(--cream);padding:55px 0}
+.faq-list{max-width:780px;display:flex;flex-direction:column;gap:12px}
+.faq-item{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden}
+.faq-question{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;cursor:pointer;font-size:.95rem;font-weight:600;color:var(--dark);border:none;background:none;width:100%;text-align:left;font-family:inherit;transition:background .2s}
+.faq-question:hover{background:var(--cream)}
+.faq-question svg{width:20px;height:20px;color:var(--red);flex-shrink:0;transition:transform .3s}
+.faq-item.open .faq-question svg{transform:rotate(180deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .3s ease-out,padding .3s;padding:0 22px}
+.faq-item.open .faq-answer{max-height:300px;padding:0 22px 18px}
+.faq-answer p{font-size:.9rem;color:var(--text-light);line-height:1.65}
+.faq-cta{text-align:center;margin-top:30px}
+.faq-cta p{font-size:1rem;font-weight:600;color:var(--dark);margin-bottom:12px}
+.btn-red-outline{display:inline-flex;align-items:center;gap:6px;padding:12px 28px;border:2px solid var(--red);color:var(--red);border-radius:var(--radius-sm);font-weight:700;font-size:.92rem;text-decoration:none;transition:all .2s}
+.btn-red-outline:hover{background:var(--red);color:white}
+
+/* FOOTER */
+footer{background:var(--dark);color:rgba(255,255,255,.55);padding:48px 0 24px}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px}
+.footer-brand-logo{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.footer-brand-logo svg{width:28px;height:28px}
+.footer-brand-logo span{font-family:'Crimson Pro',serif;font-size:1.15rem;font-weight:700;color:#fff}
+.footer-brand p{font-size:.84rem;line-height:1.7}
+.footer-col h4{color:var(--white);font-family:'Crimson Pro',serif;font-size:1rem;font-weight:600;margin-bottom:14px}
+.footer-col a{display:block;color:rgba(255,255,255,.48);text-decoration:none;font-size:.84rem;padding:3px 0;transition:color .2s}
+.footer-col a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:20px;display:flex;justify-content:space-between;align-items:center;font-size:.76rem;color:rgba(255,255,255,.35)}
+
+@keyframes fadeInUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:1024px){.featured-grid{grid-template-columns:1fr 1fr}.featured-grid .sidebar{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}.news-list-grid{grid-template-columns:1fr}}
+@media(max-width:768px){nav,.header-search{display:none}.mobile-menu{display:block}.hero h1{font-size:2.2rem}.hero-stats{grid-template-columns:1fr;gap:10px}.featured-grid{grid-template-columns:1fr}.featured-grid .sidebar{grid-template-columns:1fr}.news-list-card{flex-direction:column}.news-list-thumb-placeholder{width:100%;min-height:180px}.faq-list{max-width:100%}.footer-grid{grid-template-columns:1fr 1fr}.hero-actions{flex-direction:column}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}.hero{padding:45px 0 35px}}
+</style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+<symbol id="boia" viewBox="0 0 100 100">
+<circle cx="50" cy="50" r="44" fill="none" stroke="#CC0000" stroke-width="5"/>
+<circle cx="50" cy="50" r="20" fill="none" stroke="#CC0000" stroke-width="4"/>
+<path d="M50 6 C56 6 61.5 7.3 66.5 10 L58 29 C55.5 28 52.8 27.5 50 27.5 C47.2 27.5 44.5 28 42 29 L33.5 10 C38.5 7.3 44 6 50 6Z" fill="#CC0000"/>
+<path d="M94 50 C94 56 92.7 61.5 90 66.5 L71 58 C72 55.5 72.5 52.8 72.5 50 C72.5 47.2 72 44.5 71 42 L90 33.5 C92.7 38.5 94 44 94 50Z" fill="#CC0000"/>
+<path d="M50 94 C44 94 38.5 92.7 33.5 90 L42 71 C44.5 72 47.2 72.5 50 72.5 C52.8 72.5 55.5 72 58 71 L66.5 90 C61.5 92.7 56 94 50 94Z" fill="#CC0000"/>
+<path d="M6 50 C6 44 7.3 38.5 10 33.5 L29 42 C28 44.5 27.5 47.2 27.5 50 C27.5 52.8 28 55.5 29 58 L10 66.5 C7.3 61.5 6 56 6 50Z" fill="#CC0000"/>
+<path d="M66.5 10 C76 15 83 22.5 88 31 L71 42 C67 35.5 61 31 58 29 L66.5 10Z" fill="#fff" stroke="#eee" stroke-width="0.5"/>
+<path d="M90 66.5 C85 76 77.5 83 69 88 L58 71 C64.5 67 69 61 71 58 L90 66.5Z" fill="#fff" stroke="#eee" stroke-width="0.5"/>
+<path d="M33.5 90 C24 85 17 77.5 12 69 L29 58 C33 64.5 39 69 42 71 L33.5 90Z" fill="#fff" stroke="#eee" stroke-width="0.5"/>
+<path d="M10 33.5 C15 24 22.5 17 31 12 L42 29 C35.5 33 31 39 29 42 L10 33.5Z" fill="#fff" stroke="#eee" stroke-width="0.5"/>
+</symbol>
+</svg>
+
+<header>
+<div class="container">
+<div class="header-inner">
+<a href="https://www.sosconsumidor.com.br" class="logo">
+<div class="logo-wrap">
+<div class="logo-main">S.<svg class="logo-boia"><use href="#boia"/></svg>.S <span class="logo-consumidor">Consumidor</span></div>
+<div class="logo-sub">Serviço de Orientação ao Consumidor</div>
+</div>
+</a>
+<nav>
+<a href="https://www.sosconsumidor.com.br/perguntas-e-respostas">Perguntas e Respostas</a>
+<a href="https://www.sosconsumidor.com.br/noticias">Notícias</a>
+<a href="https://www.sosconsumidor.com.br/outros-servicos">Outros Serviços</a>
+<a href="https://www.sosconsumidor.com.br/institucional">Institucional</a>
+<a href="https://www.sosconsumidor.com.br/contatos">Contato</a>
+</nav>
+<div class="header-search">
+<input type="text" placeholder="Buscar...">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+</div>
+<button class="mobile-menu">
+<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+</button>
+</div>
+</div>
+</header>
+
+<section class="hero">
+<div class="container">
+<div class="hero-content">
+<h1>Defenda seus <u>Direitos</u></h1>
+<p>Orientação especializada para você resolver problemas com fornecedores e garantir seus direitos como consumidor.</p>
+<div class="hero-actions">
+<a href="https://www.sosconsumidor.com.br/contatos" class="btn-white">🎧 Fale Conosco</a>
+<a href="https://www.sosconsumidor.com.br/perguntas-e-respostas" class="btn-outline">❓ Tire suas Dúvidas</a>
+</div>
+</div>
+<div class="hero-stats">
+<div class="hero-stat"><div class="hero-stat-icon">👥</div><div><div class="hero-stat-number">20+</div><div class="hero-stat-label">Anos de Atuação</div></div></div>
+<div class="hero-stat"><div class="hero-stat-icon">⚖️</div><div><div class="hero-stat-number">5.000+</div><div class="hero-stat-label">Artigos Publicados</div></div></div>
+<div class="hero-stat"><div class="hero-stat-icon">🕐</div><div><div class="hero-stat-number">100%</div><div class="hero-stat-label">Gratuito</div></div></div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<div class="section-header">
+<h2 class="section-title">Notícias em Destaque</h2>
+<a href="https://www.sosconsumidor.com.br/noticias" class="section-link">Ver todas →</a>
+</div>
+<div class="featured-grid">
+<a href="https://www.sosconsumidor.com.br/noticias-61445-selic-dolar-pib-que-diz-relatorio-focus-sobre-os-indices-em-2026" class="featured-card">
+<img src="https://www.sosconsumidor.com.br/images/202603021336240.png" alt="" class="featured-card-img">
+<div class="featured-card-body">
+<span class="tag">Economia</span>
+<div class="meta">📅 02 Mar 2026</div>
+<h3>Selic, dólar, PIB: o que diz o relatório Focus sobre os índices em 2026</h3>
+<p>A mediana para a Selic no fim de 2028 permaneceu em 10% pela sexta semana seguida.</p>
+<span class="read-more">Ler mais ›</span>
+</div>
+</a>
+<a href="https://www.sosconsumidor.com.br/noticias-61444-emprestimo-consignado-ja-e-usado-por-funcionarios-em-65-das-empresas-privadas-revela-pesquisa" class="featured-card">
+<img src="https://www.sosconsumidor.com.br/images/202603021331350.png" alt="" class="featured-card-img">
+<div class="featured-card-body">
+<span class="tag">Crédito</span>
+<div class="meta">📅 02 Mar 2026</div>
+<h3>Empréstimo consignado já é usado por funcionários em 65% das empresas privadas</h3>
+<p>Indústria lidera a adoção da modalidade de crédito consignado privado.</p>
+<span class="read-more">Ler mais ›</span>
+</div>
+</a>
+<div class="sidebar">
+<div class="sidebar-newsletter">
+<div class="sidebar-newsletter-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+<h3>Receba Notícias</h3>
+<p>Fique por dentro das novidades sobre direitos do consumidor.</p>
+<input type="email" placeholder="Seu e-mail">
+<button class="btn-red">Inscrever</button>
+</div>
+<div class="sidebar-area">
+<h3>Área do Consumidor</h3>
+<a href="#" class="sidebar-area-item"><span class="item-icon">📄</span> Modelo de Reclamação</a>
+<a href="#" class="sidebar-area-item"><span class="item-icon">⚖️</span> Código de Defesa</a>
+<a href="https://www3.bcb.gov.br/CALCIDADAO/publico/exibirFormFinanciamentoPrestacoesFixas.do?method=exibirFormFinanciamentoPrestacoesFixas" class="sidebar-area-item"><span class="item-icon">🧮</span> Calcular Juros</a>
+<a href="#" class="sidebar-area-item"><span class="item-icon">📍</span> Procon Mais Próximo</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" style="background:var(--white);padding:55px 0;">
+<div class="container">
+<div class="section-header">
+<h2 class="section-title">Últimas Notícias</h2>
+<a href="https://www.sosconsumidor.com.br/noticias" class="section-link">Ver todas →</a>
+</div>
+<div class="news-list-grid">
+<div class="news-list">
+<a href="https://www.sosconsumidor.com.br/noticias-61443-grandes-bancos-vao-arcar-maior-parte-rombo-master-no-fgc-entenda" class="news-list-card">
+<div class="news-list-thumb-placeholder">🏦</div>
+<div class="news-list-body"><h4>Grandes bancos vão arcar com maior parte do rombo do Master no FGC; entenda</h4><p>Decisão impacta o sistema financeiro e os consumidores com investimentos.</p><div class="news-list-footer"><span class="news-list-date">📅 02 Mar 2026</span><span class="read-more">Leia mais</span></div></div>
+</a>
+<a href="https://www.sosconsumidor.com.br/noticias-61442-veja-quais-itens-informatica-e-telecomunicacoes-tiveram-aliquota-mantida" class="news-list-card">
+<div class="news-list-thumb-placeholder">💻</div>
+<div class="news-list-body"><h4>Veja quais itens de informática e telecomunicações tiveram alíquota mantida</h4><p>Governo mantém alíquotas para diversos produtos do setor de tecnologia.</p><div class="news-list-footer"><span class="news-list-date">📅 02 Mar 2026</span><span class="read-more">Leia mais</span></div></div>
+</a>
+<a href="https://www.sosconsumidor.com.br/noticias-61441-entre-laudos-e-pericias-entenda-caminho-ate-aposentadoria-por-incapacidade" class="news-list-card">
+<div class="news-list-thumb-placeholder">📋</div>
+<div class="news-list-body"><h4>Entre laudos e perícias: entenda o caminho até a aposentadoria por incapacidade</h4><p>Processo exige documentação específica e acompanhamento médico detalhado.</p><div class="news-list-footer"><span class="news-list-date">📅 02 Mar 2026</span><span class="read-more">Leia mais</span></div></div>
+</a>
+<a href="https://www.sosconsumidor.com.br/noticias-61438-4-em-cada-10-usuarios-bets-ja-se-endividaram-apos-apostarem-jogos-online" class="news-list-card">
+<div class="news-list-thumb-placeholder">🎰</div>
+<div class="news-list-body"><h4>4 em cada 10 usuários de bets já se endividaram após apostarem em jogos on-line</h4><p>Pesquisa revela impacto financeiro das apostas esportivas nos brasileiros.</p><div class="news-list-footer"><span class="news-list-date">📅 26 Fev 2026</span><span class="read-more">Leia mais</span></div></div>
+</a>
+</div>
+<div style="display:flex;flex-direction:column;gap:18px;">
+<div class="sidebar-cpf">
+<div class="sidebar-cpf-icon">💰</div>
+<h3>Consulte seu CPF</h3>
+<p>Verifique gratuitamente se há pendências em seu nome.</p>
+<a href="https://www.sosconsumidor.com.br/perguntas-e-respostas-detalhes-como-consultar-spc-serasa-ou-scpc-5" class="btn-white-outline">Consultar SPC/Serasa</a>
+</div>
+<div class="sidebar-contact">
+<h3>Atendimento</h3>
+<div class="contact-item"><span class="contact-icon">📧</span><div><strong>E-mail</strong><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="84e7ebeaf0e5f0ebc4f7ebf7e7ebeaf7f1e9ede0ebf6aae7ebe9aae6f6">[email&#160;protected]</a></span></div></div>
+<div class="contact-item"><span class="contact-icon">📍</span><div><strong>Local</strong><span>Porto Alegre, RS</span></div></div>
+<div class="contact-item"><span class="contact-icon">🕐</span><div><strong>Horário</strong><span>Seg-Sex: 8h às 18h</span></div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="faq-section">
+<div class="container">
+<div class="section-header"><h2 class="section-title">Perguntas Frequentes</h2></div>
+<div class="faq-list">
+<div class="faq-item"><button class="faq-question">Quanto tempo o nome fica cadastrado no SPC, SERASA e SCPC?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>O nome do consumidor pode permanecer nos cadastros restritivos por no máximo 5 anos, conforme previsto no Código de Defesa do Consumidor. Após esse prazo, a anotação deve ser excluída automaticamente, independentemente do pagamento da dívida.</p></div></div>
+<div class="faq-item"><button class="faq-question">Como funciona o direito de arrependimento?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>O consumidor pode desistir de uma compra feita fora do estabelecimento comercial (internet, telefone, catálogo) no prazo de 7 dias a contar da assinatura do contrato ou do recebimento do produto, conforme o artigo 49 do CDC.</p></div></div>
+<div class="faq-item"><button class="faq-question">O que fazer se a empresa não resolver meu problema?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>Procure o Procon da sua cidade, registre reclamação no consumidor.gov.br ou ingresse com ação no Juizado Especial Cível (Pequenas Causas), que não exige advogado para causas de até 20 salários mínimos.</p></div></div>
+<div class="faq-item"><button class="faq-question">Posso cancelar um serviço contratado por telefone?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>Sim. Serviços contratados por telefone podem ser cancelados no prazo de 7 dias (direito de arrependimento). Além disso, as operadoras são obrigadas a oferecer o cancelamento imediato pelo mesmo canal da contratação.</p></div></div>
+<div class="faq-item"><button class="faq-question">Como consultar meu nome no SPC/Serasa?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>Você pode consultar gratuitamente pelo site ou app do Serasa (serasa.com.br), pelo SPC Brasil (spcbrasil.org.br) ou pessoalmente em qualquer unidade da CDL da sua cidade.</p></div></div>
+</div>
+<div class="faq-cta"><a href="https://www.sosconsumidor.com.br/perguntas-e-respostas" class="btn-red-outline">Ver mais perguntas e respostas →</a></div>
+</div>
+</section>
+
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand"><div class="footer-brand-logo"><svg><use href="#boia"/></svg><span>S.O.S Consumidor</span></div><p>Portal de referência em direitos do consumidor no Brasil. Informação jurídica acessível e gratuita há mais de 20 anos.</p></div>
+<div class="footer-col"><h4>Navegação</h4><a href="#">Perguntas e Respostas</a><a href="#">Notícias</a><a href="#">Outros Serviços</a><a href="#">Institucional</a><a href="#">Contato</a></div>
+<div class="footer-col"><h4>Temas Populares</h4><a href="#">SPC e SERASA</a><a href="#">Dívidas e Crédito</a><a href="#">Dano Moral</a><a href="#">SOS Passageiro</a><a href="#">Cuidado com Golpes</a></div>
+<div class="footer-col"><h4>Sobre</h4><a href="#">sosconsumidor.com.br</a><a href="#">Porto Alegre, RS</a><a href="#">Site de utilidade pública</a><a href="#">Acesso 100% gratuito</a></div>
+</div>
+<div class="footer-bottom"><span>© 2004–2026 S.O.S Consumidor. Todos os direitos reservados.</span><span>Site de utilidade pública</span></div>
+</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+document.querySelectorAll('.faq-question').forEach(btn=>{btn.addEventListener

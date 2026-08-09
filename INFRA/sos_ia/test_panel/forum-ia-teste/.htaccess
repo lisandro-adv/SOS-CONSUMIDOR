@@ -1,0 +1,9 @@
+Options -Indexes
+AuthType Basic
+AuthName "SOS Consumidor - teste interno"
+AuthUserFile /etc/apache2/sos-forum-ia-test.htpasswd
+Require valid-user
+
+<FilesMatch "\.(?:log|bak|sql|env|ini)$">
+    Require all denied
+</FilesMatch>

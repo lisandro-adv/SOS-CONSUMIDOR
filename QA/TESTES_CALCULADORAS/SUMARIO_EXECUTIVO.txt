@@ -1,0 +1,256 @@
+================================================================================
+                ANÁLISE DE CALCULADORAS - SOS CONSUMIDOR
+                        SUMÁRIO EXECUTIVO
+================================================================================
+
+DATA: 08/08/2026
+URL: https://www.sosconsumidor.com.br/calculos/
+TIPO: Análise de Segurança e Qualidade de Código
+
+================================================================================
+1. ARQUITETURA
+================================================================================
+
+TECNOLOGIA:
+- Frontend: HTML5 + JavaScript vanilla (sem frameworks)
+- Backend: PHP 7.x+ (api.php)
+- Comunicação: JSON via fetch() (POST/GET)
+- Índices: Banco Central do Brasil (SGS) via API
+
+ENDPOINTS PRINCIPAIS:
+- GET/POST https://www.sosconsumidor.com.br/calculos/api.php?action=catalog
+- POST https://www.sosconsumidor.com.br/calculos/api.php (8 ações)
+
+================================================================================
+2. AS 8 CALCULADORAS (VERIFICADAS)
+================================================================================
+
+1. BOLETO VENCIDO
+   Status: ✓ Funcional
+   Fórmula: valor + (valor × multa%) + (valor × juros_dia% × dias)
+   Validações: Data, valor, juros
+
+2. ATUALIZAR VALOR/DÍVIDA
+   Status: ✓ Funcional
+   Fórmula: valor × fator_indice × (1 + juros_mensais%)^meses
+   Índices: IPCA, INPC, IGP-M, IGP-DI (Banco Central)
+
+3. EMPRÉSTIMO/FINANCIAMENTO (PRICE)
+   Status: ✓ Funcional (com ressalva)
+   Fórmula: PMT = PV × [i×(1+i)^n] / [(1+i)^n - 1]
+   Parcelas: Iguais | Juros: Decrescentes | Amortização: Crescente
+   Problema: Possível erro de arredondamento na última parcela
+
+4. EMPRÉSTIMO/FINANCIAMENTO (SAC)
+   Status: ✓ Funcional (com ressalva)
+   Fórmula: Amortização fixa + juros sobre saldo
+   Parcelas: Decrescentes | Juros: Decrescentes | Amortização: Fixa
+   Problema: Acumula erro de arredondamento ao longo das parcelas
+
+5. COMPRA À VISTA vs PARCELADA
+   Status: ✓ Funcional
+   Calcula: Valor presente e comparação nominal
+   Usa taxa de desconto (opcional) para cálculo de VPL
+
+6. CONVERSOR DE TAXAS (Mensal ↔ Anual)
+   Status: ✓ Funcional
+   Fórmula: i_anual = (1 + i_mensal)^12 - 1
+   Exemplos: 1% m = 12,68% a | 12% m = 289,60% a
+
+7. JUROS SIMPLES/COMPOSTOS
+   Status: ✓ Funcional
+   Compostos: M = P × (1 + i)^n
+   Simples: M = P × (1 + i×n)
+   Validações: Rejeita valor zero ou negativo
+
+8. 13º SALÁRIO
+   Status: ✓ Funcional
+   Fórmula: 13º = salário × (meses / 12)
+   Parcelado: 1ª metade + 2ª metade
+   Observação: Não inclui deduções (INSS, IRPF)
+
+9. FÉRIAS + 1/3
+   Status: ✓ Funcional
+   Fórmula: remuneração = salário × (dias / 30)
+              terço = remuneração / 3
+              total = remuneração + terço
+   Observação: Estimativa bruta
+
+================================================================================
+3. BUGS E PROBLEMAS ENCONTRADOS
+================================================================================
+
+🔴 CRÍTICOS (Alto Risco)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[BUG-001] OVERFLOW EM NÚMEROS EXTREMOS
+Severidade: CRÍTICA
+Localização: Calculadora de Juros (interest)
+Descrição: Taxa 50% mensal × 100 períodos = 4.0656117712865406E+26
+Impacto: Valores absurdos, crash potencial, confusão do usuário
+Teste:
+  POST /calculos/api.php
+  {"action":"interest","valor":999999999,"taxa":50,"periodos":100,"modo":"compound"}
+Resultado: 4.0656E+26 (sem limite ou tratamento)
+Recomendação: Implementar limite máximo (ex: 1e20 ou 1 trilhão)
+
+[SECURITY-001] FALTA DE PROTEÇÃO CSRF
+Severidade: CRÍTICA
+Localização: Frontend (fetch sem token CSRF)
+Descrição: POST sem validação de CSRF token
+Impacto: Possível requisições forjadas de sites terceiros
+Código afetado: document.querySelectorAll('form[data-action]')
+Recomendação: Implementar CSRF token no backend e frontend
+
+[SECURITY-002] POSSÍVEL XSS VIA CAMPO observacao
+Severidade: CRÍTICA
+Localização: Função render() - campos retornados do backend
+Descrição: Se backend não escapar corretamente, XSS possível
+Exemplo: observacao = "<img src=x onerror=alert('xss')>"
+Frontend usa esc() mas depende de backend correto
+Recomendação: Validar ALL strings do backend no frontend também
+
+🟡 MODERADOS (Risco Médio)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[BUG-002] ARREDONDAMENTO INCONSISTENTE (SAC)
+Severidade: MODERADA
+Teste SAC (R$10.000, 1.5%, 12 parcelas):
+  Parcela 12: R$ 845,83 (valor retornado)
+  Parcela 12: R$ 841,67 (esperado matematicamente)
+  Erro: Acumula arredondamento ao longo das parcelas
+  Saldo final: 0 (correto) - compensado internamente
+
+[BUG-003] FALTA DE LIMITE DE RANGE
+Severidade: MODERADA
+Problema 1: periodos até 1200 (100 anos de juros!)
+Problema 2: parcelas até 480 (40 anos de financiamento!)
+Problema 3: Sem limite máximo de juros anual (409.500% aceito!)
+Recomendação: Limitar a valores realistas (ex: parcelas máx 360)
+
+[BUG-004] VALIDAÇÃO GENÉRICA DEMAIS
+Severidade: MODERADA
+Erro: "Confira valor, taxa e número de períodos"
+Problema: Impossível saber qual campo está errado
+Afeta: Interesse do usuário na interface
+Recomendação: Validar cada campo individualmente e reportar erro específico
+
+[BUG-005] TABELA DE AMORTIZAÇÃO TRUNCADA
+Severidade: MODERADA
+Problema: PRICE/SAC mostram apenas primeiras + última parcela
+Exemplo teste: 12 parcelas retorna 12 parcelas (OK)
+Problema real: 360 parcelas retorna talvez apenas 5-6 parcelas
+Impacto: Impossível verificar evolução completa
+Recomendação: Permitir download da tabela completa (CSV/PDF)
+
+🟠 FUNCIONALIDADE (Risco Baixo)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[FEATURE-001] BOLETO NÃO ACEITA PAGAMENTO ADIANTADO
+Teste: vencimento=2026-08-15, pagamento=2026-08-08
+Resultado: Erro "Confira valor, datas, multa e juros do boleto"
+Problema: Cenário válido é rejeitado
+Recomendação: Permitir dias_atraso negativos (desconto por pagamento adiantado)
+
+[FEATURE-002] ATUALIZAÇÃO DE DÍVIDA SEM OPÇÃO SIMPLES
+Fórmula atual: valor × fator × (1 + juros%)^meses (SEMPRE composto)
+Falta: Opção de juros simples
+Recomendação: Oferecer tipo de juros como no calculador de interesse
+
+[FEATURE-003] DOCUMENTAÇÃO DE FÓRMULAS INCOMPLETA
+Observado: Atualização de dívida não explica fórmula exata
+Comparação: Conversor de taxas TEM explicação clara
+Recomendação: Padronizar documentação em todas as calculadoras
+
+================================================================================
+4. VALIDAÇÕES ENCONTRADAS
+================================================================================
+
+✓ VALIDAÇÕES IMPLEMENTADAS (No Backend):
+  - Valor zero ou negativo: REJEITA
+  - Taxa negativa: REJEITA
+  - Data de pagamento anterior a vencimento: REJEITA
+  - Índice sem dados para período: REJEITA
+  - Entrada nula (cash_vs): ACEITA (como 0)
+
+✗ VALIDAÇÕES FALTANDO:
+  - Limite máximo de valores extremos
+  - Limite máximo de períodos/parcelas
+  - Validação de entrada não especifica qual campo falhou
+  - Sem rate limiting na API (vulnerabilidade a brute force/DOS)
+
+================================================================================
+5. TESTES REALIZADOS
+================================================================================
+
+TESTES DE FUNCIONALIDADE:
+✓ Boleto: Cálculo correto (7 dias × 0.1% = R$ 7,14 de juros)
+✓ Interesse: Compostos vs Simples (ambos funcionam)
+✓ Taxa: Conversão mensal→anual (1% m = 12,68% a)
+✓ PRICE: Parcela fixa, juros corretos (R$ 916,80 × 12)
+✓ SAC: Parcela decrescente, amortização fixa (R$ 833,33)
+✓ 13º: Cálculo proporcional (5000 × 12/12 = 5000)
+✓ Férias: Cálculo com terço (5000 + 1666,67 = 6666,67)
+
+TESTES DE VALIDAÇÃO:
+✓ Rejeita valor zero
+✓ Rejeita valor negativo
+✓ Rejeita taxa negativa
+✓ Rejeita data inválida
+✗ Aceita periodos até 1200
+✗ Aceita parcelas até 480
+✗ Sem mensagens específicas de erro
+
+================================================================================
+6. RECOMENDAÇÕES POR PRIORIDADE
+================================================================================
+
+🔥 CRÍTICAS (1-2 semanas)
+  1. Implementar limite máximo de overflow (1e20)
+  2. Adicionar proteção CSRF (token validation)
+  3. Validar/escapar ALL dados do backend no frontend
+  4. Testar cenários XSS
+
+📋 IMPORTANTES (1 mês)
+  5. Melhorar mensagens de erro (especificar campo)
+  6. Limitar periodos ≤ 1200 e parcelas ≤ 480 (backend + frontend)
+  7. Resolver arredondamento SAC (usar decimal library)
+  8. Permitir pagamento adiantado de boleto
+  9. Implementar rate limiting (ex: 100 req/min por IP)
+
+🎯 ENHANCEMENTS (Roadmap)
+  10. Mostrar tabela completa de amortização (ou download)
+  11. Adicionar juros simples em "Atualizar Dívida"
+  12. Gráficos de comparação PRICE vs SAC
+  13. Melhorar documentação de fórmulas
+  14. Integração com dados em tempo real do BCB (já feito!)
+  15. Salvar cálculos por CPF (com consentimento)
+
+================================================================================
+7. CONCLUSÃO
+================================================================================
+
+QUALIDADE GERAL: ⭐⭐⭐ (3 de 5)
+
+PONTOS FORTES:
+  ✓ Arquitetura limpa (cliente-servidor)
+  ✓ Cálculos matematicamente corretos (maioria)
+  ✓ Interface amigável
+  ✓ Dados de índices atualizados do BCB
+  ✓ Suporte a CSS responsivo
+
+PONTOS FRACOS:
+  ✗ Segurança: Sem CSRF, sem rate limiting
+  ✗ Robustez: Sem limite de overflow
+  ✗ Validação: Genérica demais
+  ✗ Arredondamento: Problemas em SAC
+  ✗ Documentação: Incompleta em algumas calculadoras
+
+RISCO GERAL: MÉDIO
+  - Sem risco crítico de perda de dados
+  - Risco de segurança (CSRF, possível XSS)
+  - Risco de usabilidade (erros genéricos)
+
+RECOMENDAÇÃO: Realizar melhorias de segurança ANTES de expandir a base de usuários.
+
+================================================================================

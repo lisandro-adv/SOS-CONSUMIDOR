@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SOS Consumidor - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-low": "#fff0ef",
+              "on-tertiary": "#ffffff",
+              "error": "#ba1a1a",
+              "background": "#fff8f7",
+              "surface": "#fff8f7",
+              "inverse-on-surface": "#ffedeb",
+              "surface-container-high": "#ffe2de",
+              "surface-tint": "#ba1a20",
+              "on-primary-fixed-variant": "#930010",
+              "on-secondary-container": "#fefcff",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed-variant": "#872100",
+              "surface-bright": "#fff8f7",
+              "surface-dim": "#f1d3d0",
+              "surface-container-highest": "#f9dcd9",
+              "on-secondary-fixed-variant": "#003fa5",
+              "on-error": "#ffffff",
+              "on-primary-container": "#fff2f0",
+              "primary-fixed-dim": "#ffb3ac",
+              "primary": "#af101a",
+              "on-background": "#271816",
+              "surface-container": "#ffe9e7",
+              "inverse-primary": "#ffb3ac",
+              "tertiary-fixed-dim": "#ffb5a0",
+              "on-tertiary-container": "#fff2ef",
+              "error-container": "#ffdad6",
+              "secondary-fixed-dim": "#b3c5ff",
+              "primary-fixed": "#ffdad6",
+              "primary-container": "#d32f2f",
+              "on-primary": "#ffffff",
+              "tertiary-fixed": "#ffdbd1",
+              "inverse-surface": "#3e2c2a",
+              "tertiary-container": "#cf3800",
+              "outline-variant": "#e4beba",
+              "secondary-container": "#366dea",
+              "on-error-container": "#93000a",
+              "on-surface": "#271816",
+              "on-surface-variant": "#5b403d",
+              "tertiary": "#a42b00",
+              "surface-variant": "#f9dcd9",
+              "on-secondary": "#ffffff",
+              "on-primary-fixed": "#410003",
+              "outline": "#8f6f6c",
+              "secondary-fixed": "#dbe1ff",
+              "on-secondary-fixed": "#001849",
+              "on-tertiary-fixed": "#3b0900",
+              "secondary": "#0752d0"
+            },
+            fontFamily: {
+              "headline": ["Manrope", "sans-serif"],
+              "body": ["Manrope", "sans-serif"],
+              "label": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #fff8f7;
+        }
+        .premium-glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .ambient-shadow {
+            box-shadow: 0px 24px 48px rgba(39, 24, 22, 0.08);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #af101a 0%, #d32f2f 100%);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm dark:shadow-none font-['Manrope'] antialiased tracking-tight">
+<div class="flex justify-between items-center h-20 px-8 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-extrabold tracking-tighter text-red-700 dark:text-red-500">SOS Consumidor</div>
+<nav class="hidden md:flex items-center space-x-8">
+<a class="text-red-700 dark:text-red-400 font-bold border-b-2 border-red-700 dark:border-red-400 pb-1" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-red-600 transition-colors" href="#">Chat IA</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-red-600 transition-colors" href="#">Planos</a>
+</nav>
+<div class="flex items-center space-x-6">
+<div class="flex space-x-4 text-slate-500">
+<span class="material-symbols-outlined cursor-pointer hover:bg-red-50 p-2 rounded-full transition-all">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:bg-red-50 p-2 rounded-full transition-all">help_outline</span>
+</div>
+<div class="flex items-center space-x-3 border-l pl-6 border-outline-variant/20">
+<span class="text-sm font-semibold text-on-surface">Dr. Silva</span>
+<img alt="User Profile Avatar" class="w-10 h-10 rounded-xl object-cover ring-2 ring-primary/10" data-alt="Professional portrait of a male lawyer in a dark suit with a friendly and confident expression, neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcBC6Csd3v05E6QiuetehHCX4OhM61OXjxnhxQrKul5Xa7YxuGfEt16POL4gecv5lLBzEwOuuZlxTHaI9Rx0i-HtqJl95x-3zcKRCM5XYXTxwgO3nXGGijnW73wngdtsSSciBjYfjDkNciE0i18HUKwMnRrqcDgoKrNzulkupAtGqBs6PelH7uNnhyZLa_EvVrm6LHJR0YFCOEqobrexXo-P1S4VFG59CLnwBY1K8j0z-NytjYMlj2hGZ55xrB30mOU6zVMrcRxEk"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-28 pb-20 px-8 max-w-screen-2xl mx-auto space-y-12">
+<!-- Welcome Header -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<p class="text-primary font-bold tracking-widest text-xs uppercase mb-2">Painel do Especialista</p>
+<h1 class="text-4xl font-extrabold tracking-tight text-on-surface">Olá, Dr. Silva</h1>
+<p class="text-on-surface-variant mt-2 max-w-lg body-lg">Sua central de inteligência jurídica. Acompanhe seus casos e otimize sua defesa com IA.</p>
+</div>
+<div class="flex gap-4">
+<button class="bg-surface-container-high text-on-surface font-semibold px-6 py-3 rounded-xl hover:bg-surface-container-highest transition-all duration-200 active:scale-95">
+                    Nova Consulta
+                </button>
+<button class="hero-gradient text-on-primary font-bold px-8 py-3 rounded-xl shadow-lg hover:opacity-90 transition-all duration-200 active:scale-95">
+                    Consultar IA
+                </button>
+</div>
+</section>
+<!-- Stats & Bento Section -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Stats Column -->
+<div class="md:col-span-4 space-y-6">
+<div class="bg-surface-container-lowest p-8 rounded-xl ambient-shadow flex flex-col justify-between h-[180px]">
+<div class="flex justify-between items-start">
+<span class="text-on-surface-variant font-medium">Perguntas Realizadas</span>
+<div class="w-10 h-10 bg-primary-fixed rounded-xl flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="forum">forum</span>
+</div>
+</div>
+<div>
+<div class="text-5xl font-extrabold tracking-tighter text-on-surface">128</div>
+<p class="text-sm text-secondary font-semibold mt-1">+12% esta semana</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-xl ambient-shadow flex flex-col justify-between h-[180px]">
+<div class="flex justify-between items-start">
+<span class="text-on-surface-variant font-medium">Docs Analisados</span>
+<div class="w-10 h-10 bg-secondary-fixed rounded-xl flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+</div>
+</div>
+<div>
+<div class="text-5xl font-extrabold tracking-tighter text-on-surface">42</div>
+<p class="text-sm text-secondary font-semibold mt-1">Eficiência aumentada em 25%</p>
+</div>
+</div>
+</div>
+<!-- Prominent IA Recommendation -->
+<div class="md:col-span-8 bg-surface-container-lowest rounded-xl ambient-shadow overflow-hidden relative group">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent pointer-events-none"></div>
+<div class="p-8 h-full flex flex-col justify-between relative z-10">
+<div>
+<div class="flex items-center gap-2 mb-6">
+<span class="flex h-3 w-3 rounded-full bg-primary animate-pulse"></span>
+<span class="text-xs font-bold uppercase tracking-widest text-primary">Recomendação IA Prioritária</span>
+</div>
+<h2 class="text-3xl font-bold tracking-tight mb-4 text-on-surface">Alerta de Planos de Saúde</h2>
+<p class="text-on-surface-variant text-lg leading-relaxed max-w-xl">
+                            Detectamos uma tendência crescente de negativas em cirurgias bariátricas sob a justificativa de "procedimento estético". Nossa IA sugere revisar as súmulas 102 e 96 do TJ-SP para os seus 3 casos pendentes.
+                        </p>
+</div>
+<div class="flex items-center gap-4 mt-8">
+<a class="text-primary font-bold flex items-center gap-2 group-hover:gap-3 transition-all" href="#">
+                            Ver análise completa <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Subtle graphic element -->
+<div class="absolute bottom-[-20%] right-[-10%] opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined" data-icon="health_and_safety" style="font-size: 320px;">health_and_safety</span>
+</div>
+</div>
+</section>
+<!-- Main Content Sections -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+<!-- Consultas Recentes (List) -->
+<section class="lg:col-span-2 space-y-8">
+<div class="flex items-center justify-between">
+<h3 class="text-2xl font-bold tracking-tight">Consultas Recentes</h3>
+<button class="text-sm font-bold text-secondary hover:underline">Ver Histórico</button>
+</div>
+<div class="space-y-4">
+<!-- Item 1 -->
+<div class="bg-surface-container-low p-5 rounded-xl flex items-center justify-between hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-5">
+<div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined">shopping_cart</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Atraso na Entrega - Pedido #8921</h4>
+<p class="text-sm text-on-surface-variant">Protocolo aberto há 2 horas • Dr. Silva</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-xs font-bold rounded-full uppercase tracking-tighter">Em Progresso</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary transition-colors">more_vert</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-surface-container-low p-5 rounded-xl flex items-center justify-between hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-5">
+<div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Corte Indevido de Energia Elétrica</h4>
+<p class="text-sm text-on-surface-variant">Análise concluída com sucesso • Ontem</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant text-xs font-bold rounded-full uppercase tracking-tighter">Concluído</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary transition-colors">more_vert</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="bg-surface-container-low p-5 rounded-xl flex items-center justify-between hover:bg-surface-container transition-colors group border-l-4 border-tertiary">
+<div class="flex items-center gap-5">
+<div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-tertiary shadow-sm">
+<span class="material-symbols-outlined">credit_card</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Fraude Cartão de Crédito - Contestação</h4>
+<p class="text-sm text-on-surface-variant">Prazo judicial expira em 24h • Crítico</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container text-xs font-bold rounded-full uppercase tracking-tighter">Urgente</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary transition-colors">more_vert</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Conselhos Salvos (Grid) -->
+<section class="space-y-8">
+<div class="flex items-center justify-between">
+<h3 class="text-2xl font-bold tracking-tight">Conselhos Salvos</h3>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">grid_view</span>
+</div>
+<div class="grid grid-cols-1 gap-6">
+<!-- Saved Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl ambient-shadow flex flex-col gap-4 border-t-4 border-primary/20">
+<div class="flex justify-between items-start">
+<span class="px-2 py-1 bg-secondary-fixed text-on-secondary-fixed text-[10px] font-extrabold rounded uppercase">E-commerce</span>
+<span class="material-symbols-outlined text-primary text-sm" data-weight="fill">bookmark</span>
+</div>
+<p class="font-bold text-on-surface leading-snug">Direito de Arrependimento: 7 dias para compras online, mesmo se o produto estiver aberto.</p>
+<div class="pt-2 flex items-center gap-2 text-xs text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-xs">calendar_today</span> Salvo em 12 Out
+                        </div>
+</div>
+<!-- Saved Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl ambient-shadow flex flex-col gap-4 border-t-4 border-secondary/20">
+<div class="flex justify-between items-start">
+<span class="px-2 py-1 bg-surface-container-highest text-on-surface-variant text-[10px] font-extrabold rounded uppercase">Geral</span>
+<span class="material-symbols-outlined text-primary text-sm" data-weight="fill">bookmark</span>
+</div>
+<p class="font-bold text-on-surface leading-snug">Responsabilidade Objetiva: O fornecedor responde pelos danos independente de culpa.</p>
+<div class="pt-2 flex items-center gap-2 text-xs text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-xs">calendar_today</span> Salvo em 05 Out
+                        </div>
+</div>
+<!-- Saved Card 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl ambient-shadow flex flex-col gap-4 border-t-4 border-tertiary/20">
+<div class="flex justify-between items-start">
+<span class="px-2 py-1 bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-extrabold rounded uppercase">Urgente</span>
+<span class="material-symbols-outlined text-primary text-sm" data-weight="fill">bookmark</span>
+</div>
+<p class="font-bold text-on-surface leading-snug">Interrupção de Serviços Essenciais: Ação de obrigação de fazer com pedido de liminar.</p>
+<div class="pt-2 flex items-center gap-2 text-xs text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-xs">calendar_today</span> Salvo ontem
+                        </div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 w-full py-12 border-t-0">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 px-8 max-w-screen-2xl mx-auto">
+<div class="space-y-4">
+<div class="text-lg font-bold text-slate-900 dark:text-white">SOS Consumidor</div>
+<p class="text-sm font-medium font-['Manrope'] text-slate-500 dark:text-slate-400 leading-relaxed">
+                    © 2024 SOS Consumidor. O Guardião Judicial dos seus direitos.
+                </p>
+</div>
+<div>
+<h5 class="font-bold text-sm mb-4 text-on-surface">Jurisprudência</h5>
+<ul class="space-y-2 text-sm font-medium font-['Manrope']">
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-red-600 hover:underline decoration-red-500 underline-offset-4 transition-all" href="#">STJ Recentes</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-red-600 hover:underline decoration-red-500 underline-offset-4 transition-all" href="#">Súmulas CDC</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-sm mb-4 text-on-surface">Legal</h5>
+<ul class="space-y-2 text-sm font-medium font-['Manrope']">
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-red-600 hover:underline decoration-red-500 underline-offset-4 transition-all" href="#">Termos de Uso</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-red-600 hover:underline decoration-red-500 underline-offset-4 transition-all" href="#">Privacidade</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-sm mb-4 text-on-surface">Suporte</h5>
+<ul class="space-y-2 text-sm font-medium font-['Manrope']">
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-red-600 hover:underline decoration-red-500 underline-offset-4 transition-all" href="#">Contato</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-red-600 hover:underline decoration-red-500 underline-offset-4 transition-all" href="#">Sobre Nós</a></li>
+</ul>
+</div>
+</div>
+</footer>
+</body></html>

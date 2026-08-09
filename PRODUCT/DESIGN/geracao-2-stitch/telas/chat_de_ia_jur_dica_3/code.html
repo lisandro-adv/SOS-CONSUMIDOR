@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sovereign Advocate | AI Consumer Rights</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-background": "#111c2d",
+              "on-secondary-fixed-variant": "#3a485b",
+              "outline-variant": "#c6c5d4",
+              "on-secondary": "#ffffff",
+              "surface-container-high": "#dee8ff",
+              "secondary-fixed": "#d5e3fc",
+              "primary": "#000666",
+              "inverse-primary": "#bdc2ff",
+              "error-container": "#ffdad6",
+              "outline": "#767683",
+              "on-surface": "#111c2d",
+              "on-surface-variant": "#454652",
+              "on-tertiary-container": "#aa80ff",
+              "primary-container": "#1a237e",
+              "tertiary-fixed-dim": "#d2bbff",
+              "surface-bright": "#f9f9ff",
+              "surface-tint": "#4c56af",
+              "on-secondary-container": "#57657a",
+              "primary-fixed-dim": "#bdc2ff",
+              "on-tertiary": "#ffffff",
+              "tertiary-fixed": "#eaddff",
+              "secondary-container": "#d5e3fc",
+              "on-tertiary-fixed-variant": "#5a00c6",
+              "on-tertiary-fixed": "#25005a",
+              "background": "#f9f9ff",
+              "on-error": "#ffffff",
+              "surface-container-highest": "#d8e3fb",
+              "on-primary-container": "#8690ee",
+              "on-primary-fixed": "#000767",
+              "on-secondary-fixed": "#0d1c2e",
+              "inverse-surface": "#263143",
+              "tertiary": "#240058",
+              "error": "#ba1a1a",
+              "on-error-container": "#93000a",
+              "surface-dim": "#cfdaf2",
+              "on-primary-fixed-variant": "#343d96",
+              "tertiary-container": "#3e008c",
+              "surface": "#f9f9ff",
+              "secondary-fixed-dim": "#b9c7df",
+              "surface-variant": "#d8e3fb",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed": "#e0e0ff",
+              "secondary": "#515f74",
+              "surface-container-low": "#f0f3ff",
+              "inverse-on-surface": "#ecf1ff",
+              "surface-container": "#e7eeff",
+              "on-primary": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ai-glass {
+            background: rgba(234, 221, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-50 shadow-sm">
+<div class="flex justify-between items-center px-6 h-16 w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-indigo-900 text-2xl" data-icon="gavel">gavel</span>
+<h1 class="font-manrope font-extrabold text-xl tracking-tighter text-indigo-900">Sovereign Advocate</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-500 hover:bg-slate-200/50 transition-colors px-3 py-2 rounded-lg font-medium" href="#">Dashboard</a>
+<a class="text-indigo-700 font-bold px-3 py-2 rounded-lg" href="#">AI Chat</a>
+<a class="text-slate-500 hover:bg-slate-200/50 transition-colors px-3 py-2 rounded-lg font-medium" href="#">Plans</a>
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border-2 border-primary-fixed">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="minimalist professional avatar of a person in a corporate suit with a friendly expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDx13yM8L_7rNn1db8fS8F-RqwyHngrV3pbIMmQOS0GZUv-HZcJ88HWmIOpamTZpf1DDcD0n2knKdGSGCGi92CD4cFMTJEc0AxTpSCwp9MSzvFozd729Odg_F-y9aQuWWdbcYEKFtjTYAwKCqzi9LltrE5vMctsLyS82GBUXG1DQ3F9_Da-g6Y4ah-EERCnAE42Ju--STKdxQFDOemV2YFygbpw7d8S__3PwRfM0--PVfg_4GVWXad_-QSr-EB6t2RvJ-yEFHpd9J8"/>
+</div>
+</nav>
+</div>
+</header>
+<main class="pt-24 pb-32 px-4 max-w-5xl mx-auto">
+<!-- Header Section -->
+<div class="mb-12 text-center md:text-left">
+<h2 class="text-4xl font-extrabold tracking-tight text-on-surface mb-4">Consumer Rights Intelligence</h2>
+<p class="text-secondary max-w-2xl leading-relaxed">Navigate the Brazilian Consumer Defense Code (CDC) with an expert legal curator. Instant answers for your marketplace disputes.</p>
+</div>
+<!-- Chat Canvas -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left Column: Chat Feed -->
+<div class="lg:col-span-8 space-y-8">
+<!-- AI Response Example 1 -->
+<div class="space-y-4">
+<div class="flex items-start gap-4">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-white text-sm" data-icon="smart_toy">smart_toy</span>
+</div>
+<div class="space-y-4 flex-1">
+<div class="ai-glass p-6 rounded-xl border-none shadow-sm">
+<p class="text-on-surface leading-relaxed font-medium mb-4">
+                                    Hello. I've analyzed your situation regarding the return refusal. Under the Brazilian Consumer Defense Code, you have specific protections.
+                                </p>
+<div class="bg-surface-container-lowest p-5 rounded-lg space-y-3">
+<div class="flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm" data-icon="description">description</span>
+                                        Legal Basis: Art. 49 CDC
+                                    </div>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                                        "The consumer may withdraw from the contract within 7 days from the receipt of the product or service, whenever the contracting of products and services takes place outside the commercial establishment, especially by telephone or at home."
+                                    </p>
+</div>
+<p class="mt-4 text-on-surface leading-relaxed">
+                                    If you purchased this item online, the store **cannot** refuse your return within the 7-day window, regardless of the reason.
+                                </p>
+</div>
+<div class="flex gap-2 px-2">
+<button class="text-xs font-semibold text-secondary hover:text-primary flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="thumb_up">thumb_up</span> Helpful
+                                </button>
+<button class="text-xs font-semibold text-secondary hover:text-primary flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="content_copy">content_copy</span> Copy Citation
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- User Query Example -->
+<div class="flex justify-end">
+<div class="bg-primary text-white p-5 rounded-2xl rounded-tr-none max-w-[80%] shadow-lg">
+<p class="text-sm font-medium">The store says I can't return the shoes because I opened the box. Is that legal?</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Sidebar / Shortcuts -->
+<div class="lg:col-span-4 space-y-6">
+<div class="bg-surface-container-low p-6 rounded-2xl border-none">
+<h3 class="font-manrope font-bold text-on-surface mb-4">Quick Templates</h3>
+<div class="space-y-3">
+<button class="w-full text-left p-4 bg-surface-container-lowest hover:bg-white rounded-xl transition-all active:scale-95 shadow-sm group">
+<span class="text-xs font-bold text-primary uppercase tracking-tighter block mb-1">Travel</span>
+<span class="text-sm text-on-surface font-semibold group-hover:text-primary">How to cancel a flight?</span>
+</button>
+<button class="w-full text-left p-4 bg-surface-container-lowest hover:bg-white rounded-xl transition-all active:scale-95 shadow-sm group">
+<span class="text-xs font-bold text-primary uppercase tracking-tighter block mb-1">E-Commerce</span>
+<span class="text-sm text-on-surface font-semibold group-hover:text-primary">Store refused my return</span>
+</button>
+<button class="w-full text-left p-4 bg-surface-container-lowest hover:bg-white rounded-xl transition-all active:scale-95 shadow-sm group">
+<span class="text-xs font-bold text-primary uppercase tracking-tighter block mb-1">Utilities</span>
+<span class="text-sm text-on-surface font-semibold group-hover:text-primary">Unexpected bill increase</span>
+</button>
+</div>
+</div>
+<div class="p-6 rounded-2xl bg-indigo-900 text-indigo-100 space-y-3 relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-bold">Need a Lawyer?</h4>
+<p class="text-xs opacity-80 leading-relaxed">Our premium plan connects you with verified consumer rights attorneys for direct representation.</p>
+<button class="mt-4 px-4 py-2 bg-indigo-500 text-white rounded-lg text-xs font-bold hover:bg-indigo-400 transition-colors">Upgrade Now</button>
+</div>
+<!-- Decorative background image -->
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<img alt="Legal statue" class="w-full h-full object-cover" data-alt="close-up of the scales of justice statue in a dark moody setting with bronze highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyGWOp63K9GCoRDfCUOhVdpMAVntr_ta3iHPl1Uz1o4CKoIQjqtpGn1CRpb13ZNSOC3rn0VTztBjQvKZGUEPQ_icOpOwUt0oDhyp8RxZxvV5gQWdmiU2sy52AGhxRfSilPUWeGbpmQk02SVpoPDYVk56z3lwQbUJKaD05b9WqDqwYtEqASnOoBC9Ao6Z68DKEksyZqI92kavUGWSSjjuCEV1I9E476BiUxULHrULWsDCl6uXbUJ695egVT1uv8ofLRB7z-iIQnibo"/>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Chat Input Section (Floating Anchor) -->
+<div class="fixed bottom-20 md:bottom-8 left-0 w-full px-4 z-40">
+<div class="max-w-3xl mx-auto bg-surface-container-lowest rounded-2xl shadow-2xl p-2 flex items-center gap-2 border border-slate-100">
+<button class="p-3 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="attach_file">attach_file</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface font-medium placeholder-slate-400" placeholder="Describe your consumer issue..." type="text"/>
+<button class="bg-primary text-white w-12 h-12 rounded-xl flex items-center justify-center hover:bg-primary-container active:scale-90 transition-all">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+</div>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-white/80 backdrop-blur-xl flex justify-around items-center px-4 pb-6 pt-2 z-50 rounded-t-2xl shadow-[0_-8px_32px_rgba(0,0,0,0.06)] border-t border-slate-100">
+<a class="flex flex-col items-center justify-center text-slate-400 py-2 px-4" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-manrope text-[10px] font-semibold uppercase tracking-wider">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-indigo-50 text-indigo-700 rounded-xl py-2 px-4" href="#">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+<span class="font-manrope text-[10px] font-semibold uppercase tracking-wider">AI Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 py-2 px-4" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-manrope text-[10px] font-semibold uppercase tracking-wider">Plans</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 py-2 px-4" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-manrope text-[10px] font-semibold uppercase tracking-wider">Settings</span>
+</a>
+</nav>
+</body></html>

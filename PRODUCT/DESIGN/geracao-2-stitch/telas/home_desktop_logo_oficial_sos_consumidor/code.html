@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SOS Consumidor - O Guardião Judicial dos seus direitos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-low": "#fff0ef",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "background": "#fff8f7",
+                        "surface": "#fff8f7",
+                        "inverse-on-surface": "#ffedeb",
+                        "surface-container-high": "#ffe2de",
+                        "surface-tint": "#ba1a20",
+                        "on-primary-fixed-variant": "#930010",
+                        "on-secondary-container": "#fefcff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#872100",
+                        "surface-bright": "#fff8f7",
+                        "surface-dim": "#f1d3d0",
+                        "surface-container-highest": "#f9dcd9",
+                        "on-secondary-fixed-variant": "#003fa5",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#fff2f0",
+                        "primary-fixed-dim": "#ffb3ac",
+                        "primary": "#af101a",
+                        "on-background": "#271816",
+                        "surface-container": "#ffe9e7",
+                        "inverse-primary": "#ffb3ac",
+                        "tertiary-fixed-dim": "#ffb5a0",
+                        "on-tertiary-container": "#fff2ef",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#b3c5ff",
+                        "primary-fixed": "#ffdad6",
+                        "primary-container": "#d32f2f",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#ffdbd1",
+                        "inverse-surface": "#3e2c2a",
+                        "tertiary-container": "#cf3800",
+                        "outline-variant": "#e4beba",
+                        "secondary-container": "#366dea",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#271816",
+                        "on-surface-variant": "#5b403d",
+                        "tertiary": "#a42b00",
+                        "surface-variant": "#f9dcd9",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#410003",
+                        "outline": "#8f6f6c",
+                        "secondary-fixed": "#dbe1ff",
+                        "on-secondary-fixed": "#001849",
+                        "on-tertiary-fixed": "#3b0900",
+                        "secondary": "#0752d0"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm dark:shadow-none font-['Manrope'] antialiased tracking-tight">
+<div class="flex justify-between items-center h-20 px-8 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-4">
+<img alt="SOS Consumidor Logo" class="h-10 w-10" src="https://lh3.googleusercontent.com/aida/ADBb0ujfpaeFeKFy3gvLyc7hbIaKCJbd1jDkD5BunlcuU1CD4r7Mjp1EM8hpYt_z3HqhewkOmxa7B4JfPwV6GkBaHY7MiohZtfQdsm2o6jx_joGTcmOoXAQOOPjyjhyLBSDdNlESlmh8j4E9zerP7Nxq7Qu2_JuwAFgWx0YRUhNrPuwNJG3gFpbbcrNrj4uGAwO2HuD-EHcs9lpSJH2TfSBpBPszCzVF0GKTXi9I_8oIh5GKkqLYmnf_oYs-sTzTPyPtaclr_vFPYesExg"/>
+<span class="text-2xl font-extrabold tracking-tighter text-red-700 dark:text-red-500">SOS Consumidor</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-red-700 dark:text-red-400 font-bold border-b-2 border-red-700 dark:border-red-400 pb-1" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-red-600 transition-colors" href="#">Chat IA</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-red-600 transition-colors" href="#">Planos</a>
+</nav>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-slate-500">
+<span class="material-symbols-outlined hover:text-red-600 cursor-pointer transition-all active:scale-95">notifications</span>
+<span class="material-symbols-outlined hover:text-red-600 cursor-pointer transition-all active:scale-95">help_outline</span>
+</div>
+<button class="bg-primary hover:bg-primary-container text-on-primary px-6 py-2.5 rounded-xl font-bold transition-all active:scale-95 duration-150 ease-in-out">
+                    Entrar
+                </button>
+</div>
+</div>
+<div class="h-[1px] w-full bg-gradient-to-r from-transparent via-outline-variant/20 to-transparent"></div>
+</header>
+<main class="pt-20">
+<section class="relative min-h-[870px] flex items-center overflow-hidden bg-slate-950">
+<div class="absolute inset-0 opacity-20">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,#af101a_0%,transparent_50%)]"></div>
+</div>
+<div class="max-w-screen-2xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+<div class="space-y-8">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary-fixed-dim">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="text-xs font-bold tracking-widest uppercase">Inteligência Jurídica Avançada</span>
+</div>
+<h1 class="text-white text-5xl md:text-7xl font-extrabold tracking-tighter leading-[1.1]">
+                        Tem um problema de consumo? <span class="text-primary">Pergunte à nossa IA.</span>
+</h1>
+<p class="text-slate-400 text-lg md:text-xl max-w-xl leading-relaxed">
+                        Analise contratos, entenda seus direitos e gere documentos jurídicos em segundos com o poder da inteligência artificial especializada em defesa do consumidor.
+                    </p>
+<div class="relative max-w-2xl group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-2xl blur opacity-25 group-focus-within:opacity-50 transition duration-1000"></div>
+<div class="relative flex items-center bg-slate-900 rounded-xl p-2 border border-slate-800">
+<span class="material-symbols-outlined text-slate-500 ml-4">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-white px-4 py-3 placeholder:text-slate-600" placeholder="Ex: Comprei um celular com defeito e a loja não quer trocar..." type="text"/>
+<button class="bg-primary hover:bg-primary-container text-on-primary px-8 py-3 rounded-lg font-bold transition-all flex items-center gap-2">
+                                Analisar <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-6 pt-4">
+<div class="flex -space-x-3">
+<img alt="User" class="w-10 h-10 rounded-full border-2 border-slate-950" data-alt="professional woman portrait headshot for testimonial" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDl-ya4bhw8JWSOSfxB6nKmJz9kMPp097ayhm8DoBkAWXjQESiqcTRKiO1pdgdAjCK7_qGCXhKeVB3H0xYzF00A_XVB9rDWE7PyUWVhmfHYwPQnoz44Ant_LTqQNpHagqXLP_EASwvQ5QXowJc_mqHcc8r-mmHgmSBjX7etGKCL2qT3ebCJgmMg93n0hVr2VZLxWU-8YNyS_57Jm-3pyioxhy6A4f4RuvONMd-ioVwlRf-Y-Gl-ZJY9nw3EAnSdAZAvHDmcRwiXbsE"/>
+<img alt="User" class="w-10 h-10 rounded-full border-2 border-slate-950" data-alt="professional man portrait headshot for testimonial" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD3csofKxu0Ky6wX8FQCn6yDjgjp_TprEV7ai6Y1RQV1IuqoI6o0f3eLGoMCdOjWoRcx_wUwApxeIy98EATMTQZYx7kdZKs-YbY5Z_weubMnPSlPrRxLD3g6YNXLj3L9TNaqra5mpWo-nW2D7QCKHpHhMNBjC-zXMkWwS0162XhoI2cmWBtYTAdFt8scyA-jmWOQCwuF6XnQf80fGH4nebHqx1t10RqJXAk4KawRtRrN9uTeoaWrIS5l7Q5UJ_lHoHZrO4MquaMXk"/>
+<img alt="User" class="w-10 h-10 rounded-full border-2 border-slate-950" data-alt="diverse woman portrait headshot for testimonial" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMEAkXE1F2eoLvawvXyDlU9BA2S4K4lhFdqmt7N5Uf5JX77H5OIi1bxXliIWno0VCghWV6TBF2pEmO1qUNZw7927hcvENHuW9X9K7vcyLz-vLq5FApKmVDVM04gRCEpnvG6b9yeGtCQtVo_C17_iUBkNKl4ssc7A7tVICS1AgNGZ6ZKs0TBCdsBjIGqRihtRQdtraAm1nUT08VHBtUnM66xkDrbzaa330A7S3SCQuiis9vjd-ncaaR6taJJ0CMhdCl-q6HmskdbN0"/>
+</div>
+<p class="text-slate-500 text-sm font-medium">+15.000 consumidores protegidos este mês</p>
+</div>
+</div>
+<div class="hidden lg:block relative">
+<div class="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-800 bg-slate-900 aspect-square flex items-center justify-center">
+<img alt="Legal Shield" class="absolute inset-0 w-full h-full object-cover opacity-60" data-alt="scales of justice in a modern office with dramatic lighting and professional aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUal7SDvEWrvFX2uHNCkISecDhy_GC_ZCVhpsDkiF5CcV_aUt_RQKwz7584l5jodpWVBfOGYhQjgzPi-ei7WjoPG9D8gJ9IrARJGcX4VwSyS8iK_JTPmqW7PPW1SRVY2l7-Ou7piWJSepl_Dnlb6pNtb_-fD6M0sccYxZYhwzPl20cW9AgdSpwnypz-jsk0nJZnPCu_ccCWiye8QQQqI3T1j4kswebbXAv2-Mm_TcrSWRRNtkhN9EntneC20oAFGjlwxE2nHRRA8M"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+<div class="relative z-10 p-8 w-full">
+<div class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/10 space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+<span class="text-xs font-bold text-white uppercase tracking-widest">IA Processando</span>
+</div>
+<span class="text-slate-400 text-xs">Agora</span>
+</div>
+<div class="space-y-2">
+<div class="h-2 w-3/4 bg-white/20 rounded"></div>
+<div class="h-2 w-full bg-white/20 rounded"></div>
+<div class="h-2 w-1/2 bg-white/20 rounded"></div>
+</div>
+<div class="pt-4 flex justify-end">
+<div class="bg-primary px-4 py-2 rounded text-[10px] font-bold text-white">VEREDITO IA</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-surface">
+<div class="max-w-screen-2xl mx-auto px-8">
+<div class="flex justify-between items-end mb-16">
+<div class="space-y-4">
+<h2 class="text-4xl font-extrabold tracking-tight text-slate-900">Últimas Notícias Jurídicas</h2>
+<div class="h-1.5 w-24 bg-primary rounded-full"></div>
+</div>
+<button class="text-primary font-bold flex items-center gap-2 hover:gap-3 transition-all">
+                        Ver todo o portal <span class="material-symbols-outlined">trending_flat</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<div class="md:col-span-8 group cursor-pointer">
+<div class="relative rounded-2xl overflow-hidden aspect-[16/9] mb-6">
+<img alt="News main" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="busy airport terminal with motion blur representing consumer travel rights and delays" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK5s1doECMYK4UDTIRvCT2B3Mae8-9C1Fw5RimQ_Id08vjWr48e4XvAJh1feaByjXst-rsx2ynlSVw0z8ZqMdbLA4z1c3KyDyl-FGyqE8h0g511HDsvh8l4g45ltIGVpvgTH7UlVEUHldfEtBFd6NY_5EIZC5m48ddKVE4urxqx4Levq4oBGERMpyWUdjQkTJJ8u_X1o8aMhs8tgXgITpXGlhS_pV3-J46d3Zu8moi60N1-IxEWNLHy9zxdG4oY8BOM7ruUuceFgo"/>
+<div class="absolute top-6 left-6">
+<span class="bg-primary text-white text-xs font-bold px-4 py-2 rounded-lg uppercase tracking-widest">Destaque</span>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-4 text-slate-500 text-sm font-semibold uppercase tracking-wider">
+<span>Aviação Civil</span>
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+<span>Há 2 horas</span>
+</div>
+<h3 class="text-3xl font-extrabold text-slate-900 leading-tight group-hover:text-primary transition-colors">Novas regras para cancelamento de voos entram em vigor este mês: saiba como se proteger</h3>
+<p class="text-slate-600 text-lg line-clamp-2">O Supremo Tribunal Federal decidiu sobre as novas diretrizes de indenização para passageiros afetados por atrasos superiores a 4 horas em voos nacionais.</p>
+</div>
+</div>
+<div class="md:col-span-4 space-y-8">
+<div class="group cursor-pointer flex gap-6 items-start">
+<div class="shrink-0 w-24 h-24 rounded-xl overflow-hidden">
+<img alt="Small news" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="online shopping cart and credit card representing digital commerce rights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmqu3KCJO9jKSBHbPFTBc-KcMVuC-fmnND6erctH4j9frjotc71l-V4PMf5oRp6I7bfjf3sNQYB7RWx-YYAgl5_HwLqIhsB5nMpT3S1im5wAZ9QhC2soJmi7HGEqv4bZ-bYS65jxA7aX3Ckrxgtc8rZh9DmuGW5c_0ZWUEVsGW020X-ordT7Avn56LHrPVdFYlQjKr9xjsjV0_-sH6scXWQnlvF2A7aiArDYIS-Pv4HFOH-Ld0c9qIOBeRmgRSRx2eoiKfjFeO5FI"/>
+</div>
+<div class="space-y-2">
+<span class="text-primary text-[10px] font-bold uppercase tracking-widest">E-commerce</span>
+<h4 class="font-bold text-slate-900 leading-snug group-hover:text-primary transition-colors">Direito de arrependimento: 5 coisas que as lojas não te contam.</h4>
+</div>
+</div>
+<div class="group cursor-pointer flex gap-6 items-start">
+<div class="shrink-0 w-24 h-24 rounded-xl overflow-hidden">
+<img alt="Small news" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="modern apartment keys on a table representing real estate and rental law" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi8un0JchjShyz4VZC71UmGWTkKlKrNlWf9gLTNkLbb-I1qmKxilkto-LJ-9839g420iE5-SPijSMa3fXHcyg7sfPQkvXjUnCfAWYdjMu67PQz9ia-hgnkbzXmgfJdbyyfj0bMa6XfbAHtvG_umWlY1RXjneYdoF727tfEWpmRC1BiiVhUyE-En8WbT_srHRQZ1PZSR3B1l4gJWZyiaBwSoyVup7l9Kpga93U0p3ZDyoU9DFKyfA_IIxA04V3e7uJ74Wp7EqTs468"/>
+</div>
+<div class="space-y-2">
+<span class="text-primary text-[10px] font-bold uppercase tracking-widest">Imobiliário</span>
+<h4 class="font-bold text-slate-900 leading-snug group-hover:text-primary transition-colors">Aumento abusivo de aluguel? Veja como contestar judicialmente.</h4>
+</div>
+</div>
+<div class="group cursor-pointer flex gap-6 items-start">
+<div class="shrink-0 w-24 h-24 rounded-xl overflow-hidden">
+<img alt="Small news" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="technician repairing a generic smartphone representing warranty and repair rights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBugYfqqEfEhctd5E-ivJ4EdrpzfLOpUDLvE6tWgwIgPbplKi2aiwiz3pk-H0YNQzp4VLUvQerp3LT-uscSVmP_nYreQZW5Wv4lClBh9qQ3iFjH2vEC7CwaSnq7kyZf8qbXePLZw9EVQvya25Zg93iaZUvikGFIOHzogOq3ef3SyO6eN2FMLoIj_Bgm4M4boD8rmuup5Of-Dr7ppa8BLzRZZrol1Ki0cwsc6AZjNfGo51O7TtVi0YUHUOEJfddNRebKkL0ux9t01HQ"/>
+</div>
+<div class="space-y-2">
+<span class="text-primary text-[10px] font-bold uppercase tracking-widest">Garantias</span>
+<h4 class="font-bold text-slate-900 leading-snug group-hover:text-primary transition-colors">Garantia estendida vale a pena? O que diz o Código do Consumidor.</h4>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-screen-2xl mx-auto px-8">
+<div class="text-center max-w-3xl mx-auto mb-20 space-y-6">
+<h2 class="text-4xl font-extrabold tracking-tight text-slate-900">Destaques Jurídicos &amp; Guias</h2>
+<p class="text-slate-600 text-lg">Navegue por nossas categorias especializadas e encontre soluções rápidas para os problemas mais comuns do dia a dia.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-surface-container-lowest p-10 rounded-2xl hover:shadow-xl transition-shadow border border-outline-variant/10 group">
+<div class="w-14 h-14 rounded-xl bg-primary/5 flex items-center justify-center text-primary mb-8 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">home_work</span>
+</div>
+<h3 class="text-2xl font-bold mb-4">Contratos de Aluguel</h3>
+<p class="text-slate-600 leading-relaxed mb-8">Modelos revisados por especialistas, dicas para vistorias e guias sobre rescisão sem multa.</p>
+<a class="inline-flex items-center gap-2 font-bold text-primary group-hover:translate-x-2 transition-transform" href="#">
+                            Explorar Guia <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="bg-surface-container-lowest p-10 rounded-2xl hover:shadow-xl transition-shadow border border-outline-variant/10 group">
+<div class="w-14 h-14 rounded-xl bg-secondary/5 flex items-center justify-center text-secondary mb-8 group-hover:bg-secondary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">gavel</span>
+</div>
+<h3 class="text-2xl font-bold mb-4">Pequenas Causas</h3>
+<p class="text-slate-600 leading-relaxed mb-8">Saiba como entrar com uma ação no JEC sem advogado para valores de até 20 salários mínimos.</p>
+<a class="inline-flex items-center gap-2 font-bold text-secondary group-hover:translate-x-2 transition-transform" href="#">
+                            Explorar Guia <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="bg-surface-container-lowest p-10 rounded-2xl hover:shadow-xl transition-shadow border border-outline-variant/10 group">
+<div class="w-14 h-14 rounded-xl bg-tertiary/5 flex items-center justify-center text-tertiary mb-8 group-hover:bg-tertiary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">verified_user</span>
+</div>
+<h3 class="text-2xl font-bold mb-4">Garantias &amp; Vícios</h3>
+<p class="text-slate-600 leading-relaxed mb-8">Tudo sobre vício oculto, prazos de reclamação e o que fazer quando o produto para de funcionar.</p>
+<a class="inline-flex items-center gap-2 font-bold text-tertiary group-hover:translate-x-2 transition-transform" href="#">
+                            Explorar Guia <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24">
+<div class="max-w-screen-2xl mx-auto px-8">
+<div class="relative bg-slate-900 rounded-3xl overflow-hidden py-24 px-12 text-center">
+<div class="absolute inset-0 opacity-40">
+<img alt="CTA background" class="w-full h-full object-cover" data-alt="top view of person signing legal documents on a wooden desk with a pen and glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjICeoexoQGYFNxhpMYz6FAa5KcvTpmrWOSZbsIUiO-x4raC5YbJC6NTuAgMSu0T9QChPXofB074G2REKIhJkEgKXgQTTgXSLz_sL3mL7TO9TdQjZeas2mZT0L9zo23pqpxEXqljvofRR8ISbcMwK--9L0VL9VkbvBR_vfmJ7liye_HjzKV6SyN0aQB9qsb3b-WzvflT0x4w4kh9ZUPwcI03VdaQ20qxis7GEvUnIq7VrDaD-VnGbVFwIwfON7lA5qQvD-ZTMJ0z0"/>
+<div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-primary/40"></div>
+</div>
+<div class="relative z-10 max-w-2xl mx-auto space-y-8">
+<h2 class="text-white text-5xl font-extrabold tracking-tight">Pronto para resolver seu caso?</h2>
+<p class="text-slate-300 text-xl">Não deixe seus direitos serem ignorados. Use nossa IA hoje e tenha um parecer jurídico instantâneo.</p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+<button class="w-full sm:w-auto bg-primary hover:bg-primary-container text-on-primary text-lg px-10 py-4 rounded-xl font-bold shadow-2xl transition-all hover:-translate-y-1 active:scale-95">
+                                Começar Análise Grátis
+                            </button>
+<button class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white text-lg px-10 py-4 rounded-xl font-bold backdrop-blur-md transition-all border border-white/10">
+                                Ver Planos Premium
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-slate-50 dark:bg-slate-950 w-full py-12 border-t-0 font-['Manrope']">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-8 max-w-screen-2xl mx-auto">
+<div class="space-y-6">
+<div class="flex items-center gap-3">
+<img alt="SOS Consumidor Logo Small" class="h-8 w-8" src="https://lh3.googleusercontent.com/aida/ADBb0ujfpaeFeKFy3gvLyc7hbIaKCJbd1jDkD5BunlcuU1CD4r7Mjp1EM8hpYt_z3HqhewkOmxa7B4JfPwV6GkBaHY7MiohZtfQdsm2o6jx_joGTcmOoXAQOOPjyjhyLBSDdNlESlmh8j4E9zerP7Nxq7Qu2_JuwAFgWx0YRUhNrPuwNJG3gFpbbcrNrj4uGAwO2HuD-EHcs9lpSJH2TfSBpBPszCzVF0GKTXi9I_8oIh5GKkqLYmnf_oYs-sTzTPyPtaclr_vFPYesExg"/>
+<span class="text-lg font-bold text-slate-900 dark:text-white">SOS Consumidor</span>
+</div>
+<p class="text-slate-500 leading-relaxed text-sm">
+                    Utilizamos tecnologia de ponta para democratizar o acesso à justiça e garantir que cada consumidor tenha sua voz ouvida.
+                </p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-slate-400 hover:text-red-600 cursor-pointer transition-colors">brand_awareness</span>
+<span class="material-symbols-outlined text-slate-400 hover:text-red-600 cursor-pointer transition-colors">hub</span>
+<span class="material-symbols-outlined text-slate-400 hover:text-red-600 cursor-pointer transition-colors">alternate_email</span>
+</div>
+</div>
+<div class="space-y-6">
+<h4 class="text-slate-900 dark:text-white font-bold uppercase tracking-widest text-xs">Produto</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-red-600 hover:underline decoration-red-500 underline-offset-4 text-sm font-medium transition-all" href="#">Chat IA Jurídico</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-red-600 hover:underline decoration-red-500 underline-offset-4 text-sm font-medium transition-all" href="#">Análise de Contratos</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-red-600 hover:underline decoration-red-500 underline-offset-4 text-sm font-medium transition-all" href="#">Gerador de Petições</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-red-600 hover:underline decoration-red-500 underline-offset-4 text-sm font-medium transition-all" href="#">Preços</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h4 class="text-slate-900 dark:text-white font-bold uppercase tracking-widest text-xs">Institucional</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-red-600 hover:underline decoration-red-500 underline-offset-4 text-sm font-medium transition-all" href="#">Sobre Nós</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-red-600 hover:underline decoration-red-500 underline-offset-4 text-sm font-medium transition-all" href="#">Contato</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-red-600 hover:underline decoration-red-500 underline-offset-4 text-sm font-medium transition-all" href="#">Carreiras</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-red-600 hover:underline decoration-red-500 underline-offset-4 text-sm font-medium transition-all" href="#">Blog</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h4 class="text-slate-900 dark:text-white font-bold uppercase tracking-widest text-xs">Jurídico</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-red-600 hover:underline decoration-red-500 underline-offset-4 text-sm font-medium transition-all" href="#">Termos de Uso</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-red-600 hover:underline decoration-red-500 underline-offset-4 text-sm font-medium transition-all" href="#">Privacidade</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-red-600 hover:underline decoration-red-500 underline-offset-4 text-sm font-medium transition-all" href="#">LGPD</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-screen-2xl mx-auto px-8 mt-16 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-slate-500 text-xs">© 2024 SOS Consumidor. O Guardião Judicial dos seus direitos.</p>
+<div class="flex gap-6">
+<span class="text-slate-400 text-xs">Português (BR)</span>
+<span class="text-slate-400 text-xs">Versão 2.4.0</span>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sovereign Advocate | Justiça IA</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "on-background": "#111c2d",
+                "on-secondary-fixed-variant": "#3a485b",
+                "outline-variant": "#c6c5d4",
+                "on-secondary": "#ffffff",
+                "surface-container-high": "#dee8ff",
+                "secondary-fixed": "#d5e3fc",
+                "primary": "#000666",
+                "inverse-primary": "#bdc2ff",
+                "error-container": "#ffdad6",
+                "outline": "#767683",
+                "on-surface": "#111c2d",
+                "on-surface-variant": "#454652",
+                "on-tertiary-container": "#aa80ff",
+                "primary-container": "#1a237e",
+                "tertiary-fixed-dim": "#d2bbff",
+                "surface-bright": "#f9f9ff",
+                "surface-tint": "#4c56af",
+                "on-secondary-container": "#57657a",
+                "primary-fixed-dim": "#bdc2ff",
+                "on-tertiary": "#ffffff",
+                "tertiary-fixed": "#eaddff",
+                "secondary-container": "#d5e3fc",
+                "on-tertiary-fixed-variant": "#5a00c6",
+                "on-tertiary-fixed": "#25005a",
+                "background": "#f9f9ff",
+                "on-error": "#ffffff",
+                "surface-container-highest": "#d8e3fb",
+                "on-primary-container": "#8690ee",
+                "on-primary-fixed": "#000767",
+                "on-secondary-fixed": "#0d1c2e",
+                "inverse-surface": "#263143",
+                "tertiary": "#240058",
+                "error": "#ba1a1a",
+                "on-error-container": "#93000a",
+                "surface-dim": "#cfdaf2",
+                "on-primary-fixed-variant": "#343d96",
+                "tertiary-container": "#3e008c",
+                "surface": "#f9f9ff",
+                "secondary-fixed-dim": "#b9c7df",
+                "surface-variant": "#d8e3fb",
+                "surface-container-lowest": "#ffffff",
+                "primary-fixed": "#e0e0ff",
+                "secondary": "#515f74",
+                "surface-container-low": "#f0f3ff",
+                "inverse-on-surface": "#ecf1ff",
+                "surface-container": "#e7eeff",
+                "on-primary": "#ffffff"
+              },
+              fontFamily: {
+                "headline": ["Manrope"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+          background: rgba(255, 255, 255, 0.7);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+        }
+        .ai-gradient {
+          background: linear-gradient(135deg, #000666 0%, #1a237e 100%);
+        }
+      </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background font-body text-on-background">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-50 shadow-sm">
+<div class="flex justify-between items-center px-6 h-16 w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-indigo-900" data-icon="gavel">gavel</span>
+<span class="font-manrope font-extrabold text-indigo-900 text-xl tracking-tighter">Sovereign Advocate</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-indigo-700 font-bold font-manrope text-sm transition-colors" href="#">Home</a>
+<a class="text-slate-500 hover:bg-slate-200/50 transition-colors px-3 py-1 rounded font-manrope text-sm" href="#">Estudo de Caso</a>
+<a class="text-slate-500 hover:bg-slate-200/50 transition-colors px-3 py-1 rounded font-manrope text-sm" href="#">Serviços</a>
+<a class="text-slate-500 hover:bg-slate-200/50 transition-colors px-3 py-1 rounded font-manrope text-sm" href="#">Planos</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="User profile" data-alt="minimalist professional avatar portrait of a modern legal consultant with a neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM_SRy01llR5-4Z4CmFEsUF7sO7KtvHFvB9J4m80zjW4U47aBFTcHlQvxvJEYJmQ9-q7G9Ha-fi_OTS1pxdVdU09rQpI9LWXCpXrbTz9YroZEiSmL1H6sMZfuPXNkJHJG20jnIJEywHGylnr0iYyFWg877U9DtfdvIOMC4bpaiH7WzA8irkGvrskPyAoCaSZ-Ewoi3HPscOUxAHirftAJ1S2KeSnPFdheBrmizhg90MVAz9wLV2Jq1Nnyv3hONtYme05Wa-tIBUck"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-16 pb-24">
+<!-- Hero Section -->
+<section class="relative overflow-hidden pt-20 pb-32">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-7 z-10">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tertiary-container/10 border border-tertiary/20 mb-6">
+<span class="material-symbols-outlined text-tertiary text-sm" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="text-xs font-bold uppercase tracking-widest text-tertiary font-label">Inteligência Artificial Jurídica</span>
+</div>
+<h1 class="text-5xl lg:text-7xl font-headline font-extrabold text-primary tracking-tight leading-[1.1] mb-6">
+                        Justiça IA: Seus Direitos, <br/><span class="text-on-primary-container">Simplificados.</span>
+</h1>
+<p class="text-lg text-secondary max-w-xl mb-10 leading-relaxed">
+                        A primeira plataforma editorial de advocacia digital que transforma leis complexas em ações imediatas para o consumidor. Proteja-se com o poder da curadoria inteligente.
+                    </p>
+<!-- Search Bar Interaction -->
+<div class="relative max-w-2xl group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary to-tertiary rounded-xl blur opacity-25 group-focus-within:opacity-50 transition duration-1000"></div>
+<div class="relative flex items-center bg-surface-container-lowest rounded-xl p-2 shadow-sm border border-outline-variant/20">
+<span class="material-symbols-outlined ml-4 text-outline" data-icon="search">search</span>
+<input class="w-full border-none focus:ring-0 text-on-surface bg-transparent px-4 font-body" placeholder="Faça sua primeira pergunta (ex: 'Como cancelar um voo?')" type="text"/>
+<button class="ai-gradient text-on-primary px-8 py-3 rounded-lg font-bold font-manrope tracking-tight hover:opacity-90 active:scale-95 transition-all">
+                                Analisar
+                            </button>
+</div>
+</div>
+<!-- Trust Badges -->
+<div class="mt-12 flex flex-wrap gap-8 items-center opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+<span class="font-bold text-sm tracking-tighter">OAB COMPLIANT</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<span class="font-bold text-sm tracking-tighter">ISO 27001 SECURE</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="gpp_good">gpp_good</span>
+<span class="font-bold text-sm tracking-tighter">GDPR READY</span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 relative hidden lg:block">
+<!-- Asymmetric Visual -->
+<div class="relative w-full aspect-square rounded-[2rem] overflow-hidden shadow-2xl rotate-3">
+<img class="w-full h-full object-cover" data-alt="high-end modern law office interior with large windows and clean minimalist aesthetics in soft daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS7TFMnpa1Div8rE1DBPzxW_XYKWHSJmKanC_zJvvtuNN5XyFjXGXnuWOprS9Km-aifG9-n3-Ll_wMW6f1tjznThXlodHqKP9jw-eRObMGijEMLR_6ZPhCxt0aa9V4geadGwCMKkYcE2aCuL0XqJYlsj9kSjJgE3X2cZCUucXxZG9qq8O6c-9Gi0EGmXuN61EqnB02ijOilKHtJLrRN91z4GXPKyoeDP3mvE1kXb0Ymz3MiC93yURJ6b6a5IgSVRgaCp6v_UHlzoI"/>
+<div class="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
+</div>
+<!-- Floating AI Insight Card -->
+<div class="absolute -bottom-10 -left-10 glass-panel p-6 rounded-2xl shadow-xl max-w-xs border border-white/40">
+<div class="flex gap-3 items-start">
+<div class="p-2 bg-tertiary rounded-lg">
+<span class="material-symbols-outlined text-on-tertiary text-sm" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div>
+<p class="text-xs font-bold text-tertiary uppercase tracking-widest mb-1">AI Insight</p>
+<p class="text-sm font-medium text-on-surface">"Cláusula 4.2 do contrato é considerada abusiva pelo CDC Art. 51."</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Benefits Grid -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-6">
+<div class="mb-16 text-center max-w-2xl mx-auto">
+<h2 class="text-3xl font-headline font-extrabold text-primary mb-4 tracking-tight">O Poder do Direito em Suas Mãos</h2>
+<p class="text-secondary">Combinamos excelência jurídica com agilidade tecnológica para oferecer uma defesa inabalável.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2 group">
+<div class="w-14 h-14 bg-primary-fixed rounded-xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="support_agent">support_agent</span>
+</div>
+<h3 class="text-xl font-bold text-primary mb-3 font-headline">Suporte jurídico 24/7</h3>
+<p class="text-on-secondary-container leading-relaxed">Assistência jurídica ininterrupta. Nossa IA monitora seus direitos enquanto você dorme, pronta para agir a qualquer segundo.</p>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2 group">
+<div class="w-14 h-14 bg-tertiary-fixed rounded-xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-tertiary text-3xl" data-icon="speed">speed</span>
+</div>
+<h3 class="text-xl font-bold text-primary mb-3 font-headline">Respostas instantâneas</h3>
+<p class="text-on-secondary-container leading-relaxed">Chega de esperar semanas por uma consulta. Obtenha diagnósticos jurídicos precisos em menos de 10 segundos.</p>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2 group">
+<div class="w-14 h-14 bg-secondary-fixed rounded-xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+<h3 class="text-xl font-bold text-primary mb-3 font-headline">Planos acessíveis</h3>
+<p class="text-on-secondary-container leading-relaxed">Democratizamos o acesso à justiça. Planos flexíveis que custam uma fração de um honorário tradicional.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-24">
+<div class="max-w-7xl mx-auto px-6 overflow-hidden">
+<div class="flex flex-col md:flex-row gap-12 items-end mb-16">
+<div class="flex-1">
+<h2 class="text-4xl font-headline font-extrabold text-primary mb-4 tracking-tight">Vozes da Justiça Digital</h2>
+<p class="text-secondary max-w-xl">Milhares de consumidores já recuperaram sua paz de espírito através da nossa curadoria inteligente.</p>
+</div>
+<div class="flex gap-4">
+<button class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<button class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Testimonial 1 -->
+<div class="p-8 rounded-2xl bg-surface-container-high relative overflow-hidden">
+<span class="absolute top-4 right-8 text-8xl text-primary/5 font-serif">“</span>
+<div class="flex gap-1 mb-6">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-on-surface font-medium italic mb-8 leading-relaxed">"O Justiça IA resolveu meu problema com a operadora de telefonia em minutos. O que levaria meses no tribunal foi resolvido com um clique."</p>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden">
+<img alt="Testimonial user" data-alt="professional portrait of a young brazilian woman smiling in a bright setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtFI41RGyqczvYiOW6Ldwa5WDaKASKHPgkShOCT83Apsbe4bTsZZfzWstopyLkEQUC0uKIO39SHJMi46tFTudoi3FgUbAatLFgWHlZkHTKQT3_KpzhP0ArOyHDoLMimunX4rRJAbtrtbQ76nWa1QElohAWM9N0fJFePKCMmekMN2oPHuWn-g5RKjihLE8ghEu6paROMtkv-rzZJEjv7RLxOYtCuXLozKvgbe58YwsZItmIHvCkbAxVmUrHuB4byWbWt_q9myn74Tc"/>
+</div>
+<div>
+<p class="text-sm font-bold text-primary">Maria Helena S.</p>
+<p class="text-xs text-secondary">São Paulo, SP</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="p-8 rounded-2xl bg-surface-container-high relative overflow-hidden">
+<span class="absolute top-4 right-8 text-8xl text-primary/5 font-serif">“</span>
+<div class="flex gap-1 mb-6">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-on-surface font-medium italic mb-8 leading-relaxed">"Incrivelmente intuitivo. O relatório gerado pela IA foi aceito imediatamente pelo SAC da companhia aérea. Recomendo a todos!"</p>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden">
+<img alt="Testimonial user" data-alt="portrait of a middle aged man with glasses and professional business casual attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBj3qj83XLnm2ww74YpTil4oiTMtULgwTgFASe9WABnhfABWLEzN6HcTAKmEz9FeHMu_-UX61OL7OOttOYA0GLPIBC7R_TB_To1uGasBMKs064wVRwmukITs6yPhoMvB0cdlEHvSeDrzQgWKDIlZZQXGS3x5wGfgW1sAY495rQP0EHioDX0Gnq_47ugbmQ_1ZdMTjRTIQ-mxQFLYxkoHjZJ7lzhO6o70EF-e5G0fJvkipfDeAesWR3ziq-33J6ZbHfkNI2t8WImsBw"/>
+</div>
+<div>
+<p class="text-sm font-bold text-primary">Ricardo F.</p>
+<p class="text-xs text-secondary">Curitiba, PR</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="p-8 rounded-2xl bg-surface-container-high relative overflow-hidden">
+<span class="absolute top-4 right-8 text-8xl text-primary/5 font-serif">“</span>
+<div class="flex gap-1 mb-6">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-on-surface font-medium italic mb-8 leading-relaxed">"O valor mensal se paga na primeira consulta. Ter esse nível de conhecimento jurídico no bolso é revolucionário."</p>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden">
+<img alt="Testimonial user" data-alt="close up of a confident smiling woman in a creative studio environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjyEcwkjg7QYnoKTjb53LCe0HywRI5vLjXpvB1dsIKInsk6EHCAXHRh7RlDNKPQAcNPPA96PZnb1oxX6l9XvkPORIDQW_q0qaRfnsbbiOggnUi8gfgNB32G03cQn3FoNqX03eeHYt6e10AqIqfYIQ3xURJLa8YVsR4wSNxaS6xERmKUSpIpT-wpfwPsQFnRNwZxx4iz556sPVJ6HepM51Tx32IPwi8BrauAN39yjM5u_8ymzJpmvNJVWncpstHZ6cZRGN9I0Qm8cw"/>
+</div>
+<div>
+<p class="text-sm font-bold text-primary">Julia Mendes</p>
+<p class="text-xs text-secondary">Belo Horizonte, MG</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA Section -->
+<section class="max-w-7xl mx-auto px-6 py-12">
+<div class="ai-gradient rounded-[2.5rem] p-12 lg:p-20 relative overflow-hidden flex flex-col items-center text-center">
+<!-- Abstract Texture Overlay -->
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+<h2 class="text-4xl lg:text-6xl font-headline font-extrabold text-on-primary mb-6 tracking-tight z-10">Assuma o controle da sua <br/>segurança jurídica hoje.</h2>
+<p class="text-primary-fixed text-lg lg:text-xl max-w-2xl mb-12 z-10 opacity-90">Junte-se a mais de 50.000 brasileiros que usam a Justiça IA para garantir que nenhum direito seja violado.</p>
+<div class="flex flex-col sm:flex-row gap-4 z-10">
+<button class="bg-surface-container-lowest text-primary px-10 py-4 rounded-xl font-bold font-manrope text-lg shadow-xl hover:scale-105 active:scale-95 transition-all">Ver Planos</button>
+<button class="bg-primary/20 backdrop-blur-md border border-on-primary-container/30 text-on-primary px-10 py-4 rounded-xl font-bold font-manrope text-lg hover:bg-primary/40 transition-all">
+                        Falar com Consultor
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl z-50 rounded-t-2xl shadow-[0_-8px_32px_rgba(0,0,0,0.06)] border-t border-slate-100">
+<button class="flex flex-col items-center justify-center bg-indigo-50 text-indigo-700 rounded-xl py-2 px-4 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-manrope text-[10px] font-semibold uppercase tracking-wider mt-1">Painel</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 py-2 px-4 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+<span class="font-manrope text-[10px] font-semibold uppercase tracking-wider mt-1">Chat IA</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 py-2 px-4 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-manrope text-[10px] font-semibold uppercase tracking-wider mt-1">Planos</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 py-2 px-4 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-manrope text-[10px] font-semibold uppercase tracking-wider mt-1">Ajustes</span>
+</button>
+</nav>
+<!-- Footer -->
+<footer class="bg-surface-container text-on-surface-variant pt-20 pb-20 md:pb-12">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="gavel">gavel</span>
+<span class="font-manrope font-extrabold text-primary text-lg tracking-tighter">Sovereign Advocate</span>
+</div>
+<p class="text-sm leading-relaxed mb-8">
+                    Liderando a fronteira da tecnologia jurídica no Brasil. Justiça acessível para todos, potencializada por IA.
+                </p>
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary cursor-pointer hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="share">share</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary cursor-pointer hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="mail">mail</span>
+</div>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-on-surface mb-6 font-manrope">Plataforma</h4>
+<ul class="space-y-4 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Como Funciona</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Preços e Planos</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Jurisprudência IA</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-on-surface mb-6 font-manrope">Empresa</h4>
+<ul class="space-y-4 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Sobre Nós</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Carreiras</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contato</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-on-surface mb-6 font-manrope">Legal</h4>
+<ul class="space-y-4 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Termos de Uso</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Privacidade</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Segurança</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-outline-variant/10 text-xs flex flex-col md:flex-row justify-between items-center gap-4">
+<p>© 2024 Sovereign Advocate. Todos os direitos reservados.</p>
+<div class="flex gap-6">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[10px]" data-icon="language">language</span> Português (Brasil)</span>
+</div>
+</div>
+</footer>
+</body></html>

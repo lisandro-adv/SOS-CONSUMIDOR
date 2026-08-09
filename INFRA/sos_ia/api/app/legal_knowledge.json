@@ -1,0 +1,72 @@
+[
+  {
+    "id": "abusive_collection",
+    "title": "Cobrança abusiva",
+    "keywords": ["cobrança", "cobrar", "cobrando", "liga", "ligação", "ameaça", "ameaçando", "colegas", "trabalho", "vexame", "ridículo"],
+    "plain_summary": "Ao cobrar uma dívida, a empresa não pode expor a pessoa ao ridículo, constrangê-la nem ameaçá-la. Se houve pagamento indevido, a devolução em dobro pode ser aplicável, salvo engano justificável; o caso concreto precisa ser analisado.",
+    "legal_basis": "Código de Defesa do Consumidor, art. 42",
+    "source_title": "Código de Defesa do Consumidor — texto oficial",
+    "source_url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+    "reviewed_at": "2026-08-03"
+  },
+  {
+    "id": "credit_records",
+    "title": "Cadastro e negativação",
+    "keywords": ["negativação", "negativado", "negativada", "nome sujo", "serasa", "spc", "cadastro", "cinco anos", "5 anos", "aviso", "notificação"],
+    "plain_summary": "Informações negativas não podem permanecer no cadastro por mais de cinco anos. Se a abertura do cadastro não foi solicitada pelo consumidor, ele deve ser avisado por escrito. Dados inexatos podem ser corrigidos, e o responsável pelo cadastro deve comunicar a alteração aos destinatários em cinco dias úteis.",
+    "legal_basis": "Código de Defesa do Consumidor, art. 43, §§ 1º, 2º e 3º",
+    "source_title": "Código de Defesa do Consumidor — texto oficial",
+    "source_url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+    "reviewed_at": "2026-08-03"
+  },
+  {
+    "id": "product_defect",
+    "title": "Produto com defeito",
+    "keywords": ["produto", "defeito", "quebrou", "estragou", "geladeira", "televisão", "celular", "garantia", "conserto", "troca"],
+    "plain_summary": "Em regra, o fornecedor tem até 30 dias para corrigir o defeito. Se não resolver nesse prazo, o consumidor pode escolher entre a troca do produto, a devolução do valor pago ou uma redução proporcional do preço. O prazo para reclamar é, em geral, de 30 dias para produto não durável e 90 dias para produto durável; em defeito oculto, ele começa quando o problema aparece.",
+    "legal_basis": "Código de Defesa do Consumidor, arts. 18 e 26",
+    "source_title": "Código de Defesa do Consumidor — texto oficial",
+    "source_url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+    "reviewed_at": "2026-08-03"
+  },
+  {
+    "id": "right_of_withdrawal",
+    "title": "Arrependimento em compra fora da loja",
+    "keywords": ["arrependimento", "desistir", "internet", "online", "telefone", "fora da loja", "sete dias", "7 dias"],
+    "plain_summary": "Em compras ou contratações feitas fora do estabelecimento comercial, especialmente pela internet ou por telefone, o consumidor pode desistir em até sete dias contados da assinatura ou do recebimento do produto ou serviço. Os valores pagos devem ser devolvidos com atualização.",
+    "legal_basis": "Código de Defesa do Consumidor, art. 49",
+    "source_title": "Código de Defesa do Consumidor — texto oficial",
+    "source_url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+    "reviewed_at": "2026-08-03"
+  },
+  {
+    "id": "binding_offer",
+    "title": "Oferta e publicidade",
+    "keywords": ["oferta", "promoção", "anúncio", "anunciado", "publicidade", "preço anunciado", "não cumpriu"],
+    "plain_summary": "Uma oferta suficientemente clara obriga o fornecedor. Se ele não cumprir, o consumidor pode exigir o cumprimento, aceitar produto ou serviço equivalente ou encerrar o contrato com devolução do que pagou e eventual apuração de perdas e danos.",
+    "legal_basis": "Código de Defesa do Consumidor, arts. 30 e 35",
+    "source_title": "Código de Defesa do Consumidor — texto oficial",
+    "source_url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+    "reviewed_at": "2026-08-03"
+  },
+  {
+    "id": "superindebtedness",
+    "title": "Superendividamento",
+    "keywords": ["superendividamento", "superendividado", "dívidas", "dívida bancária", "mínimo existencial", "renegociar", "renegociação", "desconto"],
+    "plain_summary": "A lei trata do superendividamento da pessoa que, de boa-fé, não consegue pagar todas as dívidas de consumo sem comprometer as despesas básicas. O CDC prevê prevenção, tratamento e preservação do mínimo existencial, mas não estabelece um desconto obrigatório e igual para toda dívida.",
+    "legal_basis": "Código de Defesa do Consumidor, arts. 6º, XI e XII, e 54-A",
+    "source_title": "Código de Defesa do Consumidor — texto oficial",
+    "source_url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+    "reviewed_at": "2026-08-03"
+  },
+  {
+    "id": "data_privacy",
+    "title": "Dados pessoais do consumidor",
+    "keywords": ["dados pessoais", "privacidade", "lgpd", "acesso aos dados", "corrigir dados", "excluir dados", "tratamento de dados"],
+    "plain_summary": "A pessoa tem direito a informações claras sobre o uso de seus dados e pode pedir, entre outros direitos previstos na LGPD, confirmação do tratamento, acesso, correção e, quando cabível, bloqueio ou eliminação de dados.",
+    "legal_basis": "Lei Geral de Proteção de Dados Pessoais, arts. 9º e 18",
+    "source_title": "Lei Geral de Proteção de Dados Pessoais — texto oficial",
+    "source_url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+    "reviewed_at": "2026-08-03"
+  }
+]

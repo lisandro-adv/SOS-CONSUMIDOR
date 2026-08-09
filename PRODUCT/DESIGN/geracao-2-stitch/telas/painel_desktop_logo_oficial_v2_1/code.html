@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-fixed": "#410003",
+              "tertiary-container": "#cf3800",
+              "tertiary-fixed-dim": "#ffb5a0",
+              "surface-tint": "#ba1a20",
+              "on-tertiary-container": "#fff2ef",
+              "on-tertiary": "#ffffff",
+              "surface-dim": "#f1d3d0",
+              "on-secondary": "#ffffff",
+              "on-primary": "#ffffff",
+              "primary-fixed": "#ffdad6",
+              "inverse-on-surface": "#ffedeb",
+              "error": "#ba1a1a",
+              "on-error-container": "#93000a",
+              "background": "#fff8f7",
+              "on-secondary-fixed-variant": "#003fa5",
+              "surface-container-low": "#fff0ef",
+              "surface": "#fff8f7",
+              "surface-container-highest": "#f9dcd9",
+              "secondary-container": "#366dea",
+              "on-secondary-container": "#fefcff",
+              "on-surface": "#271816",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed-dim": "#ffb3ac",
+              "on-error": "#ffffff",
+              "primary": "#af101a",
+              "inverse-surface": "#3e2c2a",
+              "surface-variant": "#f9dcd9",
+              "surface-container-high": "#ffe2de",
+              "primary-container": "#d32f2f",
+              "on-primary-container": "#fff2f0",
+              "outline": "#8f6f6c",
+              "on-tertiary-fixed": "#3b0900",
+              "inverse-primary": "#ffb3ac",
+              "on-surface-variant": "#5b403d",
+              "secondary-fixed": "#dbe1ff",
+              "on-primary-fixed-variant": "#930010",
+              "surface-container": "#ffe9e7",
+              "error-container": "#ffdad6",
+              "surface-bright": "#fff8f7",
+              "secondary-fixed-dim": "#b3c5ff",
+              "tertiary": "#a42b00",
+              "tertiary-fixed": "#ffdbd1",
+              "secondary": "#0752d0",
+              "outline-variant": "#e4beba",
+              "on-tertiary-fixed-variant": "#872100",
+              "on-secondary-fixed": "#001849",
+              "on-background": "#271816"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .glass-nav {
+            background: rgba(255, 248, 247, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .tonal-shift {
+            background: linear-gradient(135deg, #fff8f7 0%, #fff0ef 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 glass-nav shadow-[0px_24px_48px_rgba(39,24,22,0.08)]">
+<div class="flex justify-between items-center px-8 h-20 max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<img alt="SOS Consumidor Logo" class="h-10 w-auto" data-alt="Official logo of SOS Consumidor featuring a stylized life-preserver icon in deep red with professional legal typography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOKENu9w015rI5r4b_iLE-uL1RSzUzpYMOvr8IIdnS8yrxXpEYF_Hv6U0qFO6-xX0Ng2cNhj_kNJ1rwt614K0zD1ehSnhbKaOEEYtDeP8hRNfgHztBSDUtN0FrpEXznSHoZAQhD6cgG3rLZn2Jvp3H6rLUYdHUj4ArhrPlrm9Re6ftI1Jr_YfNySuVgZEoDA6_brtMURObp2O1EqKTcSofNN0kf9ChbaVVg0YrM-Xa8dn6mGf6hmbypj5szBeYGdUr_A5YUPzrk2A"/>
+<span class="text-2xl font-extrabold text-primary tracking-tighter">SOS Consumidor</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-headline font-semibold text-sm tracking-wide uppercase text-primary border-b-2 border-primary pb-1" href="#">Dashboard</a>
+<a class="font-headline font-semibold text-sm tracking-wide uppercase text-slate-600 hover:text-primary transition-all duration-300" href="#">Chat IA</a>
+<a class="font-headline font-semibold text-sm tracking-wide uppercase text-slate-600 hover:text-primary transition-all duration-300" href="#">Planos</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-slate-600 hover:text-primary transition-transform active:scale-90" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-slate-600 hover:text-primary transition-transform active:scale-90" data-icon="account_circle">account_circle</button>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-20 px-8 max-w-7xl mx-auto">
+<!-- Welcome Header -->
+<header class="mb-12">
+<h1 class="text-4xl font-extrabold tracking-tight text-on-surface mb-2">Olá, Dr. Silva</h1>
+<p class="text-on-surface-variant text-lg">Bem-vindo ao seu painel de controle jurídico. Aqui está o resumo das suas atividades.</p>
+</header>
+<!-- Top Row: Stats and IA Recommendation -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+<!-- Stats Column -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Stats Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0px_24px_48px_rgba(39,24,22,0.04)] flex items-center gap-6 border border-outline-variant/10">
+<div class="w-14 h-14 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="question_answer">question_answer</span>
+</div>
+<div>
+<span class="block text-3xl font-extrabold text-on-surface">128</span>
+<span class="text-sm font-label font-semibold uppercase tracking-wider text-on-surface-variant">Perguntas Realizadas</span>
+</div>
+</div>
+<!-- Stats Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0px_24px_48px_rgba(39,24,22,0.04)] flex items-center gap-6 border border-outline-variant/10">
+<div class="w-14 h-14 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-3xl" data-icon="description">description</span>
+</div>
+<div>
+<span class="block text-3xl font-extrabold text-on-surface">42</span>
+<span class="text-sm font-label font-semibold uppercase tracking-wider text-on-surface-variant">Docs Analisados</span>
+</div>
+</div>
+</div>
+<!-- IA Recommendation Card -->
+<div class="lg:col-span-8 bg-primary rounded-xl overflow-hidden relative group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary to-primary-container opacity-90"></div>
+<!-- Decorative Watermark -->
+<div class="absolute -right-10 -bottom-10 opacity-10 pointer-events-none group-hover:scale-110 transition-transform duration-700">
+<span class="material-symbols-outlined text-[320px]" data-icon="support">support</span>
+</div>
+<div class="relative z-10 p-8 flex flex-col md:flex-row items-center gap-8 h-full">
+<div class="flex-1">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tertiary-container text-on-tertiary-container text-xs font-bold uppercase tracking-widest mb-4">
+<span class="material-symbols-outlined text-sm" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                            Recomendação Prioritária
+                        </div>
+<h2 class="text-3xl font-extrabold text-on-primary mb-4 leading-tight">Análise Estratégica: Planos de Saúde</h2>
+<p class="text-on-primary-container/80 text-lg mb-6 max-w-xl">Identificamos uma nova súmula que afeta diretamente 15 dos seus casos em andamento sobre reajuste abusivo por faixa etária.</p>
+<button class="bg-surface-container-lowest text-primary px-8 py-3 rounded-xl font-bold hover:bg-surface-bright transition-all active:scale-95 shadow-lg">
+                            Ver Relatório IA
+                        </button>
+</div>
+<div class="hidden md:block w-48 h-48 rounded-xl overflow-hidden shadow-2xl rotate-3 group-hover:rotate-0 transition-transform duration-500">
+<img alt="Health Plan Illustration" class="w-full h-full object-cover" data-alt="Close-up of a medical stethoscope resting on a stack of legal documents with soft natural lighting and warm red accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwqZl-ZX4FlKIcBCCnL0uYh8Q3p_I7qAgN1BKYPEcbbgzva_ytNR974r8P7WrKBt3nuGDvlSNlOjZ1vcfCns13iuQcG53QsQnFaoK3vG7L164VIqU67KyDdpksMOrj6dBk_MRwgC7Z_2kN8hAD1Q1cEKCyFjY0Jk7GFcKF_lzCh5Bjf-TC8FAWSLvbxuhqeNV-3iplYJg9Xkr4cXrdE4uscV_UBJuaBc4rDSScbJHLT9Nb3IvEgXIT8v7bfTe4nSYSr78AxKSYn5s"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Middle Section: Recent Consultations (Tonal Shift background) -->
+<section class="mb-12">
+<div class="flex justify-between items-end mb-6">
+<div>
+<h3 class="text-2xl font-bold text-on-surface">Consultas Recentes</h3>
+<p class="text-on-surface-variant">Acompanhe seus últimos diálogos com a IA</p>
+</div>
+<button class="text-primary font-bold text-sm hover:underline">Ver todo o histórico</button>
+</div>
+<div class="grid gap-4">
+<!-- Consultation Item 1 -->
+<div class="bg-surface-container-low p-5 rounded-xl flex items-center justify-between hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="flex items-center gap-5">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest flex items-center justify-center text-primary border border-outline-variant/10">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">Revisional de Contrato Bancário</h4>
+<p class="text-sm text-on-surface-variant">Atualizado há 2 horas • Dr. Silva</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex gap-2">
+<span class="px-3 py-1 rounded-full bg-secondary-container/10 text-secondary text-xs font-bold uppercase">Bancário</span>
+<span class="px-3 py-1 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase">Em Análise</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Consultation Item 2 -->
+<div class="bg-surface-container-low p-5 rounded-xl flex items-center justify-between hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="flex items-center gap-5">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest flex items-center justify-center text-primary border border-outline-variant/10">
+<span class="material-symbols-outlined" data-icon="flight_takeoff">flight_takeoff</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">Danos Morais: Atraso de Voo</h4>
+<p class="text-sm text-on-surface-variant">Atualizado ontem às 14:20 • Dr. Silva</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex gap-2">
+<span class="px-3 py-1 rounded-full bg-secondary-container/10 text-secondary text-xs font-bold uppercase">Consumo</span>
+<span class="px-3 py-1 rounded-full bg-tertiary-container/10 text-tertiary text-xs font-bold uppercase">Concluído</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Section: Saved Advice Grid (Bento Style) -->
+<section>
+<div class="flex justify-between items-end mb-8">
+<div>
+<h3 class="text-2xl font-bold text-on-surface">Conselhos Salvos</h3>
+<p class="text-on-surface-variant">Sua biblioteca personalizada de teses jurídicas</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Advice Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10 hover:shadow-xl transition-all group">
+<span class="material-symbols-outlined text-primary mb-4" data-icon="bookmark" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+<h5 class="font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">Tese sobre Vício Oculto</h5>
+<p class="text-sm text-on-surface-variant mb-6">Argumentação estratégica para produtos fora da garantia contratual.</p>
+<div class="flex justify-between items-center pt-4 border-t border-outline-variant/10">
+<span class="text-xs font-bold text-on-surface-variant">PDF • 1.2MB</span>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary" data-icon="download">download</button>
+</div>
+</div>
+<!-- Advice Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10 hover:shadow-xl transition-all group">
+<span class="material-symbols-outlined text-primary mb-4" data-icon="bookmark" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+<h5 class="font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">Direito ao Esquecimento</h5>
+<p class="text-sm text-on-surface-variant mb-6">Compilado de jurisprudência do STJ sobre dados sensíveis online.</p>
+<div class="flex justify-between items-center pt-4 border-t border-outline-variant/10">
+<span class="text-xs font-bold text-on-surface-variant">DOCX • 850KB</span>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary" data-icon="download">download</button>
+</div>
+</div>
+<!-- Advice Card 3 (Featured) -->
+<div class="bg-surface-dim p-6 rounded-xl border border-primary/10 hover:shadow-xl transition-all group relative overflow-hidden">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-primary mb-4" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<h5 class="font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">Modelos de Petição Premium</h5>
+<p class="text-sm text-on-surface-variant mb-6">Acesso exclusivo a modelos atualizados semanalmente.</p>
+<button class="w-full py-2 bg-primary text-on-primary rounded-lg text-sm font-bold shadow-md hover:bg-primary-container transition-colors">Acessar Premium</button>
+</div>
+<!-- Decorative element -->
+<div class="absolute -right-4 -bottom-4 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-8xl" data-icon="verified">verified</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 border-t border-[#e4beba]/20 bg-surface-container-low">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-4">
+<div class="flex items-center gap-3">
+<span class="text-lg font-bold text-primary">SOS Consumidor</span>
+<span class="text-slate-400 hidden md:block">|</span>
+<p class="font-body text-sm font-normal text-slate-500">© 2024 SOS Consumidor. Todos os direitos reservados.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-slate-500 hover:text-primary transition-colors font-body text-sm" href="#">Termos de Uso</a>
+<a class="text-slate-500 hover:text-primary transition-colors font-body text-sm" href="#">Política de Privacidade</a>
+<a class="text-slate-500 hover:text-primary transition-colors font-body text-sm" href="#">Contato</a>
+<a class="text-slate-500 hover:text-primary transition-colors font-body text-sm" href="#">Sobre Nós</a>
+</div>
+</div>
+</footer>
+</body></html>

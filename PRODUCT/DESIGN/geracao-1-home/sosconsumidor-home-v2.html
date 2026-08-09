@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOS Consumidor - Defesa dos Direitos do Consumidor</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #CC0000;
+    --red-dark: #990000;
+    --red-darker: #770000;
+    --red-light: #E02020;
+    --red-bg: #FFF5F5;
+    --white: #FFFFFF;
+    --cream: #FAFAFA;
+    --warm-gray: #F3F3F3;
+    --dark: #1A1A1A;
+    --text: #333333;
+    --text-light: #666666;
+    --text-muted: #999999;
+    --border: #E8E8E8;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.07);
+    --shadow-md: 0 4px 14px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+    --radius: 6px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--text);
+    background: var(--cream);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ===== TOP BAR ===== */
+  .top-bar {
+    background: var(--dark);
+    color: rgba(255,255,255,0.7);
+    font-size: 0.8rem;
+    padding: 6px 0;
+    letter-spacing: 0.02em;
+  }
+  .top-bar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .top-bar a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .top-bar a:hover { color: #fff; }
+  .top-bar-right { display: flex; gap: 18px; align-items: center; }
+  .top-bar-date { color: rgba(255,255,255,0.5); }
+
+  /* ===== CONTAINER ===== */
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+  /* ===== HEADER ===== */
+  header {
+    background: var(--red);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 3px 20px rgba(204, 0, 0, 0.35);
+  }
+  .header-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+  }
+  .logo-boia {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+  }
+  .logo-title {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .logo-subtitle {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  nav { display: flex; align-items: center; gap: 4px; }
+  nav a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 8px 13px;
+    border-radius: var(--radius);
+    transition: all 0.2s;
+  }
+  nav a:hover {
+    background: rgba(255,255,255,0.14);
+    color: var(--white);
+  }
+  nav a.active {
+    background: rgba(255,255,255,0.18);
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  /* ===== MOBILE NAV ===== */
+  .mobile-menu { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+  .mobile-menu svg { width: 28px; height: 28px; stroke: white; }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(160deg, var(--red-darker) 0%, var(--red) 40%, var(--red-light) 100%);
+    padding: 65px 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -15%;
+    width: 550px;
+    height: 550px;
+    background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-boia-bg {
+    position: absolute;
+    right: 60px;
+    bottom: -20px;
+    width: 280px;
+    height: 280px;
+    opacity: 0.06;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(to top, var(--cream), transparent);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 660px;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 22px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 600;
+    animation: fadeInUp 0.6s ease-out;
+  }
+  .hero h1 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.12;
+    margin-bottom: 18px;
+    letter-spacing: -0.02em;
+    animation: fadeInUp 0.6s ease-out 0.1s both;
+  }
+  .hero p {
+    font-size: 1.12rem;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.7;
+    margin-bottom: 30px;
+    max-width: 540px;
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.6s ease-out 0.3s both;
+  }
+  .btn-primary {
+    background: var(--white);
+    color: var(--red);
+    padding: 14px 32px;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary:hover {
+    background: #f0f0f0;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    padding: 14px 32px;
+    border: 1.5px solid rgba(255,255,255,0.35);
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-decoration: none;
+  }
+  .btn-secondary:hover {
+    border-color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.1);
+  }
+
+  /* ===== STATS BAR ===== */
+  .stats-bar {
+    margin-top: -40px;
+    position: relative;
+    z-index: 10;
+    margin-bottom: 55px;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+  .stat-item {
+    padding: 26px 20px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-item:hover { background: var(--red-bg); }
+  .stat-number {
+    font-family: 'Crimson Pro', serif;
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 5px;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ===== SECTIONS ===== */
+  .section { padding: 55px 0; }
+  .section-header { margin-bottom: 36px; }
+  .section-label {
+    font-size: 0.73rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--red);
+    font-weight: 700;
+    margin-bottom: 7px;
+  }
+  .section-title {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.2;
+  }
+  .section-divider {
+    width: 48px;
+    height: 3px;
+    background: var(--red);
+    margin-top: 12px;
+    border-radius: 2px;
+  }
+
+  /* ===== NEWS GRID ===== */
+  .news-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 22px;
+  }
+  .news-featured {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--border);
+  }
+  .news-featured:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    border-color: transparent;
+  }
+  .news-featured-img {
+    height: 250px;
+    background: linear-gradient(135deg, var(--red-dark) 0%, var(--red-light) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .news-featured-img .boia-watermark {
+    width: 120px;
+    height: 120px;
+    opacity: 0.15;
+  }
+  .news-featured-body { padding: 26px; flex: 1; }
+  .news-tag {
+    display: inline-block;
+    background: var(--red-bg);
+    color: var(--red);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .news-featured-body h3 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+    color: var(--dark);
+  }
+  .news-featured-body p {
+    font-size: 0.93rem;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+  .news-date {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 12px;
+    font-weight: 500;
+  }
+
+  .news-list { display: flex; flex-direction: column; gap: 14px; }
+  .news-item {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    border: 1px solid var(--border);
+  }
+  .news-item:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+    border-color: transparent;
+  }
+  .news-item-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--red-bg);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .news-item-content h4 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.02rem;
+    font-weight: 600;
+    line-height: 1.35;
+    margin-bottom: 5px;
+    color: var(--dark);
+  }
+  .news-item-content p {
+    font-size: 0.83rem;
+    color: var(--text-light);
+    line-height: 1.5;
+  }
+
+  /* ===== FAQ SECTION ===== */
+  .faq-categories {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .faq-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 20px;
+    text-align: center;
+    transition: all 0.3s;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+  }
+  .faq-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--red);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  .faq-card:hover::after { transform: scaleX(1); }
+  .faq-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    border-color: transparent;
+  }
+  .faq-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .faq-card h3 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+  .faq-card p {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    line-height: 1.5;
+  }
+
+  /* ===== SERVICES GRID ===== */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .service-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 28px 24px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--border);
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--red);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+    border-color: transparent;
+  }
+  .service-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--red-bg);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+  }
+  .service-card h3 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--dark);
+  }
+  .service-card p {
+    font-size: 0.86rem;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+  .service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 14px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--red);
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .service-link:hover { gap: 9px; }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    background: linear-gradient(135deg, var(--red-darker) 0%, var(--red) 60%, var(--red-light) 100%);
+    padding: 55px 0;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .cta-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+  .cta-content h2 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .cta-content p {
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 26px;
+    font-size: 1.02rem;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.6);
+    padding: 48px 0 28px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 36px;
+    margin-bottom: 36px;
+  }
+  .footer-brand { display: flex; flex-direction: column; gap: 10px; }
+  .footer-brand .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .footer-brand .footer-logo svg { width: 36px; height: 36px; }
+  .footer-brand .footer-logo-text {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .footer-brand p { font-size: 0.86rem; line-height: 1.7; }
+  .footer-col h4 {
+    color: var(--white);
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .footer-col a {
+    display: block;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 0.86rem;
+    padding: 3px 0;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: #fff; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-in {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: all 0.5s ease-out;
+  }
+  .animate-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .hero h1 { font-size: 2.3rem; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .stat-item:nth-child(2) { border-right: none; }
+    .news-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .faq-categories { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    nav { display: none; }
+    .mobile-menu { display: block; }
+    .hero-boia-bg { display: none; }
+  }
+  @media (max-width: 600px) {
+    .hero { padding: 45px 0 60px; }
+    .hero h1 { font-size: 1.85rem; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .faq-categories { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; }
+    .btn-primary, .btn-secondary { text-align: center; }
+    .top-bar-right { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SVG DEFS (boia salva-vidas) -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+  <symbol id="boia-icon" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="44" fill="none" stroke="#fff" stroke-width="6"/>
+    <circle cx="50" cy="50" r="22" fill="none" stroke="#fff" stroke-width="4"/>
+    <!-- Faixas vermelhas e brancas da boia -->
+    <path d="M50 6 C55 6 60 7 64.5 9 L57.5 28 C55.2 27.4 52.7 27 50 27 C47.3 27 44.8 27.4 42.5 28 L35.5 9 C40 7 45 6 50 6Z" fill="#CC0000"/>
+    <path d="M94 50 C94 55 93 60 91 64.5 L72 57.5 C72.6 55.2 73 52.7 73 50 C73 47.3 72.6 44.8 72 42.5 L91 35.5 C93 40 94 45 94 50Z" fill="#CC0000"/>
+    <path d="M50 94 C45 94 40 93 35.5 91 L42.5 72 C44.8 72.6 47.3 73 50 73 C52.7 73 55.2 72.6 57.5 72 L64.5 91 C60 93 55 94 50 94Z" fill="#CC0000"/>
+    <path d="M6 50 C6 45 7 40 9 35.5 L28 42.5 C27.4 44.8 27 47.3 27 50 C27 52.7 27.4 55.2 28 57.5 L9 64.5 C7 60 6 55 6 50Z" fill="#CC0000"/>
+    <!-- Faixas brancas -->
+    <path d="M64.5 9 C74 13 81.5 20 86 28.5 L72 42.5 C72 42.5 68 34 62 30 L64.5 9Z" fill="#fff"/>
+    <path d="M91 64.5 C87 74 80 81.5 71.5 86 L57.5 72 C57.5 72 66 68 70 62 L91 64.5Z" fill="#fff"/>
+    <path d="M35.5 91 C26 87 18.5 80 14 71.5 L28 57.5 C28 57.5 32 66 38 70 L35.5 91Z" fill="#fff"/>
+    <path d="M9 35.5 C13 26 20 18.5 28.5 14 L42.5 28 C42.5 28 34 32 30 38 L9 35.5Z" fill="#fff"/>
+    <!-- Corda -->
+    <circle cx="50" cy="50" r="44" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="4 3"/>
+  </symbol>
+  <symbol id="boia-colored" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="44" fill="none" stroke="#CC0000" stroke-width="6"/>
+    <circle cx="50" cy="50" r="22" fill="none" stroke="#CC0000" stroke-width="4"/>
+    <path d="M50 6 C55 6 60 7 64.5 9 L57.5 28 C55.2 27.4 52.7 27 50 27 C47.3 27 44.8 27.4 42.5 28 L35.5 9 C40 7 45 6 50 6Z" fill="#CC0000"/>
+    <path d="M94 50 C94 55 93 60 91 64.5 L72 57.5 C72.6 55.2 73 52.7 73 50 C73 47.3 72.6 44.8 72 42.5 L91 35.5 C93 40 94 45 94 50Z" fill="#CC0000"/>
+    <path d="M50 94 C45 94 40 93 35.5 91 L42.5 72 C44.8 72.6 47.3 73 50 73 C52.7 73 55.2 72.6 57.5 72 L64.5 91 C60 93 55 94 50 94Z" fill="#CC0000"/>
+    <path d="M6 50 C6 45 7 40 9 35.5 L28 42.5 C27.4 44.8 27 47.3 27 50 C27 52.7 27.4 55.2 28 57.5 L9 64.5 C7 60 6 55 6 50Z" fill="#CC0000"/>
+    <path d="M64.5 9 C74 13 81.5 20 86 28.5 L72 42.5 C72 42.5 68 34 62 30 L64.5 9Z" fill="#fff" stroke="#eee" stroke-width="0.5"/>
+    <path d="M91 64.5 C87 74 80 81.5 71.5 86 L57.5 72 C57.5 72 66 68 70 62 L91 64.5Z" fill="#fff" stroke="#eee" stroke-width="0.5"/>
+    <path d="M35.5 91 C26 87 18.5 80 14 71.5 L28 57.5 C28 57.5 32 66 38 70 L35.5 91Z" fill="#fff" stroke="#eee" stroke-width="0.5"/>
+    <path d="M9 35.5 C13 26 20 18.5 28.5 14 L42.5 28 C42.5 28 34 32 30 38 L9 35.5Z" fill="#fff" stroke="#eee" stroke-width="0.5"/>
+  </symbol>
+</svg>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="container">
+    <span>Há mais de 20 anos defendendo os direitos do consumidor brasileiro</span>
+    <div class="top-bar-right">
+      <span class="top-bar-date">segunda, 02 de março de 2026</span>
+      <a href="#">Porto Alegre, RS</a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <div class="header-main">
+      <a href="#" class="logo">
+        <svg class="logo-boia"><use href="#boia-icon"/></svg>
+        <div class="logo-text">
+          <span class="logo-title">SOS Consumidor</span>
+          <span class="logo-subtitle">Direitos do Consumidor</span>
+        </div>
+      </a>
+      <nav>
+        <a href="#" class="active">Início</a>
+        <a href="#">Perguntas e Respostas</a>
+        <a href="#">Notícias</a>
+        <a href="#">Outros Serviços</a>
+        <a href="#">Institucional</a>
+        <a href="#">Contato</a>
+      </nav>
+      <button class="mobile-menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-boia-bg"><use href="#boia-icon"/></svg>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">🛟 Portal de Referência desde 2004</div>
+      <h1>Conheça e defenda os seus direitos como consumidor</h1>
+      <p>Informação jurídica acessível, notícias atualizadas e orientações práticas para proteger você nas relações de consumo. SPC, SERASA, dívidas, contratos e muito mais.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary">Perguntas e Respostas →</a>
+        <a href="#" class="btn-secondary">Ver Notícias</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number">20+</div>
+        <div class="stat-label">Anos de atuação</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">5.000+</div>
+        <div class="stat-label">Artigos publicados</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Gratuito</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">CDC</div>
+        <div class="stat-label">Código do Consumidor</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PERGUNTAS E RESPOSTAS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Tire suas dúvidas</div>
+      <h2 class="section-title">Perguntas e Respostas</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="faq-categories">
+      <a href="#" class="faq-card animate-in">
+        <span class="faq-icon">💳</span>
+        <h3>SPC e SERASA</h3>
+        <p>Cadastros restritivos, prazos e como limpar seu nome</p>
+      </a>
+      <a href="#" class="faq-card animate-in">
+        <span class="faq-icon">📋</span>
+        <h3>Dívidas</h3>
+        <p>Cartão, cheque especial, financiamentos e consignados</p>
+      </a>
+      <a href="#" class="faq-card animate-in">
+        <span class="faq-icon">⚖️</span>
+        <h3>Defenda-se</h3>
+        <p>Pequenas causas, Procon e onde reclamar</p>
+      </a>
+      <a href="#" class="faq-card animate-in">
+        <span class="faq-icon">✈️</span>
+        <h3>SOS Passageiro</h3>
+        <p>Direitos em voos, bagagem e companhias aéreas</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ÚLTIMAS NOTÍCIAS -->
+<section class="section" style="background: var(--warm-gray); padding: 55px 0;">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Atualizações</div>
+      <h2 class="section-title">Últimas Notícias</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="news-grid">
+      <a href="#" class="news-featured animate-in">
+        <div class="news-featured-img">
+          <svg class="boia-watermark"><use href="#boia-icon"/></svg>
+        </div>
+        <div class="news-featured-body">
+          <span class="news-tag">Economia</span>
+          <h3>Selic, dólar, PIB: o que diz o relatório Focus sobre os índices em 2026</h3>
+          <p>A mediana para a Selic no fim de 2028 permaneceu estável pela sexta semana seguida segundo o relatório Focus.</p>
+          <div class="news-date">02 de março de 2026</div>
+        </div>
+      </a>
+      <div class="news-list">
+        <a href="#" class="news-item animate-in">
+          <div class="news-item-icon">🏦</div>
+          <div class="news-item-content">
+            <h4>Caixa começa a pagar Bolsa Família de janeiro</h4>
+            <p>Pagamentos seguem o calendário habitual com base no NIS dos beneficiários.</p>
+          </div>
+        </a>
+        <a href="#" class="news-item animate-in">
+          <div class="news-item-icon">🚗</div>
+          <div class="news-item-content">
+            <h4>Nova regra da CNH derruba preços de autoescolas</h4>
+            <p>Pacotes chegam a R$ 300 com as novas regulamentações para habilitação.</p>
+          </div>
+        </a>
+        <a href="#" class="news-item animate-in">
+          <div class="news-item-icon">✈️</div>
+          <div class="news-item-content">
+            <h4>Agência de turismo não poderá reter taxa após cancelamento</h4>
+            <p>Nova decisão judicial reforça direitos do consumidor em cancelamento de viagens.</p>
+          </div>
+        </a>
+        <a href="#" class="news-item animate-in">
+          <div class="news-item-icon">💰</div>
+          <div class="news-item-content">
+            <h4>Defasagem do Imposto de Renda chega a 157%</h4>
+            <p>Sindifisco calcula que a tabela do IR acumula defasagem recorde em 2025.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEMAS E ORIENTAÇÕES -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Como podemos ajudar</div>
+      <h2 class="section-title">Temas e Orientações</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="services-grid">
+      <a href="#" class="service-card animate-in">
+        <div class="service-icon">🛡️</div>
+        <h3>Direitos Básicos</h3>
+        <p>Conheça os direitos fundamentais garantidos pelo Código de Defesa do Consumidor e como exercê-los.</p>
+        <span class="service-link">Saiba mais →</span>
+      </a>
+      <a href="#" class="service-card animate-in">
+        <div class="service-icon">🔐</div>
+        <h3>Proteção de Dados</h3>
+        <p>LGPD e privacidade: como seus dados devem ser tratados e o que fazer em caso de violação.</p>
+        <span class="service-link">Saiba mais →</span>
+      </a>
+      <a href="#" class="service-card animate-in">
+        <div class="service-icon">💳</div>
+        <h3>Crédito e Bancos</h3>
+        <p>Negativação indevida, tarifas abusivas, contratos bancários e cobranças indevidas.</p>
+        <span class="service-link">Saiba mais →</span>
+      </a>
+      <a href="#" class="service-card animate-in">
+        <div class="service-icon">⚠️</div>
+        <h3>Cuidado com Golpes</h3>
+        <p>Golpes em falsos leilões, telefonemas, mensagens e sites fraudulentos. Proteja-se!</p>
+        <span class="service-link">Saiba mais →</span>
+      </a>
+      <a href="#" class="service-card animate-in">
+        <div class="service-icon">🏥</div>
+        <h3>Saúde e Planos</h3>
+        <p>Negativas de cobertura, reajustes abusivos e direitos dos pacientes com câncer.</p>
+        <span class="service-link">Saiba mais →</span>
+      </a>
+      <a href="#" class="service-card animate-in">
+        <div class="service-icon">🏠</div>
+        <h3>Habitação (SFH)</h3>
+        <p>Sistema Financeiro de Habitação, financiamento imobiliário e direitos do mutuário.</p>
+        <span class="service-link">Saiba mais →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Problemas com dívidas? Não entre em desespero.</h2>
+      <p>Orientamos você sobre seus direitos, formas de crédito e como sair dos cadastros restritivos de forma legal e segura.</p>
+      <a href="#" class="btn-primary">Consultar Perguntas e Respostas →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg><use href="#boia-colored"/></svg>
+          <span class="footer-logo-text">SOS Consumidor</span>
+        </div>
+        <p>Portal de referência em direitos do consumidor no Brasil. Informação jurídica acessível e gratuita há mais de 20 anos.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <a href="#">Perguntas e Respostas</a>
+        <a href="#">Notícias</a>
+        <a href="#">Outros Serviços</a>
+        <a href="#">Institucional</a>
+        <a href="#">Contato</a>
+      </div>
+      <div class="footer-col">
+        <h4>Temas Populares</h4>
+        <a href="#">SPC e SERASA</a>
+        <a href="#">Dívidas e Crédito</a>
+        <a href="#">Dano Moral</a>
+        <a href="#">SOS Passageiro</a>
+        <a href="#">Cuidado com Golpes</a>
+      </div>
+      <div class="footer-col">
+        <h4>Sobre</h4>
+        <a href="#">sosconsumidor.com.br</a>
+        <a href="#">Porto Alegre, RS</a>
+        <a href="#">Site de utilidade pública</a>
+        <a href="#">Acesso 100% gratuito</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2004–2026 SOS Consumidor. Todos os direitos reservados.</span>
+      <span>Site de utilidade pública</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), index * 70);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

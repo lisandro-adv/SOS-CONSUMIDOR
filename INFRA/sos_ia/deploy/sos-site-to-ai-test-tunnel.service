@@ -1,0 +1,14 @@
+[Unit]
+Description=Private SOS site-to-AI test API tunnel
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/ssh -N -L 127.0.0.1:18000:127.0.0.1:8000 -i /root/.ssh/sos_site_to_ai_test_ed25519 -o BatchMode=yes -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=yes sos_tunnel@145.223.95.156
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

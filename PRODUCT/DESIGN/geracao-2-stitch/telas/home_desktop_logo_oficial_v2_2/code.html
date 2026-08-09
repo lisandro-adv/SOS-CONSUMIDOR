@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SOS Consumidor - Seu Guardião Jurídico</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-fixed": "#410003",
+              "tertiary-container": "#cf3800",
+              "tertiary-fixed-dim": "#ffb5a0",
+              "surface-tint": "#ba1a20",
+              "on-tertiary-container": "#fff2ef",
+              "on-tertiary": "#ffffff",
+              "surface-dim": "#f1d3d0",
+              "on-secondary": "#ffffff",
+              "on-primary": "#ffffff",
+              "primary-fixed": "#ffdad6",
+              "inverse-on-surface": "#ffedeb",
+              "error": "#ba1a1a",
+              "on-error-container": "#93000a",
+              "background": "#fff8f7",
+              "on-secondary-fixed-variant": "#003fa5",
+              "surface-container-low": "#fff0ef",
+              "surface": "#fff8f7",
+              "surface-container-highest": "#f9dcd9",
+              "secondary-container": "#366dea",
+              "on-secondary-container": "#fefcff",
+              "on-surface": "#271816",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed-dim": "#ffb3ac",
+              "on-error": "#ffffff",
+              "primary": "#af101a",
+              "inverse-surface": "#3e2c2a",
+              "surface-variant": "#f9dcd9",
+              "surface-container-high": "#ffe2de",
+              "primary-container": "#d32f2f",
+              "on-primary-container": "#fff2f0",
+              "outline": "#8f6f6c",
+              "on-tertiary-fixed": "#3b0900",
+              "inverse-primary": "#ffb3ac",
+              "on-surface-variant": "#5b403d",
+              "secondary-fixed": "#dbe1ff",
+              "on-primary-fixed-variant": "#930010",
+              "surface-container": "#ffe9e7",
+              "error-container": "#ffdad6",
+              "surface-bright": "#fff8f7",
+              "secondary-fixed-dim": "#b3c5ff",
+              "tertiary": "#a42b00",
+              "tertiary-fixed": "#ffdbd1",
+              "secondary": "#0752d0",
+              "outline-variant": "#e4beba",
+              "on-tertiary-fixed-variant": "#872100",
+              "on-secondary-fixed": "#001849",
+              "on-background": "#271816"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-[#fff8f7]/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-[0px_24px_48px_rgba(39,24,22,0.08)]">
+<div class="flex justify-between items-center px-8 h-20 max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<img alt="SOS Consumidor Logo" class="h-10 w-auto" data-alt="Official logo of SOS Consumidor featuring a stylized life preserver icon in deep red tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBa3HRcZ4sjL5y_Hsn3tVsIYnKrCbSDWSbef3Fpwc2CWCrXsCqPdF8ietvtldnRX7QYSQqoEmld1Y5vDrj4Zrv8lw2b7S2TqU3WJXEmRVW8i0Rx_WUhhmXeDG3LSqLe0M3p1b7j0-k5CVKTIgDwN1YnQS_zEfibma-O_PfDN4NLQeFPW2vBdW6pWqTZ69cjKAAWlvF3Y_BShv7i7mV3HyLKo1bjauW_hazE1zx_bjoo_UfYsiAjxNJeNnifA5AodUz6mznO82Mei9o"/>
+<span class="text-2xl font-extrabold text-[#af101a] tracking-tighter">SOS Consumidor</span>
+</div>
+<div class="hidden md:flex items-center gap-10">
+<a class="font-manrope font-semibold text-sm tracking-wide uppercase text-[#af101a] border-b-2 border-[#af101a] pb-1" href="#">Dashboard</a>
+<a class="font-manrope font-semibold text-sm tracking-wide uppercase text-slate-600 hover:text-[#af101a] transition-all duration-300" href="#">Chat IA</a>
+<a class="font-manrope font-semibold text-sm tracking-wide uppercase text-slate-600 hover:text-[#af101a] transition-all duration-300" href="#">Planos</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-xl hover:bg-[#fff0ef] transition-transform scale-95 active:scale-90 text-[#af101a]">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-xl hover:bg-[#fff0ef] transition-transform scale-95 active:scale-90 text-[#af101a]">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[870px] flex items-center overflow-hidden bg-surface-container-low">
+<div class="absolute inset-0 opacity-5 pointer-events-none">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary rounded-full blur-[120px]"></div>
+</div>
+<div class="max-w-7xl mx-auto px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10 py-20">
+<div class="lg:col-span-7 flex flex-col justify-center">
+<span class="inline-flex items-center px-4 py-1.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-xs font-bold uppercase tracking-widest mb-6 w-fit">
+                        Inteligência Artificial Jurídica
+                    </span>
+<h1 class="text-[3.5rem] font-[800] leading-[1.1] text-on-surface mb-8 tracking-tight">
+                        Justiça na palma da sua mão, <span class="text-primary italic">sem complicação.</span>
+</h1>
+<!-- Prominent AI Search Bar -->
+<div class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary to-primary-container rounded-2xl blur opacity-25 group-focus-within:opacity-50 transition duration-500"></div>
+<div class="relative flex items-center bg-surface-container-lowest rounded-xl shadow-[0px_24px_48px_rgba(39,24,22,0.08)] overflow-hidden">
+<span class="material-symbols-outlined ml-6 text-outline">search</span>
+<input class="w-full py-6 px-4 bg-transparent border-none focus:ring-0 text-lg font-medium placeholder:text-slate-400" placeholder="Tem um problema de consumo? Pergunte à nossa IA." type="text"/>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 mr-2 rounded-xl font-bold flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                                Analisar <span class="material-symbols-outlined">auto_awesome</span>
+</button>
+</div>
+</div>
+<div class="mt-8 flex items-center gap-6 text-sm font-medium text-on-surface-variant">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span> 100% Gratuito para consulta</span>
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span> Resposta em segundos</span>
+</div>
+</div>
+<div class="lg:col-span-5 relative flex items-center justify-center">
+<div class="relative w-full aspect-square rounded-2xl overflow-hidden shadow-2xl">
+<img alt="Lady Justice Statue" class="w-full h-full object-cover" data-alt="Close-up of Lady Justice statue with golden scales and sword against a sophisticated dark blurred legal office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaYslNzcZfEYaBtUoQyOKHSzFpROBPCpe6oX8lEopbPk5zv7877d_1ptrO5S7_esNZbod-ZOr5ZTDtmP0oF4pcRPONYEpv9g6tvwHp0_3ow7GFz5OLijy8o1B8SW0B_WkxNGd8DLbTBhubFEboeUw5ZmC2xjS1egB7yKQpS9Z8Yk4VcBYsQHQgoQW7fuUgt4Fz-puTRRXiKr2aGpRDSnq6Jhq5INYNbikIIZMajyAAVXlgR0o5TyXzDDcj-W3WXRN1dHfMqbLVqyo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+</div>
+<!-- Floating Stat Card -->
+<div class="absolute -bottom-6 -left-6 bg-surface-container-lowest p-6 rounded-xl shadow-xl flex items-center gap-4 border-l-4 border-primary">
+<div class="bg-primary-fixed p-3 rounded-full">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">gavel</span>
+</div>
+<div>
+<p class="text-2xl font-extrabold text-on-surface">15k+</p>
+<p class="text-xs font-bold uppercase tracking-wider text-outline">Casos Resolvidos</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Legal Guides Section (Asymmetric Grid) -->
+<section class="py-32 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="mb-16">
+<h2 class="text-3xl font-bold text-on-surface mb-4">Guias Práticos do Consumidor</h2>
+<p class="text-on-surface-variant max-w-2xl">Aprenda a exercer seus direitos com nossos guias simplificados, escritos por especialistas em direito do consumidor.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Guide Card 1 -->
+<div class="group bg-surface-container-low p-8 rounded-xl hover:bg-surface-container-high transition-all duration-500 cursor-pointer flex flex-col h-full">
+<div class="w-14 h-14 bg-surface-container-lowest rounded-xl flex items-center justify-center mb-8 shadow-sm group-hover:bg-primary group-hover:text-on-primary transition-colors duration-500">
+<span class="material-symbols-outlined text-3xl">description</span>
+</div>
+<h3 class="text-xl font-bold mb-4">Contratos</h3>
+<p class="text-on-surface-variant mb-8 flex-grow">Entenda as letras miúdas. Como identificar cláusulas abusivas e cancelar serviços sem multas indevidas.</p>
+<div class="flex items-center text-primary font-bold gap-2 group-hover:gap-4 transition-all">
+                            Ler guia completo <span class="material-symbols-outlined">arrow_forward</span>
+</div>
+</div>
+<!-- Guide Card 2 -->
+<div class="group bg-surface-container-low p-8 rounded-xl hover:bg-surface-container-high transition-all duration-500 cursor-pointer flex flex-col h-full">
+<div class="w-14 h-14 bg-surface-container-lowest rounded-xl flex items-center justify-center mb-8 shadow-sm group-hover:bg-primary group-hover:text-on-primary transition-colors duration-500">
+<span class="material-symbols-outlined text-3xl">balance</span>
+</div>
+<h3 class="text-xl font-bold mb-4">Pequenas Causas</h3>
+<p class="text-on-surface-variant mb-8 flex-grow">O guia definitivo para o Juizado Especial Cível. Como entrar com uma ação sem advogado para causas de até 20 salários mínimos.</p>
+<div class="flex items-center text-primary font-bold gap-2 group-hover:gap-4 transition-all">
+                            Ler guia completo <span class="material-symbols-outlined">arrow_forward</span>
+</div>
+</div>
+<!-- Guide Card 3 -->
+<div class="group bg-surface-container-low p-8 rounded-xl hover:bg-surface-container-high transition-all duration-500 cursor-pointer flex flex-col h-full">
+<div class="w-14 h-14 bg-surface-container-lowest rounded-xl flex items-center justify-center mb-8 shadow-sm group-hover:bg-primary group-hover:text-on-primary transition-colors duration-500">
+<span class="material-symbols-outlined text-3xl">verified_user</span>
+</div>
+<h3 class="text-xl font-bold mb-4">Garantias</h3>
+<p class="text-on-surface-variant mb-8 flex-grow">Produto com defeito? Conheça os prazos legais de garantia e seus direitos de troca, reparo ou devolução do dinheiro.</p>
+<div class="flex items-center text-primary font-bold gap-2 group-hover:gap-4 transition-all">
+                            Ler guia completo <span class="material-symbols-outlined">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured News Section (Bento Grid) -->
+<section class="py-32 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex justify-between items-end mb-16">
+<div>
+<h2 class="text-3xl font-bold text-on-surface mb-4">Radar do Consumidor</h2>
+<p class="text-on-surface-variant">Fique por dentro das últimas decisões e notícias que impactam o seu bolso.</p>
+</div>
+<button class="px-6 py-2 border-2 border-outline-variant rounded-xl font-bold text-primary hover:bg-surface-container-high transition-colors">
+                        Ver todas as notícias
+                    </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-[700px]">
+<!-- Large Featured News -->
+<div class="md:col-span-2 md:row-span-2 relative group rounded-xl overflow-hidden shadow-lg">
+<img alt="Legal news" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Professional workspace with legal documents, a pen and a laptop in a bright modern office setting, bright natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwpENUIyozGk5Bmbsw6_03eT6VqW-ITZYZkYwAz7wFF-ZTSU5kpKEDiK-nsK2OMx_mz56PEKse36FRXLmYnXkELfKRsLM_YCdTDLxMFDYpPE4aEWWNmercgiZGlKksQ8UorqsaxI5OeVpdI3mVotqBtV-Lf9c1lJa_G5pmNmpfTmB3fVoFv86BP0kP2lcBFF5QC4npsH0LoIPxHH_t64OQeejUV3CJ6cm1TanVxLvjUYhc7481_HhHBZJQLc35iW1CV9SdnlIB27w"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface via-on-surface/40 to-transparent"></div>
+<div class="absolute bottom-0 p-10 text-on-primary">
+<span class="bg-primary px-3 py-1 rounded text-xs font-bold uppercase mb-4 inline-block">Destaque</span>
+<h3 class="text-3xl font-bold mb-4 leading-tight">STJ decide sobre cobrança de taxas de conveniência em ingressos online</h3>
+<p class="text-surface-variant/80 mb-6">Entenda como a nova decisão impacta o valor final das suas compras de entretenimento na internet.</p>
+<span class="flex items-center gap-2 font-bold">Continuar lendo <span class="material-symbols-outlined">trending_flat</span></span>
+</div>
+</div>
+<!-- News Card 2 -->
+<div class="md:col-span-2 bg-surface-container-lowest p-8 rounded-xl flex flex-col justify-between shadow-sm border border-outline-variant/10">
+<div>
+<span class="text-primary font-bold text-xs uppercase tracking-widest mb-4 block">Energia Elétrica</span>
+<h3 class="text-xl font-bold mb-4">Apagões e ressarcimento: Saiba como pedir indenização por aparelhos queimados.</h3>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-outline">Há 2 horas</span>
+<button class="text-primary"><span class="material-symbols-outlined">bookmark_add</span></button>
+</div>
+</div>
+<!-- News Card 3 -->
+<div class="md:col-span-1 bg-surface-container-lowest p-8 rounded-xl flex flex-col justify-between shadow-sm border border-outline-variant/10">
+<h3 class="text-lg font-bold mb-4">Novas regras para o PIX no e-commerce entram em vigor.</h3>
+<div class="flex items-center justify-between">
+<span class="text-sm text-outline">Há 5 horas</span>
+<button class="text-primary"><span class="material-symbols-outlined">share</span></button>
+</div>
+</div>
+<!-- News Card 4 -->
+<div class="md:col-span-1 bg-primary text-on-primary p-8 rounded-xl flex flex-col justify-between shadow-lg">
+<h3 class="text-lg font-bold mb-4 italic">"O consumidor é a parte vulnerável, e a lei deve atuar como escudo equilibrador."</h3>
+<div class="flex items-center gap-3">
+<div class="w-8 h-0.5 bg-on-primary/30"></div>
+<span class="text-xs font-bold uppercase">Editorial SOS</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24">
+<div class="max-w-5xl mx-auto px-8">
+<div class="relative bg-gradient-to-br from-primary to-primary-container rounded-[2rem] p-16 overflow-hidden text-center shadow-2xl">
+<!-- Subtle Watermark -->
+<div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 opacity-10">
+<span class="material-symbols-outlined text-[30rem]" style="font-variation-settings: 'FILL' 1;">gavel</span>
+</div>
+<div class="relative z-10 max-w-2xl mx-auto">
+<h2 class="text-4xl font-extrabold text-on-primary mb-6 leading-tight">Ready to resolve your case?</h2>
+<p class="text-on-primary/80 text-lg mb-10">Não deixe seus direitos serem ignorados. Use nossa tecnologia para estruturar sua reclamação em minutos.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="bg-surface-container-lowest text-primary px-10 py-5 rounded-xl font-extrabold text-lg shadow-xl hover:scale-105 transition-transform">
+                                Iniciar Consultoria IA
+                            </button>
+<button class="bg-primary-container text-on-primary border border-on-primary/20 px-10 py-5 rounded-xl font-extrabold text-lg hover:bg-primary transition-colors">
+                                Falar com um Especialista
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#fff0ef] dark:bg-slate-900 w-full py-12 border-t border-[#e4beba]/20 mt-12">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-8">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="flex items-center gap-2">
+<img alt="Logo Footer" class="h-6 w-auto" data-alt="Small version of the SOS Consumidor life preserver logo for the footer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaF13_-irQ49YZ-tY7kyB-ZMIDtPldlp-vn-oy7VoWxzktZTUK6xdHR9iKuEACj1BYxswbgkFKPEldNl0sc29B8Hi5q8Jh9kb6zvPrRaPkWwNkzuz0ZmEPcttPfKQo_yeJXMjMV649v_PPK4vQ1693CuLJwJOnttj4nPT0hhs5xawqTt_NMIdAT0j-A_B4sxlnrBLk1W-VsXRF2yickM-rXM8lyEmz56cXhesLY6ZIV-ZYFgd-z5XB_diOcswKsxBJyceIA3YafGg"/>
+<span class="text-lg font-bold text-[#af101a]">SOS Consumidor</span>
+</div>
+<p class="font-manrope text-sm font-normal text-slate-500 max-w-xs text-center md:text-left">
+                    Democratizando o acesso à justiça e empoderando o consumidor brasileiro através da tecnologia.
+                </p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-manrope text-sm font-normal text-slate-500 hover:text-[#af101a] transition-colors" href="#">Termos de Uso</a>
+<a class="font-manrope text-sm font-normal text-slate-500 hover:text-[#af101a] transition-colors" href="#">Política de Privacidade</a>
+<a class="font-manrope text-sm font-normal text-slate-500 hover:text-[#af101a] transition-colors" href="#">Contato</a>
+<a class="font-manrope text-sm font-normal text-slate-500 hover:text-[#af101a] transition-colors" href="#">Sobre Nós</a>
+</div>
+<p class="font-manrope text-sm font-normal text-slate-500">
+                © 2024 SOS Consumidor. Todos os direitos reservados.
+            </p>
+</div>
+</footer>
+</body></html>

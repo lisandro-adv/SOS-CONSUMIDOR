@@ -1,0 +1,13 @@
+[Unit]
+Description=Validar e reter o backup Hestia do SOS Consumidor
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/sos-backup-site
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S.O.S Consumidor - Serviço de Orientação ao Consumidor</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #CC0000;
+    --red-dark: #990000;
+    --red-darker: #770000;
+    --red-light: #E02020;
+    --red-bg: #FFF5F5;
+    --blue-sidebar: #2E86AB;
+    --blue-dark: #1B6E8F;
+    --white: #FFFFFF;
+    --cream: #F7F7F7;
+    --warm-gray: #F0F0F0;
+    --dark: #1A1A1A;
+    --text: #333333;
+    --text-light: #666666;
+    --text-muted: #999999;
+    --border: #E0E0E0;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.07);
+    --shadow-md: 0 4px 14px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+    --radius: 6px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--text);
+    background: var(--cream);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+  /* ===== HEADER ===== */
+  .header-top {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0 12px;
+  }
+  .header-top-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo { display: flex; flex-direction: column; text-decoration: none; }
+  .logo-main {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    font-family: 'Crimson Pro', serif;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .logo-main .dot { color: var(--dark); margin: 0 1px; }
+  .logo-boia-inline {
+    width: 46px;
+    height: 46px;
+    margin: 0 2px;
+    position: relative;
+    top: 2px;
+  }
+  .logo-tagline {
+    font-size: 0.88rem;
+    color: var(--text-light);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    margin-top: 2px;
+  }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .header-date {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+  .header-actions {
+    display: flex;
+    gap: 10px;
+  }
+  .header-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--red);
+    color: white;
+    padding: 10px 18px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .header-action-btn:hover { background: var(--red-dark); }
+  .header-action-btn svg { width: 18px; height: 18px; }
+
+  /* ===== NAV BAR ===== */
+  .nav-bar {
+    background: var(--red);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(204, 0, 0, 0.3);
+  }
+  .nav-bar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-links { display: flex; align-items: center; gap: 2px; }
+  .nav-links a {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 13px 16px;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .nav-links a:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+  }
+  .nav-links a.active {
+    background: rgba(0,0,0,0.15);
+    color: #fff;
+    font-weight: 600;
+  }
+  .nav-search {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .nav-search input {
+    padding: 7px 14px;
+    border: none;
+    border-radius: var(--radius) 0 0 var(--radius);
+    font-size: 0.85rem;
+    width: 180px;
+    outline: none;
+    font-family: inherit;
+  }
+  .nav-search button {
+    padding: 7px 16px;
+    background: var(--red-darker);
+    color: white;
+    border: none;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .nav-search button:hover { background: var(--dark); }
+
+  .mobile-menu { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+  .mobile-menu svg { width: 26px; height: 26px; stroke: white; }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(160deg, var(--red-darker) 0%, var(--red) 50%, var(--red-light) 100%);
+    padding: 18px 0 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 45px;
+    background: linear-gradient(to top, var(--cream), transparent);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 640px;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 5px 15px;
+    border-radius: 30px;
+    font-size: 0.76rem;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 600;
+    animation: fadeInUp 0.6s ease-out;
+  }
+  .hero h1 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.14;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+    animation: fadeInUp 0.6s ease-out 0.1s both;
+  }
+  .hero p {
+    font-size: 1.08rem;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.7;
+    margin-bottom: 18px;
+    max-width: 520px;
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.6s ease-out 0.3s both;
+  }
+  .btn-primary {
+    background: var(--white);
+    color: var(--red);
+    padding: 13px 30px;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 0.93rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-decoration: none;
+  }
+  .btn-primary:hover {
+    background: #f0f0f0;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    padding: 13px 30px;
+    border: 1.5px solid rgba(255,255,255,0.35);
+    border-radius: var(--radius);
+    font-size: 0.93rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-decoration: none;
+  }
+  .btn-secondary:hover {
+    border-color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.1);
+  }
+
+  /* ===== STATS ===== */
+  .stats-bar {
+    margin-top: -36px;
+    position: relative;
+    z-index: 10;
+    margin-bottom: 50px;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+  .stat-item {
+    padding: 24px 18px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-item:hover { background: var(--red-bg); }
+  .stat-number {
+    font-family: 'Crimson Pro', serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ===== MAIN CONTENT GRID (news + sidebar) ===== */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 28px;
+    margin-bottom: 50px;
+  }
+
+  /* ===== NEWS SECTION ===== */
+  .section-header { margin-bottom: 24px; }
+  .section-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--red);
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+  .section-title {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.2;
+  }
+  .section-divider {
+    width: 45px;
+    height: 3px;
+    background: var(--red);
+    margin-top: 10px;
+    border-radius: 2px;
+  }
+
+  .news-featured-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .news-card {
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--border);
+  }
+  .news-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    border-color: transparent;
+  }
+  .news-card-img {
+    height: 180px;
+    background: linear-gradient(135deg, var(--red-dark), var(--red-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .news-card-img .boia-watermark { width: 70px; height: 70px; opacity: 0.15; }
+  .news-card-body { padding: 18px; }
+  .news-tag {
+    display: inline-block;
+    background: var(--red-bg);
+    color: var(--red);
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+  }
+  .news-card-body h3 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 8px;
+    color: var(--dark);
+  }
+  .news-card-body p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.55;
+  }
+
+  /* News list */
+  .news-list-section h2 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--dark);
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--dark);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .news-date-group {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin: 14px 0 8px;
+  }
+  .news-list-item {
+    display: block;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.92rem;
+    line-height: 1.45;
+    transition: color 0.2s;
+  }
+  .news-list-item:hover { color: var(--red); }
+
+  /* Ver mais links */
+  .ver-mais-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 18px;
+    padding: 10px 20px;
+    background: var(--red);
+    color: var(--white) !important;
+    border-radius: var(--radius);
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s;
+    border: none;
+  }
+  .ver-mais-link:hover {
+    background: var(--red-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(204, 0, 0, 0.25);
+    color: var(--white) !important;
+    text-decoration: none;
+  }
+  .sidebar-ver-mais {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    font-size: 0.84rem;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 16px;
+    border-radius: var(--radius);
+    background: var(--blue-dark);
+  }
+  .sidebar-ver-mais:hover {
+    background: #155A73;
+    box-shadow: 0 4px 12px rgba(46, 134, 171, 0.25);
+  }
+
+  /* ===== SIDEBAR ===== */
+  .sidebar { display: flex; flex-direction: column; gap: 14px; }
+  .sidebar-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 0.92rem;
+    transition: all 0.2s;
+    box-shadow: var(--shadow-sm);
+  }
+  .sidebar-card:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+  .sidebar-card svg { width: 32px; height: 32px; flex-shrink: 0; opacity: 0.85; }
+  .sidebar-newsletter { background: var(--blue-sidebar); }
+  .sidebar-newsletter:hover { background: var(--blue-dark); }
+  .sidebar-area { background: #2E86AB; }
+  .sidebar-area:hover { background: #1B6E8F; }
+  .sidebar-spc { background: #2980B9; }
+  .sidebar-spc:hover { background: #1F6D9F; }
+
+  /* Sidebar FAQ */
+  .sidebar-faq {
+    background: var(--blue-sidebar);
+    border-radius: 8px;
+    padding: 20px;
+    border: none;
+  }
+  .sidebar-faq h3 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(255,255,255,0.3);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .sidebar-faq > a {
+    display: block;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    text-decoration: none;
+    color: rgba(255,255,255,0.92);
+    font-size: 0.88rem;
+    font-weight: 500;
+    line-height: 1.4;
+    transition: all 0.2s;
+  }
+  .sidebar-faq > a:last-child { border-bottom: none; }
+  .sidebar-faq > a:hover { color: #fff; text-decoration: underline; }
+  .sidebar-faq .sidebar-ver-mais {
+    background: var(--blue-dark);
+    color: var(--white) !important;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    margin-top: 14px;
+    padding: 10px 20px;
+  }
+  .sidebar-faq .sidebar-ver-mais:hover {
+    background: #155A73;
+  }
+
+  /* ===== SERVICES SECTION ===== */
+  .services-section {
+    background: var(--warm-gray);
+    padding: 50px 0;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .service-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 24px 20px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--red);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    border-color: transparent;
+  }
+  .service-card .s-icon {
+    font-size: 2.8rem;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .service-card h3 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+  .service-card p {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    line-height: 1.5;
+  }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    background: linear-gradient(135deg, var(--red-darker) 0%, var(--red) 60%, var(--red-light) 100%);
+    padding: 50px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .cta-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .cta-content h2 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .cta-content p {
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 24px;
+    font-size: 1rem;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.55);
+    padding: 44px 0 24px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+  .footer-brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .footer-brand-logo svg { width: 30px; height: 30px; }
+  .footer-brand-logo span {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .footer-brand p { font-size: 0.84rem; line-height: 1.7; }
+  .footer-col h4 {
+    color: var(--white);
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .footer-col a {
+    display: block;
+    color: rgba(255,255,255,0.48);
+    text-decoration: none;
+    font-size: 0.84rem;
+    padding: 3px 0;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: #fff; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.76rem;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: all 0.5s ease-out;
+  }
+  .animate-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 960px) {
+    .main-grid { grid-template-columns: 1fr; }
+    .sidebar { display: grid; grid-template-columns: 1fr 1fr; }
+    .news-featured-grid { grid-template-columns: 1fr 1fr; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-search { display: none; }
+    .mobile-menu { display: block; }
+    .header-actions { display: none; }
+    .hero h1 { font-size: 2.1rem; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .stat-item:nth-child(2) { border-right: none; }
+    .sidebar { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-boia-bg { display: none; }
+    .logo-main { font-size: 2.2rem; }
+    .logo-boia-inline { width: 36px; height: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SVG DEFS -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+  <symbol id="boia" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="44" fill="none" stroke="#CC0000" stroke-width="5"/>
+    <circle cx="50" cy="50" r="20" fill="none" stroke="#CC0000" stroke-width="4"/>
+    <!-- Red sections -->
+    <path d="M50 6 C56 6 61.5 7.3 66.5 10 L58 29 C55.5 28 52.8 27.5 50 27.5 C47.2 27.5 44.5 28 42 29 L33.5 10 C38.5 7.3 44 6 50 6Z" fill="#CC0000"/>
+    <path d="M94 50 C94 56 92.7 61.5 90 66.5 L71 58 C72 55.5 72.5 52.8 72.5 50 C72.5 47.2 72 44.5 71 42 L90 33.5 C92.7 38.5 94 44 94 50Z" fill="#CC0000"/>
+    <path d="M50 94 C44 94 38.5 92.7 33.5 90 L42 71 C44.5 72 47.2 72.5 50 72.5 C52.8 72.5 55.5 72 58 71 L66.5 90 C61.5 92.7 56 94 50 94Z" fill="#CC0000"/>
+    <path d="M6 50 C6 44 7.3 38.5 10 33.5 L29 42 C28 44.5 27.5 47.2 27.5 50 C27.5 52.8 28 55.5 29 58 L10 66.5 C7.3 61.5 6 56 6 50Z" fill="#CC0000"/>
+    <!-- White sections -->
+    <path d="M66.5 10 C76 15 83 22.5 88 31 L71 42 C67 35.5 61 31 58 29 L66.5 10Z" fill="#fff" stroke="#ddd" stroke-width="0.5"/>
+    <path d="M90 66.5 C85 76 77.5 83 69 88 L58 71 C64.5 67 69 61 71 58 L90 66.5Z" fill="#fff" stroke="#ddd" stroke-width="0.5"/>
+    <path d="M33.5 90 C24 85 17 77.5 12 69 L29 58 C33 64.5 39 69 42 71 L33.5 90Z" fill="#fff" stroke="#ddd" stroke-width="0.5"/>
+    <path d="M10 33.5 C15 24 22.5 17 31 12 L42 29 C35.5 33 31 39 29 42 L10 33.5Z" fill="#fff" stroke="#ddd" stroke-width="0.5"/>
+  </symbol>
+  <symbol id="boia-white" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="44" fill="none" stroke="#fff" stroke-width="5"/>
+    <circle cx="50" cy="50" r="20" fill="none" stroke="#fff" stroke-width="4"/>
+    <path d="M50 6 C56 6 61.5 7.3 66.5 10 L58 29 C55.5 28 52.8 27.5 50 27.5 C47.2 27.5 44.5 28 42 29 L33.5 10 C38.5 7.3 44 6 50 6Z" fill="#CC0000"/>
+    <path d="M94 50 C94 56 92.7 61.5 90 66.5 L71 58 C72 55.5 72.5 52.8 72.5 50 C72.5 47.2 72 44.5 71 42 L90 33.5 C92.7 38.5 94 44 94 50Z" fill="#CC0000"/>
+    <path d="M50 94 C44 94 38.5 92.7 33.5 90 L42 71 C44.5 72 47.2 72.5 50 72.5 C52.8 72.5 55.5 72 58 71 L66.5 90 C61.5 92.7 56 94 50 94Z" fill="#CC0000"/>
+    <path d="M6 50 C6 44 7.3 38.5 10 33.5 L29 42 C28 44.5 27.5 47.2 27.5 50 C27.5 52.8 28 55.5 29 58 L10 66.5 C7.3 61.5 6 56 6 50Z" fill="#CC0000"/>
+    <path d="M66.5 10 C76 15 83 22.5 88 31 L71 42 C67 35.5 61 31 58 29 L66.5 10Z" fill="#fff" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+    <path d="M90 66.5 C85 76 77.5 83 69 88 L58 71 C64.5 67 69 61 71 58 L90 66.5Z" fill="#fff" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+    <path d="M33.5 90 C24 85 17 77.5 12 69 L29 58 C33 64.5 39 69 42 71 L33.5 90Z" fill="#fff" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+    <path d="M10 33.5 C15 24 22.5 17 31 12 L42 29 C35.5 33 31 39 29 42 L10 33.5Z" fill="#fff" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
+  </symbol>
+</svg>
+
+<!-- HEADER TOP -->
+<div class="header-top">
+  <div class="container">
+    <div class="header-top-inner">
+      <a href="#" class="logo">
+        <div class="logo-main">
+          S<span class="dot">.</span><svg class="logo-boia-inline"><use href="#boia"/></svg><span class="dot">.</span>S Consumidor
+        </div>
+        <div class="logo-tagline">Serviço de Orientação ao Consumidor</div>
+      </a>
+      <div class="header-right">
+        <span class="header-date">terça, 03 de março de 2026</span>
+        <div class="header-actions">
+          <a href="#" class="header-action-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Assine Aqui
+          </a>
+          <a href="#" class="header-action-btn" style="background:#2E86AB;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Cadastre-se
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV BAR -->
+<nav class="nav-bar">
+  <div class="container">
+    <div class="nav-bar-inner">
+      <div class="nav-links">
+        <a href="#" class="active">Início</a>
+        <a href="#">Perguntas e Respostas</a>
+        <a href="#">Notícias</a>
+        <a href="#">Outros Serviços</a>
+        <a href="#">Institucional</a>
+        <a href="#">Contato</a>
+      </div>
+      <div class="nav-search">
+        <input type="text" placeholder="Busca no Google">
+        <button>Buscar</button>
+      </div>
+      <button class="mobile-menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">🛟 Portal de Referência desde 2004</div>
+      <h1>Conheça e defenda os seus direitos como consumidor</h1>
+      <p>Informação jurídica acessível e gratuita sobre SPC, SERASA, dívidas, contratos, dano moral e muito mais.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary">Perguntas e Respostas →</a>
+        <a href="#" class="btn-secondary">Ver Notícias</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item"><div class="stat-number">20+</div><div class="stat-label">Anos de atuação</div></div>
+      <div class="stat-item"><div class="stat-number">5.000+</div><div class="stat-label">Artigos publicados</div></div>
+      <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Gratuito</div></div>
+      <div class="stat-item"><div class="stat-number">CDC</div><div class="stat-label">Código do Consumidor</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+  <div class="main-grid">
+    <!-- LEFT: NEWS -->
+    <div>
+      <!-- Featured news cards -->
+      <div class="news-featured-grid">
+        <a href="https://www.sosconsumidor.com.br/noticias-61445-selic-dolar-pib-que-diz-relatorio-focus-sobre-os-indices-em-2026" class="news-card animate-in">
+          <div class="news-card-img" style="background: none;">
+            <img src="https://www.sosconsumidor.com.br/images/202603021336240.png" alt="Selic, dólar, PIB" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="news-card-body">
+            <span class="news-tag">Economia</span>
+            <h3>Selic, dólar, PIB: o que diz o relatório Focus sobre os índices em 2026</h3>
+            <p>A mediana para a Selic no fim de 2028 permaneceu em 10% pela sexta semana seguida.</p>
+          </div>
+        </a>
+        <a href="https://www.sosconsumidor.com.br/noticias-61444-emprestimo-consignado-ja-e-usado-por-funcionarios-em-65-das-empresas-privadas-revela-pesquisa" class="news-card animate-in">
+          <div class="news-card-img" style="background: none;">
+            <img src="https://www.sosconsumidor.com.br/images/202603021331350.png" alt="Empréstimo consignado" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="news-card-body">
+            <span class="news-tag">Crédito</span>
+            <h3>Empréstimo consignado já é usado por funcionários em 65% das empresas privadas</h3>
+            <p>Indústria lidera a adoção da modalidade de crédito consignado privado.</p>
+          </div>
+        </a>
+        <a href="https://www.sosconsumidor.com.br/noticias-61465-eca-digital-pais-precisarao-autorizacao-judicial-para-monetizar-conteudo-com-filhos-nas-redes" class="news-card animate-in">
+          <div class="news-card-img" style="background: linear-gradient(135deg, var(--red-dark), var(--red-light));">
+            <svg class="boia-watermark"><use href="#boia-white"/></svg>
+          </div>
+          <div class="news-card-body">
+            <span class="news-tag">Legislação</span>
+            <h3>ECA Digital: pais precisarão de autorização judicial para monetizar conteúdo com filhos nas redes</h3>
+            <p>Nova lei exige autorização da Justiça para pais monetizarem conteúdo com menores.</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- News list -->
+      <div class="news-list-section">
+        <h2>Notícias</h2>
+        <div class="news-date-group">02/03/2026</div>
+        <a href="https://www.sosconsumidor.com.br/noticias-61443-grandes-bancos-vao-arcar-maior-parte-rombo-master-no-fgc-entenda" class="news-list-item">Grandes bancos vão arcar com maior parte do rombo do Master no FGC; entenda</a>
+        <a href="https://www.sosconsumidor.com.br/noticias-61442-veja-quais-itens-informatica-e-telecomunicacoes-tiveram-aliquota-mantida" class="news-list-item">Veja quais itens de informática e telecomunicações tiveram alíquota mantida</a>
+        <a href="https://www.sosconsumidor.com.br/noticias-61441-entre-laudos-e-pericias-entenda-caminho-ate-aposentadoria-por-incapacidade" class="news-list-item">Entre laudos e perícias: entenda o caminho até a aposentadoria por incapacidade</a>
+        <a href="https://www.sosconsumidor.com.br/noticias-61440-mantida-condenacao-homem-por-venda-e-armazenamento-bebidas-falsificadas" class="news-list-item">Mantida condenação de homem por venda e armazenamento de bebidas falsificadas</a>
+        <a href="https://www.sosconsumidor.com.br/noticias-61439-pedemeia-governo-credita-pagamento-para-nascidos-em-maio-e-junho" class="news-list-item">Pé-de-Meia: governo credita pagamento para nascidos em maio e junho</a>
+        <div class="news-date-group">26/02/2026</div>
+        <a href="https://www.sosconsumidor.com.br/noticias-61438-4-em-cada-10-usuarios-bets-ja-se-endividaram-apos-apostarem-jogos-online" class="news-list-item">4 em cada 10 usuários de bets já se endividaram após apostarem em jogos on-line</a>
+        <a href="https://www.sosconsumidor.com.br/noticias-61437-pericia-pede-inclusao-outras-empresas-fictor-na-recuperacao-judicial" class="news-list-item">Perícia pede inclusão de outras empresas da Fictor na recuperação judicial</a>
+        <a href="https://www.sosconsumidor.com.br/noticias" class="ver-mais-link">📰 Ver mais notícias →</a>
+      </div>
+    </div>
+
+    <!-- RIGHT: SIDEBAR -->
+    <aside class="sidebar">
+      <a href="#" class="sidebar-card sidebar-newsletter">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Assine a Newsletter
+      </a>
+      <a href="#" class="sidebar-card sidebar-area">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Área do Consumidor
+      </a>
+      <a href="#" class="sidebar-card sidebar-spc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Como consultar SPC, SERASA ou SCPC?
+      </a>
+
+      <!-- FAQ sidebar -->
+      <div class="sidebar-faq">
+        <h3>Perguntas e Respostas</h3>
+        <a href="https://www.sosconsumidor.com.br/perguntas-e-respostas-detalhes-quanto-tempo-nome-fica-cadastrado-no-spc-serasa-e-scpc-11">Quanto tempo o nome fica cadastrado no SPC, SERASA e SCPC?</a>
+        <a href="https://www.sosconsumidor.com.br/perguntas-e-respostas-detalhes-consulta-ao-spc-serasa-ou-scpc-e-gratuita-8">A consulta ao SPC, SERASA ou SCPC é gratuita?</a>
+        <a href="https://www.sosconsumidor.com.br/perguntas-e-respostas-detalhes-saiba-quais-os-bens-nao-podem-ser-penhorados-para-pagar-dividas-278">Saiba quais os bens não podem ser penhorados para pagar dívidas</a>
+        <a href="https://www.sosconsumidor.com.br/perguntas-e-respostas-detalhes-apos-quantos-dias-atraso-credor-inserir-nome-consumidor-no-spc-ou-serasa-215">Após quantos dias o credor pode inserir o nome no SPC ou SERASA?</a>
+        <a href="https://www.sosconsumidor.com.br/perguntas-e-respostas-detalhes-protesto-divida-prescrita-e-ilegal-direito-indenizacao-por-danos-morais-28">Protesto de dívida prescrita é ilegal e dá direito a indenização</a>
+        <a href="https://www.sosconsumidor.com.br/perguntas-e-respostas-detalhes-como-consultar-spc-serasa-ou-scpc-5">Como consultar SPC, SERASA ou SCPC?</a>
+        <a href="https://www.sosconsumidor.com.br/perguntas-e-respostas" class="ver-mais-link sidebar-ver-mais">❓ Ver mais perguntas e respostas →</a>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Temas</div>
+      <h2 class="section-title">Orientações ao Consumidor</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="services-grid">
+      <a href="#" class="service-card animate-in">
+        <span class="s-icon">💳</span>
+        <h3>SPC e SERASA</h3>
+        <p>Cadastros restritivos, prazos e exclusão</p>
+      </a>
+      <a href="#" class="service-card animate-in">
+        <span class="s-icon">📋</span>
+        <h3>Dívidas e Crédito</h3>
+        <p>Cartão, financiamentos e consignados</p>
+      </a>
+      <a href="#" class="service-card animate-in">
+        <span class="s-icon">⚖️</span>
+        <h3>Dano Moral</h3>
+        <p>Quando cabe e como pedir indenização</p>
+      </a>
+      <a href="#" class="service-card animate-in">
+        <span class="s-icon">✈️</span>
+        <h3>SOS Passageiro</h3>
+        <p>Direitos em voos e bagagem</p>
+      </a>
+      <a href="#" class="service-card animate-in">
+        <span class="s-icon">⚠️</span>
+        <h3>Cuidado com Golpes</h3>
+        <p>Falsos leilões, fraudes e sites falsos</p>
+      </a>
+      <a href="#" class="service-card animate-in">
+        <span class="s-icon">🏠</span>
+        <h3>Habitação (SFH)</h3>
+        <p>Financiamento e direitos do mutuário</p>
+      </a>
+      <a href="#" class="service-card animate-in">
+        <span class="s-icon">🛡️</span>
+        <h3>Defenda-se</h3>
+        <p>Pequenas causas e onde reclamar</p>
+      </a>
+      <a href="#" class="service-card animate-in">
+        <span class="s-icon">📖</span>
+        <h3>Leis e Informações</h3>
+        <p>CDC, LGPD e legislação consumerista</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Problemas com dívidas? Não entre em desespero.</h2>
+      <p>Orientamos você gratuitamente sobre seus direitos e como sair dos cadastros restritivos.</p>
+      <a href="#" class="btn-primary">Consultar Perguntas e Respostas →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-logo">
+          <svg><use href="#boia"/></svg>
+          <span>S.O.S Consumidor</span>
+        </div>
+        <p>Portal de referência em direitos do consumidor no Brasil. Informação jurídica acessível e gratuita há mais de 20 anos. Site de utilidade pública.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <a href="#">Perguntas e Respostas</a>
+        <a href="#">Notícias</a>
+        <a href="#">Outros Serviços</a>
+        <a href="#">Institucional</a>
+        <a href="#">Contato</a>
+      </div>
+      <div class="footer-col">
+        <h4>Temas Populares</h4>
+        <a href="#">SPC e SERASA</a>
+        <a href="#">Dívidas e Crédito</a>
+        <a href="#">Dano Moral</a>
+        <a href="#">SOS Passageiro</a>
+        <a href="#">Cuidado com Golpes</a>
+      </div>
+      <div class="footer-col">
+        <h4>Sobre</h4>
+        <a href="#">sosconsumidor.com.br</a>
+        <a href="#">Porto Alegre, RS</a>
+        <a href="#">Site de utilidade pública</a>
+        <a href="#">Acesso 100% gratuito</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2004–2026 S.O.S Consumidor. Todos os direitos reservados.</span>
+      <span>Site de utilidade pública</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

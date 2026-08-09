@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Agência Brasil",
+    "feed_url": "https://agenciabrasil.ebc.com.br/rss/ultimasnoticias/feed.xml",
+    "trust_weight": 3,
+    "max_items": 30
+  },
+  {
+    "name": "Procon-SP",
+    "feed_url": "https://www.procon.sp.gov.br/rss/",
+    "trust_weight": 5,
+    "max_items": 20
+  },
+  {
+    "name": "Conselho da Justiça Federal",
+    "feed_url": "https://www.cjf.jus.br/cjf/noticias/ultimas-noticias/RSS",
+    "trust_weight": 5,
+    "max_items": 20
+  },
+  {
+    "name": "TRF4",
+    "feed_url": "https://www.trf4.jus.br/trf4/noticias.xml",
+    "trust_weight": 5,
+    "max_items": 20
+  },
+  {
+    "name": "G1 Economia",
+    "feed_url": "https://g1.globo.com/rss/g1/economia/",
+    "trust_weight": 1,
+    "max_items": 25
+  },
+  {
+    "name": "CNN Brasil",
+    "feed_url": "https://www.cnnbrasil.com.br/rss/",
+    "trust_weight": 1,
+    "max_items": 25
+  },
+  {
+    "name": "InfoMoney",
+    "feed_url": "https://www.infomoney.com.br/feed/",
+    "trust_weight": 1,
+    "max_items": 25
+  },
+  {
+    "name": "Exame",
+    "feed_url": "https://exame.com/feed/",
+    "trust_weight": 1,
+    "max_items": 25
+  }
+]

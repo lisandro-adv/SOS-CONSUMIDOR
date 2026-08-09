@@ -1,0 +1,11 @@
+[Unit]
+Description=Validar diariamente o backup Hestia do SOS Consumidor
+
+[Timer]
+OnCalendar=*-*-* 06:00:00 UTC
+Persistent=true
+RandomizedDelaySec=5m
+Unit=sos-backup-site.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Planos - SOS Consumidor</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-low": "#fff0ef",
+              "on-tertiary": "#ffffff",
+              "error": "#ba1a1a",
+              "background": "#fff8f7",
+              "surface": "#fff8f7",
+              "inverse-on-surface": "#ffedeb",
+              "surface-container-high": "#ffe2de",
+              "surface-tint": "#ba1a20",
+              "on-primary-fixed-variant": "#930010",
+              "on-secondary-container": "#fefcff",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed-variant": "#872100",
+              "surface-bright": "#fff8f7",
+              "surface-dim": "#f1d3d0",
+              "surface-container-highest": "#f9dcd9",
+              "on-secondary-fixed-variant": "#003fa5",
+              "on-error": "#ffffff",
+              "on-primary-container": "#fff2f0",
+              "primary-fixed-dim": "#ffb3ac",
+              "primary": "#af101a",
+              "on-background": "#271816",
+              "surface-container": "#ffe9e7",
+              "inverse-primary": "#ffb3ac",
+              "tertiary-fixed-dim": "#ffb5a0",
+              "on-tertiary-container": "#fff2ef",
+              "error-container": "#ffdad6",
+              "secondary-fixed-dim": "#b3c5ff",
+              "primary-fixed": "#ffdad6",
+              "primary-container": "#d32f2f",
+              "on-primary": "#ffffff",
+              "tertiary-fixed": "#ffdbd1",
+              "inverse-surface": "#3e2c2a",
+              "tertiary-container": "#cf3800",
+              "outline-variant": "#e4beba",
+              "secondary-container": "#366dea",
+              "on-error-container": "#93000a",
+              "on-surface": "#271816",
+              "on-surface-variant": "#5b403d",
+              "tertiary": "#a42b00",
+              "surface-variant": "#f9dcd9",
+              "on-secondary": "#ffffff",
+              "on-primary-fixed": "#410003",
+              "outline": "#8f6f6c",
+              "secondary-fixed": "#dbe1ff",
+              "on-secondary-fixed": "#001849",
+              "on-tertiary-fixed": "#3b0900",
+              "secondary": "#0752d0"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-nav {
+        background: rgba(255, 248, 247, 0.8);
+        backdrop-filter: blur(20px);
+      }
+      .ambient-shadow {
+        box-shadow: 0px 24px 48px rgba(39, 24, 22, 0.08);
+      }
+      .premium-gradient {
+        background: linear-gradient(135deg, #af101a 0%, #d32f2f 100%);
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm dark:shadow-none">
+<nav class="flex justify-between items-center h-20 px-8 max-w-screen-2xl mx-auto font-['Manrope'] antialiased tracking-tight">
+<div class="text-2xl font-extrabold tracking-tighter text-red-700 dark:text-red-500">
+                SOS Consumidor
+            </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 dark:text-slate-400 hover:text-red-600 transition-colors" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-red-600 transition-colors" href="#">Chat IA</a>
+<a class="text-red-700 dark:text-red-400 font-bold border-b-2 border-red-700 dark:border-red-400 pb-1" href="#">Planos</a>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-slate-500">
+<span class="material-symbols-outlined cursor-pointer hover:bg-red-50 p-2 rounded-full transition-all">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:bg-red-50 p-2 rounded-full transition-all">help_outline</span>
+</div>
+<button class="bg-primary hover:bg-primary-container text-on-primary px-6 py-2.5 rounded-xl font-bold transition-all active:scale-95">
+                    Entrar
+                </button>
+</div>
+</nav>
+<div class="h-[1px] w-full bg-gradient-to-r from-transparent via-outline-variant/20 to-transparent"></div>
+</header>
+<main class="pt-32 pb-24">
+<!-- Hero Section -->
+<section class="max-w-screen-xl mx-auto px-8 text-center mb-16">
+<span class="inline-block py-1 px-4 bg-surface-container-highest text-primary font-bold text-xs tracking-widest rounded-full mb-6 uppercase">Justiça ao seu alcance</span>
+<h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-on-surface">
+                Escolha o seu nível de <br/>
+<span class="text-primary">proteção jurídica.</span>
+</h1>
+<p class="text-on-surface-variant text-xl max-w-2xl mx-auto leading-relaxed">
+                Do básico ao acompanhamento especializado, garanta que seus direitos como consumidor sejam sempre respeitados.
+            </p>
+</section>
+<!-- Pricing Grid -->
+<section class="max-w-screen-2xl mx-auto px-8 grid grid-cols-1 md:grid-cols-3 gap-8 items-end">
+<!-- Plan: Grátis -->
+<div class="bg-surface-container-low rounded-xl p-10 transition-all hover:translate-y-[-4px]">
+<div class="mb-8">
+<h3 class="text-2xl font-bold mb-2">Grátis</h3>
+<p class="text-on-surface-variant text-sm">Para consultas rápidas e pontuais.</p>
+</div>
+<div class="mb-8">
+<div class="flex items-baseline gap-1">
+<span class="text-4xl font-extrabold">R$ 0</span>
+<span class="text-on-surface-variant font-medium">/mês</span>
+</div>
+</div>
+<ul class="space-y-5 mb-10">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span class="text-on-surface-variant">3 consultas de IA por mês</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span class="text-on-surface-variant">Modelos básicos de petição</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline text-xl">block</span>
+<span class="text-on-surface-variant opacity-50 text-sm">Downloads ilimitados</span>
+</li>
+</ul>
+<button class="w-full py-4 px-6 rounded-xl border border-outline-variant bg-surface-container-lowest text-primary font-bold hover:bg-primary hover:text-white transition-all">
+                    Começar Agora
+                </button>
+</div>
+<!-- Plan: Pro (Most Popular) -->
+<div class="bg-surface-container-lowest rounded-xl p-10 ambient-shadow relative border-2 border-primary overflow-hidden transition-all hover:translate-y-[-8px]">
+<div class="absolute top-0 right-0 bg-primary text-white text-[10px] font-bold px-8 py-2 rotate-45 translate-x-[28px] translate-y-[8px] uppercase tracking-widest">
+                    Popular
+                </div>
+<div class="mb-8">
+<h3 class="text-3xl font-extrabold mb-2 text-primary">Pro</h3>
+<p class="text-on-surface-variant text-sm">O Guardião Judicial completo para você.</p>
+</div>
+<div class="mb-8">
+<div class="flex items-baseline gap-1">
+<span class="text-5xl font-extrabold text-on-surface">R$ 49</span>
+<span class="text-on-surface-variant font-medium">/mês</span>
+</div>
+</div>
+<ul class="space-y-5 mb-10">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-on-surface font-semibold">Consultas de IA ilimitadas</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-on-surface font-semibold">Downloads ilimitados de documentos</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-on-surface font-semibold">Análise de contratos via IA</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-on-surface font-semibold">Suporte prioritário via Chat</span>
+</li>
+</ul>
+<button class="w-full py-5 px-6 rounded-xl premium-gradient text-white font-bold text-lg hover:shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
+                    Assinar Plano Pro
+                </button>
+</div>
+<!-- Plan: Especialista -->
+<div class="bg-surface-container-low rounded-xl p-10 transition-all hover:translate-y-[-4px]">
+<div class="mb-8">
+<h3 class="text-2xl font-bold mb-2">Especialista</h3>
+<p class="text-on-surface-variant text-sm">Mentoria jurídica direta e personalizada.</p>
+</div>
+<div class="mb-8">
+<div class="flex items-baseline gap-1">
+<span class="text-4xl font-extrabold">R$ 199</span>
+<span class="text-on-surface-variant font-medium">/mês</span>
+</div>
+</div>
+<ul class="space-y-5 mb-10">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span class="text-on-surface-variant">Tudo do Plano Pro</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span class="text-on-surface-variant font-bold">Mentoria jurídica mensal (30min)</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span class="text-on-surface-variant">Revisão humana de petições</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span class="text-on-surface-variant">Canal direto via WhatsApp</span>
+</li>
+</ul>
+<button class="w-full py-4 px-6 rounded-xl border-2 border-primary text-primary font-bold hover:bg-primary-fixed transition-all">
+                    Falar com Especialista
+                </button>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="max-w-4xl mx-auto px-8 mt-32">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">Dúvidas Frequentes</h2>
+<p class="text-on-surface-variant">Tudo o que você precisa saber sobre a SOS Consumidor.</p>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container-lowest rounded-xl p-6 ambient-shadow">
+<details class="group">
+<summary class="flex justify-between items-center font-bold text-lg cursor-pointer list-none">
+                            Como funciona o cancelamento?
+                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant leading-relaxed">
+                            O cancelamento pode ser feito a qualquer momento diretamente no seu painel de controle. Não há fidelidade ou multas rescisórias. Você manterá o acesso até o final do período já pago.
+                        </p>
+</details>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-6 ambient-shadow">
+<details class="group">
+<summary class="flex justify-between items-center font-bold text-lg cursor-pointer list-none">
+                            A IA substitui um advogado?
+                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant leading-relaxed">
+                            Nossa IA é uma ferramenta de auxílio e informação jurídica baseada no Código de Defesa do Consumidor. Ela ajuda a estruturar reclamações e entender direitos, mas para casos complexos ou representação em tribunal, recomendamos sempre o auxílio de um profissional da OAB.
+                        </p>
+</details>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-6 ambient-shadow">
+<details class="group">
+<summary class="flex justify-between items-center font-bold text-lg cursor-pointer list-none">
+                            Como funciona a mentoria no plano Especialista?
+                            <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant leading-relaxed">
+                            Ao assinar o plano Especialista, você recebe um link para agendar uma videoconferência mensal de 30 minutos com um de nossos advogados parceiros para discutir seu caso específico.
+                        </p>
+</details>
+</div>
+</div>
+</section>
+<!-- Call to Action Banner -->
+<section class="max-w-screen-xl mx-auto px-8 mt-32">
+<div class="premium-gradient rounded-[2rem] p-12 md:p-20 text-center text-white relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none" data-alt="subtle abstract geometric pattern of circular lines mimicking a life-preserver watermark design"></div>
+<h2 class="text-4xl md:text-5xl font-extrabold mb-8 relative z-10">Não deixe seus direitos para depois.</h2>
+<p class="text-xl mb-12 opacity-90 max-w-2xl mx-auto relative z-10">Junte-se a mais de 15.000 consumidores que recuperaram mais de R$ 2 milhões em indenizações.</p>
+<button class="bg-white text-primary px-10 py-5 rounded-xl font-bold text-xl hover:bg-surface-container-high transition-all active:scale-95 relative z-10 shadow-xl">
+                    Começar Agora Gratuitamente
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 w-full py-12 border-t-0 font-['Manrope']">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 px-8 max-w-screen-2xl mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="text-lg font-bold text-slate-900 dark:text-white mb-4">SOS Consumidor</div>
+<p class="text-slate-500 text-sm leading-relaxed">
+                    Democratizando o acesso à justiça e protegendo o elo mais fraco da corrente comercial.
+                </p>
+</div>
+<div class="flex flex-col gap-3">
+<span class="text-red-700 dark:text-red-500 font-bold uppercase text-xs tracking-widest mb-2">Empresa</span>
+<a class="text-slate-500 dark:text-slate-400 hover:text-red-600 hover:underline decoration-red-500 underline-offset-4 transition-all" href="#">Sobre Nós</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-red-600 hover:underline decoration-red-500 underline-offset-4 transition-all" href="#">Contato</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="text-red-700 dark:text-red-500 font-bold uppercase text-xs tracking-widest mb-2">Legal</span>
+<a class="text-slate-500 dark:text-slate-400 hover:text-red-600 hover:underline decoration-red-500 underline-offset-4 transition-all" href="#">Termos de Uso</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-red-600 hover:underline decoration-red-500 underline-offset-4 transition-all" href="#">Privacidade</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="text-red-700 dark:text-red-500 font-bold uppercase text-xs tracking-widest">Acompanhe</span>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center cursor-pointer hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-xl">share</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center cursor-pointer hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-xl">mail</span>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-screen-2xl mx-auto px-8 mt-12 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-slate-500">
+<p>© 2024 SOS Consumidor. O Guardião Judicial dos seus direitos.</p>
+<div class="flex gap-6">
+<span>CNPJ: 00.000.000/0001-00</span>
+<span>Feito com <span class="text-red-600">❤</span> para o consumidor.</span>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,7 @@
+Painel de teste do Fórum IA
+
+URL: https://teste.sosconsumidor.com.br/forum-ia-teste/
+Usuário: sos-teste
+Senha: f7eb800d085b3afd97a1356966666d2008c3
+
+Uso interno. Não compartilhe esta senha; ela pode ser trocada ao fim dos testes.

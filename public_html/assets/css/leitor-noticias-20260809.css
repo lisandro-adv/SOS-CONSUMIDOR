@@ -1,0 +1,120 @@
+.sos-news-reader {
+    margin: 18px 0 22px;
+    padding: 16px 18px;
+    border: 1px solid #d7e5ef;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #f5fbff 0%, #ffffff 100%);
+    box-shadow: 0 4px 14px rgba(24, 50, 71, .08);
+    color: #183247;
+}
+
+.sos-news-reader__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 12px;
+}
+
+.sos-news-reader__title {
+    display: block;
+    color: #07557f;
+    font-size: 17px;
+    line-height: 1.25;
+}
+
+.sos-news-reader__hint {
+    display: block;
+    margin-top: 3px;
+    color: #536879;
+    font-size: 12px;
+    line-height: 1.35;
+}
+
+.sos-news-reader__controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.sos-news-reader button,
+.sos-news-reader select {
+    min-height: 36px;
+    border-radius: 6px;
+    font: inherit;
+    font-size: 13px;
+}
+
+.sos-news-reader button {
+    padding: 7px 12px;
+    border: 1px solid #07557f;
+    background: #07557f;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color .15s ease, opacity .15s ease;
+}
+
+.sos-news-reader button:hover:not(:disabled),
+.sos-news-reader button:focus-visible:not(:disabled) {
+    background: #063e5d;
+}
+
+.sos-news-reader button:focus-visible,
+.sos-news-reader select:focus-visible {
+    outline: 3px solid #f2c75c;
+    outline-offset: 2px;
+}
+
+.sos-news-reader button[data-sos-reader-action="pause"],
+.sos-news-reader button[data-sos-reader-action="stop"] {
+    border-color: #6c8799;
+    background: #fff;
+    color: #183247;
+}
+
+.sos-news-reader button[data-sos-reader-action="pause"]:hover:not(:disabled),
+.sos-news-reader button[data-sos-reader-action="pause"]:focus-visible:not(:disabled),
+.sos-news-reader button[data-sos-reader-action="stop"]:hover:not(:disabled),
+.sos-news-reader button[data-sos-reader-action="stop"]:focus-visible:not(:disabled) {
+    background: #edf6fb;
+}
+
+.sos-news-reader button:disabled {
+    cursor: not-allowed;
+    opacity: .48;
+}
+
+.sos-news-reader__speed {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #536879;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.sos-news-reader select {
+    padding: 5px 8px;
+    border: 1px solid #b8cbd8;
+    background: #fff;
+    color: #183247;
+}
+
+.sos-news-reader__status {
+    min-height: 18px;
+    margin: 10px 0 0;
+    color: #536879;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+@media (max-width: 767px) {
+    .sos-news-reader__header {
+        display: block;
+    }
+
+    .sos-news-reader__controls {
+        margin-top: 12px;
+    }
+}

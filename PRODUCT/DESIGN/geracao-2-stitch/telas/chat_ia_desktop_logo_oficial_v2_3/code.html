@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-fixed": "#410003",
+              "tertiary-container": "#cf3800",
+              "tertiary-fixed-dim": "#ffb5a0",
+              "surface-tint": "#ba1a20",
+              "on-tertiary-container": "#fff2ef",
+              "on-tertiary": "#ffffff",
+              "surface-dim": "#f1d3d0",
+              "on-secondary": "#ffffff",
+              "on-primary": "#ffffff",
+              "primary-fixed": "#ffdad6",
+              "inverse-on-surface": "#ffedeb",
+              "error": "#ba1a1a",
+              "on-error-container": "#93000a",
+              "background": "#fff8f7",
+              "on-secondary-fixed-variant": "#003fa5",
+              "surface-container-low": "#fff0ef",
+              "surface": "#fff8f7",
+              "surface-container-highest": "#f9dcd9",
+              "secondary-container": "#366dea",
+              "on-secondary-container": "#fefcff",
+              "on-surface": "#271816",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed-dim": "#ffb3ac",
+              "on-error": "#ffffff",
+              "primary": "#af101a",
+              "inverse-surface": "#3e2c2a",
+              "surface-variant": "#f9dcd9",
+              "surface-container-high": "#ffe2de",
+              "primary-container": "#d32f2f",
+              "on-primary-container": "#fff2f0",
+              "outline": "#8f6f6c",
+              "on-tertiary-fixed": "#3b0900",
+              "inverse-primary": "#ffb3ac",
+              "on-surface-variant": "#5b403d",
+              "secondary-fixed": "#dbe1ff",
+              "on-primary-fixed-variant": "#930010",
+              "surface-container": "#ffe9e7",
+              "error-container": "#ffdad6",
+              "surface-bright": "#fff8f7",
+              "secondary-fixed-dim": "#b3c5ff",
+              "tertiary": "#a42b00",
+              "tertiary-fixed": "#ffdbd1",
+              "secondary": "#0752d0",
+              "outline-variant": "#e4beba",
+              "on-tertiary-fixed-variant": "#872100",
+              "on-secondary-fixed": "#001849",
+              "on-background": "#271816"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .tonal-shift {
+            transition: background-color 0.3s ease;
+        }
+        .glass-nav {
+            background: rgba(255, 248, 247, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e4beba; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body overflow-hidden h-screen flex flex-col">
+<!-- TopAppBar (Shared Component Logic) -->
+<header class="fixed top-0 w-full z-50 glass-nav shadow-[0px_24px_48px_rgba(39,24,22,0.08)]">
+<div class="flex justify-between items-center px-8 h-20 max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<img alt="Logo SOS Consumidor" class="h-10 w-auto" data-alt="professional red and white logo featuring a life preserver icon representing legal protection and consumer rights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNbI60LdGBJmM4vbluyReXs_UW7JPIpfbXL2-gnkmzXgpY4MYmsT_NvC2AGJ2yyfGd2AmyBu15uUr1To5yAFW6Kyi1y9pgPUE6XJSWgBPjCz_RwgisUJG7ptP9QBA3q6Q8TspZXK-mHUH_RA5qVVpUwJ2CjOa6Gczv5veO1dlcHiyBTB1mmC2gQ8cdPlSeqnlPVuK8661NblW7_abeVxLoC9VyGtBMyNbSLDrDQSLzlsF9h4VOGgVFAL3VW-kMszkKA1WfsNtr9jU"/>
+<span class="text-2xl font-extrabold text-primary tracking-tighter">SOS Consumidor</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-manrope font-semibold text-sm tracking-wide uppercase text-slate-600 hover:text-primary transition-all duration-300" href="#">Dashboard</a>
+<a class="font-manrope font-semibold text-sm tracking-wide uppercase text-primary border-b-2 border-primary pb-1" href="#">Chat IA</a>
+<a class="font-manrope font-semibold text-sm tracking-wide uppercase text-slate-600 hover:text-primary transition-all duration-300" href="#">Planos</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-all scale-95 active:scale-90">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-all scale-95 active:scale-90">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Area: Sidebar + Chat Canvas -->
+<main class="flex-1 flex pt-20 overflow-hidden max-w-[1600px] mx-auto w-full">
+<!-- Sidebar: Conversation History -->
+<aside class="w-80 bg-surface-container-low flex flex-col border-r border-outline-variant/20">
+<div class="p-6 pb-2">
+<button class="w-full py-4 px-6 bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-xl font-bold flex items-center justify-center gap-2 hover:shadow-lg transition-all scale-95 active:scale-90">
+<span class="material-symbols-outlined">add</span>
+                    Nova Consulta
+                </button>
+</div>
+<div class="flex-1 overflow-y-auto px-4 py-4 space-y-6">
+<!-- Today Section -->
+<div>
+<h3 class="px-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-3 opacity-60">Hoje</h3>
+<div class="space-y-1">
+<button class="w-full text-left p-4 rounded-xl bg-surface-container-highest/50 border-l-4 border-primary group hover:bg-surface-container-highest transition-all">
+<p class="text-sm font-semibold truncate text-primary">Celular quebrado após 1 mês...</p>
+<span class="text-[10px] text-on-surface-variant/70 mt-1 block">Direito do Consumidor • 14:20</span>
+</button>
+</div>
+</div>
+<!-- Yesterday Section -->
+<div>
+<h3 class="px-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-3 opacity-60">Ontem</h3>
+<div class="space-y-1">
+<button class="w-full text-left p-4 rounded-xl hover:bg-surface-container-highest transition-all group">
+<p class="text-sm font-medium truncate text-on-surface-variant group-hover:text-primary transition-colors">Voo cancelado sem aviso prévio</p>
+<span class="text-[10px] text-on-surface-variant/70 mt-1 block">Transporte Aéreo • 09:15</span>
+</button>
+<button class="w-full text-left p-4 rounded-xl hover:bg-surface-container-highest transition-all group">
+<p class="text-sm font-medium truncate text-on-surface-variant group-hover:text-primary transition-colors">Cobrança indevida TV a Cabo</p>
+<span class="text-[10px] text-on-surface-variant/70 mt-1 block">Telecomunicações • 16:45</span>
+</button>
+</div>
+</div>
+<!-- History Section -->
+<div>
+<h3 class="px-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-3 opacity-60">Últimos 7 dias</h3>
+<div class="space-y-1">
+<button class="w-full text-left p-4 rounded-xl hover:bg-surface-container-highest transition-all group">
+<p class="text-sm font-medium truncate text-on-surface-variant group-hover:text-primary transition-colors">Garantia de eletrodoméstico</p>
+</button>
+<button class="w-full text-left p-4 rounded-xl hover:bg-surface-container-highest transition-all group">
+<p class="text-sm font-medium truncate text-on-surface-variant group-hover:text-primary transition-colors">Taxa bancária abusiva</p>
+</button>
+</div>
+</div>
+</div>
+<!-- User Storage/Status -->
+<div class="p-6 bg-surface-container-high/30">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed font-bold">JD</div>
+<div class="flex-1">
+<p class="text-sm font-bold">João Da Silva</p>
+<p class="text-[10px] text-on-surface-variant">Plano Premium Ativo</p>
+</div>
+<span class="material-symbols-outlined text-slate-400">settings</span>
+</div>
+</div>
+</aside>
+<!-- Chat Area -->
+<section class="flex-1 flex flex-col bg-surface relative">
+<!-- Chat Header -->
+<header class="h-16 flex items-center justify-between px-8 bg-surface border-b border-outline-variant/10">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-lg" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<h2 class="text-lg font-bold text-on-surface">Guardião SOS Consumidor <span class="ml-2 text-[10px] px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded-full uppercase tracking-tighter">IA Especialista</span></h2>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-outline-variant/30 text-xs font-semibold hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-sm">download</span> Exportar PDF
+                    </button>
+</div>
+</header>
+<!-- Conversation Canvas -->
+<div class="flex-1 overflow-y-auto p-8 space-y-8">
+<!-- User Message -->
+<div class="flex justify-end">
+<div class="max-w-[70%] space-y-2">
+<div class="bg-surface-container-high p-4 rounded-2xl rounded-tr-none text-on-surface shadow-sm">
+<p class="text-sm leading-relaxed">
+                                Comprei um celular há cerca de 30 dias e ele parou de carregar do nada. A loja disse que eu preciso procurar a assistência técnica por conta própria. Eles podem fazer isso?
+                            </p>
+</div>
+<p class="text-[10px] text-right text-on-surface-variant/60 font-medium uppercase tracking-tighter">Você • 14:20</p>
+</div>
+</div>
+<!-- AI Response -->
+<div class="flex justify-start">
+<div class="max-w-[85%] space-y-4">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-container flex items-center justify-center shrink-0 shadow-lg">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div class="space-y-4">
+<div class="bg-white p-6 rounded-2xl rounded-tl-none border border-outline-variant/10 shadow-[0px_24px_48px_rgba(39,24,22,0.04)]">
+<div class="space-y-4">
+<p class="text-sm leading-relaxed text-on-surface font-medium">
+                                            Olá, João. Entendo sua frustração. Com base no <span class="text-primary font-bold">Código de Defesa do Consumidor (CDC)</span>, a postura da loja está incorreta.
+                                        </p>
+<div class="bg-surface-container-low p-4 rounded-xl border-l-4 border-primary space-y-3">
+<p class="text-xs italic text-on-surface-variant leading-relaxed">
+                                                "Art. 18. Os fornecedores de produtos de consumo duráveis ou não duráveis respondem solidariamente pelos vícios de qualidade ou quantidade que os tornem impróprios ou inadequados ao consumo a que se destinam..."
+                                            </p>
+<p class="text-sm text-on-surface font-medium">
+                                                Como se trata de um produto durável, você tem o direito de reclamar tanto com a loja quanto com o fabricante. A responsabilidade é <span class="font-bold">solidária</span>.
+                                            </p>
+</div>
+<p class="text-sm leading-relaxed text-on-surface">
+                                            A loja não pode se isentar da responsabilidade de receber o produto e encaminhá-lo para reparo, especialmente se for o local onde a compra foi realizada. O prazo máximo para sanar o vício é de <span class="font-bold">30 dias</span>.
+                                        </p>
+</div>
+<!-- Action Buttons -->
+<div class="mt-8 flex flex-wrap gap-3 pt-6 border-t border-outline-variant/10">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-highest text-primary text-xs font-bold rounded-lg hover:brightness-95 transition-all">
+<span class="material-symbols-outlined text-sm">content_copy</span> Copiar Citação
+                                        </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-highest text-primary text-xs font-bold rounded-lg hover:brightness-95 transition-all">
+<span class="material-symbols-outlined text-sm">share</span> Compartilhar
+                                        </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-secondary to-secondary-container text-white text-xs font-bold rounded-lg hover:shadow-md transition-all">
+<span class="material-symbols-outlined text-sm">description</span> Gerar Reclamação Formal
+                                        </button>
+</div>
+</div>
+<p class="text-[10px] text-on-surface-variant/60 font-medium uppercase tracking-tighter">Guardião IA • Agora</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Spacer for bottom bar -->
+<div class="h-24"></div>
+</div>
+<!-- Input Area (Floating) -->
+<div class="absolute bottom-8 left-0 w-full px-8 pointer-events-none">
+<div class="max-w-4xl mx-auto w-full pointer-events-auto">
+<div class="bg-white p-2 rounded-2xl shadow-[0px_32px_64px_rgba(39,24,22,0.12)] border border-outline-variant/10 flex items-end gap-2 group focus-within:ring-2 ring-primary-fixed">
+<button class="p-3 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<textarea class="flex-1 bg-transparent border-none focus:ring-0 text-sm py-3 px-2 resize-none max-h-40 overflow-y-auto" placeholder="Descreva seu problema de consumo..." rows="1"></textarea>
+<button class="bg-primary p-3 rounded-xl text-white hover:bg-primary-container transition-all scale-95 active:scale-90">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+<p class="text-center text-[10px] text-on-surface-variant/40 mt-3 font-medium">O Guardião IA pode cometer erros. Verifique informações cruciais com um advogado.</p>
+</div>
+</div>
+</section>
+<!-- Right Side: Legal Resources/Quick Stats -->
+<aside class="hidden xl:flex w-72 bg-surface flex-col p-6 space-y-6">
+<div class="bg-surface-container-low rounded-2xl p-6 space-y-4">
+<h4 class="text-xs font-bold text-primary uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">gavel</span> Seu Caso
+                </h4>
+<div class="space-y-3">
+<div class="p-3 bg-white rounded-xl shadow-sm border border-outline-variant/5">
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-tight">Probabilidade de Êxito</p>
+<div class="flex items-center gap-2 mt-1">
+<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[85%]"></div>
+</div>
+<span class="text-xs font-bold text-secondary">85%</span>
+</div>
+</div>
+<div class="p-3 bg-white rounded-xl shadow-sm border border-outline-variant/5">
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-tight">Dano Estimado</p>
+<p class="text-lg font-extrabold text-on-surface">R$ 1.850,00</p>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="text-xs font-bold text-on-surface-variant uppercase tracking-wider px-2">Documentos Úteis</h4>
+<div class="space-y-2">
+<div class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">receipt_long</span>
+</div>
+<p class="text-xs font-medium text-on-surface">Guia do Art. 18</p>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">article</span>
+</div>
+<p class="text-xs font-medium text-on-surface">Modelo Notificação</p>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-6">
+<div class="bg-gradient-to-br from-on-surface to-inverse-surface p-4 rounded-2xl text-white relative overflow-hidden group">
+<span class="material-symbols-outlined absolute -right-2 -bottom-2 text-6xl opacity-10 rotate-12 group-hover:rotate-0 transition-transform">verified_user</span>
+<h5 class="text-xs font-bold mb-1">Proteção Total</h5>
+<p class="text-[10px] opacity-70 mb-3">Seus dados estão criptografados de ponta a ponta.</p>
+<div class="flex items-center gap-1 text-[10px] font-bold text-secondary-fixed">
+<span class="material-symbols-outlined text-xs">lock</span> SSL SECURE
+                    </div>
+</div>
+</div>
+</aside>
+</main>
+<!-- Footer (Shared Component Logic) -->
+<footer class="bg-surface-container-low border-t border-outline-variant/20 relative z-40">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 py-4 max-w-7xl mx-auto gap-4">
+<span class="text-lg font-bold text-primary">SOS Consumidor</span>
+<p class="font-manrope text-sm font-normal text-slate-500 dark:text-slate-400 text-center">© 2024 SOS Consumidor. Todos os direitos reservados.</p>
+<div class="flex gap-6">
+<a class="text-slate-500 text-xs hover:text-primary transition-colors" href="#">Termos de Uso</a>
+<a class="text-slate-500 text-xs hover:text-primary transition-colors" href="#">Política de Privacidade</a>
+<a class="text-slate-500 text-xs hover:text-primary transition-colors" href="#">Contato</a>
+</div>
+</div>
+</footer>
+</body></html>

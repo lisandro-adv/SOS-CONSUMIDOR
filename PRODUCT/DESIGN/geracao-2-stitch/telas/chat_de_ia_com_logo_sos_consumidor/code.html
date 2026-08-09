@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary": "#ffffff",
+              "on-error-container": "#93000a",
+              "surface-variant": "#d8e3fb",
+              "outline-variant": "#c6c5d4",
+              "background": "#f9f9ff",
+              "inverse-on-surface": "#ecf1ff",
+              "error": "#ba1a1a",
+              "on-tertiary-container": "#aa80ff",
+              "on-tertiary-fixed": "#25005a",
+              "on-error": "#ffffff",
+              "secondary": "#515f74",
+              "primary": "#000666",
+              "on-primary-container": "#8690ee",
+              "tertiary-fixed": "#eaddff",
+              "surface": "#f9f9ff",
+              "on-background": "#111c2d",
+              "tertiary": "#240058",
+              "outline": "#767683",
+              "tertiary-fixed-dim": "#d2bbff",
+              "on-secondary-fixed": "#0d1c2e",
+              "surface-dim": "#cfdaf2",
+              "primary-fixed": "#e0e0ff",
+              "on-primary-fixed": "#000767",
+              "inverse-primary": "#bdc2ff",
+              "surface-tint": "#4c56af",
+              "surface-container": "#e7eeff",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed-variant": "#5a00c6",
+              "on-surface-variant": "#454652",
+              "surface-container-low": "#f0f3ff",
+              "secondary-fixed": "#d5e3fc",
+              "secondary-container": "#d5e3fc",
+              "surface-bright": "#f9f9ff",
+              "on-secondary-fixed-variant": "#3a485b",
+              "on-secondary-container": "#57657a",
+              "inverse-surface": "#263143",
+              "on-primary": "#ffffff",
+              "on-surface": "#111c2d",
+              "on-primary-fixed-variant": "#343d96"
+            },
+            fontFamily: {
+              "headline": ["Manrope", "sans-serif"],
+              "body": ["Inter", "sans-serif"],
+              "label": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .font-manrope { font-family: 'Manrope', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-[0_8px_32px_rgba(17,28,45,0.06)]">
+<div class="flex justify-between items-center px-6 py-4 w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-3"><img alt="SOS Consumidor Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uiEVuvGLLhKVgAtzee2Rw6U8APvhO4t1sTR031PsMiiIrf-bQdfosULKItPdTnvyHhm6XBWtL0wds5h498mIek7JewA3mkIGzIOiTcVw3bKWTSSDu6JWqGNzg9HQEUpH2M5UVFCpjDDVitGweSTBFHfQLrMH1Hg3Y9_x9Nx6lwS24LO9Ot0HLtSVAdjNYaW89hWY1ffFagIjO3FHju7Jbl0x61SaK2l1OIYaFYIjA5D6u4KzDI78ua5o4njPRir5LnnmeyZPN6b"/></div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-slate-200/50 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-slate-500" data-icon="search">search</span>
+</button>
+<button class="p-2 rounded-full hover:bg-slate-200/50 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[#1A237E]" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-4 md:px-8 max-w-5xl mx-auto min-h-screen">
+<!-- AI Chat Header Info -->
+<div class="mb-8 text-center space-y-2">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant text-xs font-bold tracking-wider uppercase">
+<span class="material-symbols-outlined text-[14px]" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                Especialista Digital CDC
+            </div>
+<h2 class="text-3xl font-manrope font-extrabold text-on-surface tracking-tight">Consultoria em Tempo Real</h2>
+<p class="text-secondary text-sm max-w-md mx-auto">Baseado integralmente no Código de Defesa do Consumidor brasileiro.</p>
+</div>
+<!-- Chat Canvas -->
+<div class="space-y-8">
+<!-- User Message -->
+<div class="flex justify-end">
+<div class="max-w-[85%] md:max-w-xl bg-surface-container-highest rounded-2xl rounded-tr-none px-6 py-4 shadow-sm">
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                        Comprei um smartphone que veio com a tela trincada. A loja disse que eu deveria ter conferido na hora e agora não querem trocar. O que eu faço?
+                    </p>
+<span class="block mt-2 text-[10px] text-secondary/60 text-right uppercase tracking-widest font-semibold">14:02 • Enviado</span>
+</div>
+</div>
+<!-- AI Response (Editorial Style) -->
+<div class="flex justify-start">
+<div class="max-w-[95%] md:max-w-2xl">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center shrink-0 shadow-lg">
+<span class="material-symbols-outlined text-white text-[20px]" data-icon="smart_toy" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div class="space-y-4">
+<!-- Floating Insight Card -->
+<div class="bg-white/80 backdrop-blur-xl border-l-4 border-primary rounded-xl p-6 shadow-[0_8px_32px_rgba(17,28,45,0.06)]">
+<h3 class="font-manrope font-bold text-primary text-lg mb-2">Seu Direito à Substituição</h3>
+<div class="prose prose-sm text-on-surface space-y-3">
+<p>De acordo com o <strong>Artigo 18 do CDC</strong>, os fornecedores de produtos de consumo duráveis ou não duráveis respondem solidariamente pelos vícios de qualidade ou quantidade que os tornem impróprios ou inadequados ao consumo.</p>
+<div class="bg-surface-container-low p-4 rounded-lg italic text-secondary border-l-2 border-outline-variant">
+                                        "O consumidor poderá fazer uso imediato das alternativas do § 1° deste artigo sempre que, em razão da extensão do vício, a substituição das partes viciadas puder comprometer a qualidade ou características do produto..."
+                                    </div>
+<p>Neste caso, o produto apresenta um <strong>vício aparente</strong>. Embora o ideal seja a conferência no ato, o CDC não exclui a responsabilidade do fornecedor pela integridade do item entregue.</p>
+</div>
+<div class="mt-6 flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-primary-fixed text-on-primary-fixed text-[11px] font-bold rounded-full uppercase tracking-tighter">Art. 18 CDC</span>
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed text-[11px] font-bold rounded-full uppercase tracking-tighter">Vício de Qualidade</span>
+<span class="px-3 py-1 bg-surface-container-high text-on-secondary-container text-[11px] font-bold rounded-full uppercase tracking-tighter">Smartphone</span>
+</div>
+</div>
+<!-- Action Suggestion -->
+<div class="flex items-center gap-3 p-3 bg-tertiary-container/10 border border-tertiary-container/20 rounded-xl">
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant" data-icon="lightbulb">lightbulb</span>
+<p class="text-xs font-medium text-on-tertiary-fixed-variant">Deseja que eu redija uma notificação extrajudicial para a loja?</p>
+<button class="ml-auto text-xs font-bold text-primary underline underline-offset-4 decoration-2">Sim, por favor</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Wait State / Typing Placeholder -->
+<div class="flex justify-start items-center gap-4 opacity-40">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary" data-icon="more_horiz">more_horiz</span>
+</div>
+<div class="h-4 w-32 bg-surface-container-highest rounded-full"></div>
+</div>
+</div>
+</main>
+<!-- Chat Input Area -->
+<div class="fixed bottom-24 left-0 w-full px-4 md:px-0">
+<div class="max-w-3xl mx-auto bg-white/90 backdrop-blur-2xl rounded-2xl shadow-[0_-8px_32px_rgba(17,28,45,0.08)] p-3 flex items-center gap-3">
+<button class="p-2 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="attach_file">attach_file</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-sm font-medium placeholder-slate-400" placeholder="Descreva seu problema de consumo..." type="text"/>
+<button class="w-10 h-10 bg-primary-container text-white rounded-xl flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="send" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/90 dark:bg-slate-950/90 backdrop-blur-2xl rounded-t-3xl z-50 shadow-[0_-8px_32px_rgba(17,28,45,0.08)] border-t border-slate-200/10">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-[#1A237E] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-manrope font-semibold text-[10px] uppercase tracking-widest mt-1">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#f0f3ff] dark:bg-[#1A237E]/30 text-[#1A237E] dark:text-white rounded-2xl px-5 py-2 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="smart_toy" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<span class="font-manrope font-semibold text-[10px] uppercase tracking-widest mt-1">AI Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-[#1A237E] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-manrope font-semibold text-[10px] uppercase tracking-widest mt-1">Plans</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-[#1A237E] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-manrope font-semibold text-[10px] uppercase tracking-widest mt-1">Settings</span>
+</a>
+</nav>
+<!-- Background Decorative Element -->
+<div class="fixed top-0 right-0 -z-10 w-1/2 h-full opacity-30 pointer-events-none">
+<div class="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] rounded-full bg-gradient-to-br from-primary-fixed to-tertiary-fixed blur-[120px]"></div>
+</div>
+</body></html>

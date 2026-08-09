@@ -1,0 +1,10 @@
+# Coleta automatica de noticias - SOS Consumidor (producao) - diaria as 8h
+0 8 * * * flock -n /tmp/sos-old-collector.lock sh -c 'cd /home/user/scripts/sosconsumidor-automacao && /home/user/scripts/sosconsumidor-automacao/venv/bin/python3 coletar_noticias.py >> /home/user/scripts/sosconsumidor-automacao/cron.log 2>&1' # SOS_EDITORIAL_REACTIVATED_20260805
+# Newsletter semanal SOS Consumidor - toda quarta-feira as 9h
+0 9 * * 3 cd /home/user/scripts/sosconsumidor-automacao && /usr/bin/python3 /home/user/scripts/sosconsumidor-automacao/enviar_newsletter.py >> /var/log/newsletter_sos.log 2>&1
+# Curadoria IA - diaria as 8h15, com lock contra execucao duplicada
+15 8 * * * flock -n /tmp/sos-old-curator.lock sh -c 'cd /home/user/scripts/sosconsumidor-automacao && /home/user/scripts/sosconsumidor-automacao/venv/bin/python3 curador_noticias.py >> /var/log/sos/curador.log 2>&1' # SOS_EDITORIAL_REACTIVATED_20260805
+# Revisor automatico - diaria as 8h45, publica somente aprovadas pela curadoria
+45 8 * * * flock -n /tmp/sos-old-reviewer.lock sh -c 'cd /home/user/scripts/sosconsumidor-automacao && /home/user/scripts/sosconsumidor-automacao/venv/bin/python3 revisor_noticias.py >> /var/log/sos/revisor.log 2>&1' # SOS_EDITORIAL_REACTIVATED_20260805
+# Fila de artigo original: rascunho sem publicacao automatica
+30 10 * * * flock -n /tmp/sos-editorial-safe.lock sh -c 'cd /home/user/scripts/sosconsumidor-editorial-safe && /home/user/scripts/sosconsumidor-editorial-safe/venv/bin/python daily_article.py --queue queue >> logs/queue.log 2>&1' # SOS_EDITORIAL_DRAFT_ONLY

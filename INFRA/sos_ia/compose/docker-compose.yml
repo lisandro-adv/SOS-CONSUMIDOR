@@ -1,0 +1,65 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: sos-ia-postgres
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      POSTGRES_DB: sos_ia
+      POSTGRES_USER: sos_ia
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sos_ia -d sos_ia"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - /opt/sos-ia/data/postgres:/var/lib/postgresql/data
+
+  api:
+    build: ../api
+    container_name: sos-ia-api
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_NAME: sos_ia
+      DB_USER: sos_ia
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      OLLAMA_URL: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-qwen3:4b-instruct}
+      OLLAMA_NUM_PREDICT: ${OLLAMA_NUM_PREDICT:-180}
+      OLLAMA_RESPONSE_TIMEOUT_SECONDS: ${OLLAMA_RESPONSE_TIMEOUT_SECONDS:-45}
+      OLLAMA_WARMUP_TIMEOUT_SECONDS: ${OLLAMA_WARMUP_TIMEOUT_SECONDS:-90}
+      ENABLE_QUESTIONS: ${ENABLE_QUESTIONS:-false}
+      ENABLE_INTERNAL_TEST_ENDPOINT: ${ENABLE_INTERNAL_TEST_ENDPOINT:-false}
+      INTERNAL_TEST_API_KEY: ${INTERNAL_TEST_API_KEY:-}
+      DAILY_FREE_LIMIT: ${DAILY_FREE_LIMIT:-3}
+      BREVO_API_KEY: ${BREVO_API_KEY:-}
+      EMAIL_FROM: ${EMAIL_FROM:-no-reply@sosconsumidor.com.br}
+      PUBLIC_APP_URL: ${PUBLIC_APP_URL:-https://forum.sosconsumidor.com.br}
+      EMAIL_VERIFY_TOKEN_TTL_MINUTES: ${EMAIL_VERIFY_TOKEN_TTL_MINUTES:-30}
+      SESSION_TTL_HOURS: ${SESSION_TTL_HOURS:-720}
+      TERMS_VERSION: ${TERMS_VERSION:-pilot-2026-08-02}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      ollama:
+        condition: service_started
+    ports:
+      - "127.0.0.1:8000:8000"
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: sos-ia-ollama
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:11434:11434"
+    environment:
+      OLLAMA_CONTEXT_LENGTH: "4096"
+      OLLAMA_KEEP_ALIVE: "-1"
+      OLLAMA_NUM_PARALLEL: "1"
+      OLLAMA_MAX_LOADED_MODELS: "1"
+    volumes:
+      - /opt/sos-ia/data/ollama:/root/.ollama
