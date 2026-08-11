@@ -1,0 +1,194 @@
+RewriteOptions inherit
+RewriteEngine on
+
+# Garantir que todas as páginas sejam servidas em UTF-8
+AddDefaultCharset UTF-8
+
+# Domínio canônico: uma única versão pública para evitar duplicação entre
+# sosconsumidor.com.br e www.sosconsumidor.com.br.
+RewriteCond %{HTTP_HOST} ^sosconsumidor\.com\.br$ [NC]
+RewriteRule ^ https://www.sosconsumidor.com.br%{REQUEST_URI} [R=301,L,NE]
+
+# Redirecionar para HTTPS
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Alias convencional para o sitemap dinâmico.
+RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
+# SOS Responde: usar sempre o mesmo host para preservar a sessao de login.
+RewriteCond %{HTTP_HOST} !^www\.sosconsumidor\.com\.br$ [NC]
+RewriteCond %{REQUEST_URI} ^/(?:ia-consumidor(?:[-/]|$)|ia_consumidor/) [NC]
+RewriteRule ^ https://www.sosconsumidor.com.br%{REQUEST_URI} [R=302,L,NE]
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^inicio/?$ index.php
+RewriteRule ^noticias/?$ noticias_mais.php
+RewriteRule ^noticias-cse$ noticias_google.php
+RewriteRule ^noticias-([0-9]+)-([a-zA-Z0-9_-]+)/?$ noticias_ler.php?noticia_id=$1
+
+RewriteRule ^perguntas-e-respostas/?$ perguntas_e_respostas_mais.php
+RewriteRule ^perguntas-e-respostas-([0-9]+)/?$ perguntas_e_respostas_mais.php?grupo_id=$1
+RewriteRule ^perguntas-e-respostas-([0-9]+)-([0-9]+)/?$ perguntas_e_respostas_mais.php?grupo_id=$1&area_id=$2
+RewriteRule ^perguntas-e-respostas-detalhes-([a-zA-Z0-9_-]+)-([0-9]+)/?$ perguntas_e_respostas_ler.php?perguntas_e_respostas_id=$2
+RewriteRule ^institucional/?$ institucional_ler.php
+RewriteRule ^contatos/?$ contatos_ler.php
+RewriteRule ^newsletter/?$ newsletter_ler.php
+RewriteRule ^outros-servicos/?$ outros_servicos_mais.php
+RewriteRule ^clickbanner-([0-9]+)-([0-9]+)-([0-9]+)?$ contaclique_bd.php?id=$1&tipo=$2&area=$3
+
+# URLs descritivas e indexáveis para cada calculadora.
+RewriteRule ^calculos/(boleto-vencido|atualizar-divida|emprestimo-financiamento|avista-ou-parcelado|juros-valor-futuro|reajuste-aluguel|decimo-terceiro|ferias-um-terco|converter-juros-mensal-anual)/?$ calculos/index.php?calculadora=$1 [QSA,L]
+# Diretório público de advogados descontinuado. O status 410 informa aos
+# buscadores que as URLs foram removidas definitivamente.
+RewriteRule ^pesquisa-advogado(?:-[0-9]+-[0-9]+)?/?$ - [G,L,NC]
+RewriteRule ^pesquisa_adv(?:_msg|_perfil)?\.php$ - [G,L,NC]
+RewriteRule ^advogados(?:/.*)?$ - [G,L,NC]
+
+# O antigo Forum do Consumidor permanece arquivado fora da area publica.
+# O status 410 sinaliza remocao definitiva sem redirecionar para outro servico.
+RewriteRule ^contato-forum/?$ - [G,L,NC]
+RewriteRule ^forum-consumidor(?:[-/].*)?/?$ /ia-consumidor/ [R=301,L,NE]
+RewriteRule ^forum_consumidor(?:/.*|\.php)?/?$ - [G,L,NC]
+
+#links antigos
+RewriteRule ^faq-([0-9]+),([0-9]+),([a-zA-Z0-9_-]+)\.html$ perguntas_e_respostas_mais.php?grupo_id=$1&area_id=$2
+RewriteRule ^faq_det-([0-9]+),([0-9]+),([0-9]+),([a-zA-Z0-9_-]+)\.html$ perguntas_e_respostas_ler.php?perguntas_e_respostas_id=$3
+RewriteRule ^noticias-([0-9]+),([0-9]+),([a-zA-Z0-9_-]+),([a-zA-Z0-9_-]+)\.html$ noticias_mais.php
+RewriteRule ^noticia_ler-([0-9]+),([a-zA-Z0-9_-]+)\.html$ noticias_ler.php?noticia_id=$1
+RewriteRule ^contato.php?$ contatos_ler.php
+RewriteRule ^politica_publicidade.php?$ institucional_ler.php
+
+#ia-consumidor
+RewriteRule ^ia-consumidor/?$ ia_consumidor/index.php
+RewriteRule ^ia-consumidor-chat/?$ ia_consumidor/chat.php
+RewriteRule ^ia-consumidor-sair/?$ ia_consumidor/logout.php
+RewriteRule ^ia-consumidor-google/?$ ia_consumidor/google.php
+RewriteRule ^ia-consumidor-google-callback/?$ ia_consumidor/google_callback.php
+RewriteRule ^ia-consumidor-cadastro-ativar-([a-zA-Z0-9_-]+)/?$ ia_consumidor/confirmar.php?hash=$1 [QSA,L]
+RewriteRule ^ia-consumidor-recuperar-senha/?$ ia_consumidor/recuperar_senha.php [QSA,L]
+RewriteRule ^ia-consumidor-trocar-senha-([a-zA-Z0-9_-]+)/?$ ia_consumidor/trocar_senha.php?hash=$1 [QSA,L]
+RewriteRule ^ia-consumidor-email-reenviar/?$ ia_consumidor/email_reenviar.php [QSA,L]
+RewriteRule ^ia-consumidor-historico/?$ ia_consumidor/historico.php [QSA,L]
+RewriteRule ^ia-consumidor-acompanhamento/?$ ia_consumidor/admin_respostas_v4.php [QSA,L]
+RewriteRule ^ia-consumidor-planos/?$ ia_consumidor/planos.php [QSA,L]
+
+#forum-advogado
+RewriteRule ^forum-advogado/?$ forum_advogado/index.php
+RewriteRule ^forum-advogado-pergunta/?$ forum_advogado/pergunta.php
+RewriteRule ^forum-advogado-resposta-([0-9]+)-([a-zA-Z0-9_-]+)/?$ forum_advogado/resposta.php?topico_id=$1
+RewriteRule ^forum-advogado-login/?$ forum_advogado/login.php
+RewriteRule ^forum-advogado-perguntas-sem-respostas/?$ forum_advogado/index.php
+RewriteRule ^forum-advogado-topico-([0-9]+)-([a-zA-Z0-9_-]+)/?$ forum_advogado/topico.php?topico_id=$1
+RewriteRule ^forum-advogado-menssagens/?$ forum_advogado/menssagens.php
+RewriteRule ^forum-advogado-menssagem-ler-([0-9]+)-([0-9]+)/?$ forum_advogado/menssagens_ler.php?topico_id=$1&id=$2
+
+RewriteRule ^forum-advogado-como-funciona/?$ forum_advogado/como_funciona.php
+RewriteRule ^forum-advogado-historico/?$ forum_advogado/historico.php
+RewriteRule ^forum-advogado-cadastro/?$ forum_advogado/cadastro.php
+RewriteRule ^forum-advogado-cadastro-email-reenviar-([0-9]+)/?$ forum_advogado/email_reenviar.php?id=$1
+RewriteRule ^forum-advogado-cadastro-ativar-([a-zA-Z0-9_-]+)/?$ forum_advogado/cadastro_ativar_db.php?hash=$1
+RewriteRule ^forum-advogado-peticoes/?$ forum_advogado/peticoes.php
+RewriteRule ^forum-advogado-peticoes-cadastro/?$ forum_advogado/peticoes_cadastro.php
+RewriteRule ^forum-advogado-peticao-([0-9]+)-([a-zA-Z0-9_-]+)/?$ forum_advogado/peticao.php?peticao_id=$1
+RewriteRule ^forum-advogado-menssagem-([0-9]+)-([a-zA-Z0-9_-]+)/?$ forum_advogado/menssagens_responder.php?topico_id=$1
+RewriteRule ^forum-advogado-denuncia-([0-9]+)-([a-zA-Z0-9_-]+)/?$ forum_advogado/denuncia.php?topico_id=$1
+RewriteRule ^forum-advogado-recuperar-senha/?$ forum_advogado/recuperar_senha.php
+RewriteRule ^forum-advogado-recuperar-senha-([a-zA-Z0-9_-]+)/?$ forum_advogado/recuperar_senha_db.php?hash=$1&acao=email_confirmado
+RewriteRule ^forum-advogado-trocar-senha-([a-zA-Z0-9_-]+)/?$ forum_advogado/trocar_senha.php?hash=$1
+
+<ifmodule mod_deflate.c>
+# Insert filter
+SetOutputFilter DEFLATE
+# Netscape 4.x has some problems...
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+# Netscape 4.06-4.08 have some more problems
+BrowserMatch ^Mozilla/4\.0[678] no-gzip
+# MSIE masquerades as Netscape, but it is fine
+BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+# Don't compress images
+SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png)$ no-gzip dont-vary
+# Make sure proxies don't deliver the wrong content
+Header append Vary User-Agent env=!dont-vary
+</ifmodule>
+
+#Força a utilizar Cache-Control e Expires header
+<IfModule mod_headers.c>
+Header unset ETag
+</IfModule>
+ FileETag None
+<IfModule mod_expires.c>
+ExpiresActive on
+ExpiresDefault "access plus 1 month"
+ExpiresByType text/cache-manifest "access plus 0 seconds"
+# Html
+ExpiresByType text/html "access plus 0 seconds"
+# Data
+ExpiresByType text/xml "access plus 0 seconds"
+ExpiresByType application/xml "access plus 0 seconds"
+ExpiresByType application/json "access plus 0 seconds"
+# Feed
+ExpiresByType application/rss+xml "access plus 1 hour"
+ExpiresByType application/atom+xml "access plus 1 hour"
+# Favicon
+ExpiresByType image/x-icon "access plus 1 week"
+# Media: images, video, audio
+ExpiresByType image/gif "access plus 1 month"
+ExpiresByType image/png "access plus 1 month"
+ExpiresByType image/jpg "access plus 1 month"
+ExpiresByType image/jpeg "access plus 1 month"
+ExpiresByType video/ogg "access plus 1 month"
+ExpiresByType audio/ogg "access plus 1 month"
+ExpiresByType video/mp4 "access plus 1 month"
+ExpiresByType video/webm "access plus 1 month"
+# HTC files
+ExpiresByType text/x-component "access plus 1 month"
+# Webfonts
+ExpiresByType application/x-font-ttf "access plus 1 month"
+ExpiresByType font/opentype "access plus 1 month"
+ExpiresByType application/x-font-woff "access plus 1 month"
+ExpiresByType image/svg+xml "access plus 1 month"
+ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
+# CSS / JS
+ExpiresByType text/css "access plus 1 year"
+ExpiresByType application/javascript "access plus 1 year"
+ExpiresByType application/x-javascript "access plus 1 year"
+</IfModule>
+#Força o IE a sempre carregar utilizando a última versão disponível
+<IfModule mod_headers.c>
+Header set X-UA-Compatible "IE=Edge,chrome=1"
+<FilesMatch "\.(js|css|gif|png|jpeg|pdf|xml|oga|ogg|m4a|ogv|mp4|m4v|webm|svg|svgz|eot|ttf|otf|woff|ico|webp|appcache|manifest|htc|crx|oex|xpi|safariextz|vcf)$" >
+Header unset X-UA-Compatible
+</FilesMatch>
+</IfModule>
+
+# Headers de Segurança
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# Bloquear acesso a arquivos sensíveis
+<FilesMatch "(config\.inc\.php|config_font\.inc\.php|composer\.json|composer\.lock|\.env)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Impedir a publicacao acidental de copias, dumps e registros internos.
+# O padrao tambem cobre nomes como arquivo.php.bak-20260810.
+<FilesMatch "(?i)(\.bak([.-].*)?$|\.old([.-].*)?$|\.orig([.-].*)?$|\.owner[0-9]+-original([.-].*)?$|\.save([.-].*)?$|\.sql$|\.log$|\.ini$|\.conf$|~$)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Bloquear acesso à pasta admin por padrão (requer autenticação do próprio sistema)
+<IfModule mod_rewrite.c>
+    RewriteRule ^admsite/classes/config.*$ - [F,L]
+</IfModule>

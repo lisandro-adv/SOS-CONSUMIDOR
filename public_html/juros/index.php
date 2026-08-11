@@ -17,6 +17,7 @@ if (is_readable($siteConfig)) {
 $titulo_site = 'Comparador de juros | SOS Consumidor';
 $meta_keywords = 'juros abusivos, taxa média Banco Central, empréstimo, financiamento';
 $description_site = 'Compare a taxa do seu contrato com a média oficial do Banco Central para a mesma modalidade e período.';
+$canonical_url = 'https://www.sosconsumidor.com.br/juros/';
 $defaultReference = date('Y-m', strtotime('-2 months'));
 ?>
 <!doctype html>
@@ -70,7 +71,12 @@ $defaultReference = date('Y-m', strtotime('-2 months'));
         .warning { margin-top: 16px; padding: 13px; background: #fff7df; border-left: 4px solid #d98200; }
         .small { color: var(--muted); font-size: 14px; }
         .interest-shell a { color: #0645d8; }
+        .rate-help { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: -8px 0 18px; padding: 12px 14px; border: 1px solid #cfe0e9; border-radius: 10px; background: #f5fbfe; color: #405466; font-size: 14px; }
+        .rate-help p { margin: 0; }
+        .rate-help button { width: auto; min-height: auto; margin: 0; padding: 9px 13px; border: 1px solid #087f5b; background: #fff; color: #087f5b; box-shadow: none; white-space: nowrap; }
+        .rate-help button:hover, .rate-help button:focus { background: #087f5b; color: #fff; }
         @media (max-width: 680px) { .interest-shell { margin: 0; padding: 10px 12px 26px; } .topbar { margin: 0 3px 8px; } .hero-copy { padding: 16px 18px 19px; border-radius: 13px; } .hero-copy:after { right: -4%; top: 2px; font-size: 58px; } .tool-card { margin: 12px 2px 0; padding: 18px 15px; } .grid, .cards { grid-template-columns: 1fr; } .headline { font-size: 21px; } }
+        @media (max-width: 680px) { .rate-help { align-items: stretch; flex-direction: column; } .rate-help button { width: 100%; } }
     </style>
     <style>
         .interest-page{padding-top:0!important}
@@ -123,16 +129,84 @@ $defaultReference = date('Y-m', strtotime('-2 months'));
         .interest-page .input-shell.has-suffix { display: flex; align-items: center; min-height: 44px; padding: 0 12px; border: 1px solid #b8c9d4; border-radius: 9px; background: #fff; }
         .interest-page .input-shell.has-suffix input.rate-input { flex: 0 0 7ch; width: 7ch; min-height: 0; margin: 0; padding: 0; border: 0; background: transparent; outline: 0; }
         .interest-page .input-shell.has-suffix .suffix { position: static; margin-left: 2px; }
-        .interest-page .month-picker { position: relative; margin-top: 5px; }
+        .interest-page .month-picker {
+            position: relative;
+            display: block;
+            width: 100%;
+            margin-top: 5px;
+        }
         .interest-page .month-picker #referencia { margin-top: 0; padding-right: 52px; }
         .interest-page .month-picker-button { position: absolute; z-index: 2; top: 0; right: 0; width: 44px !important; height: 44px; min-height: 44px; margin: 0 !important; padding: 0 !important; border: 0 !important; border-radius: 0 9px 9px 0 !important; background: transparent !important; color: var(--blue); box-shadow: none !important; font-size: 22px; line-height: 1; cursor: pointer; }
         .interest-page .month-picker-button:focus { outline: 3px solid #0085b233; outline-offset: -2px; }
-        .interest-page .month-picker-popover { position: absolute; z-index: 20; top: calc(100% + 6px); left: 0; width: min(310px, 100%); padding: 12px; border: 1px solid #b8c9d4; border-radius: 12px; background: #fff; box-shadow: 0 12px 28px #12324a26; }
+        .interest-page .month-picker-popover {
+            position: absolute;
+            z-index: 20;
+            top: calc(100% + 6px);
+            right: 0;
+            left: auto;
+            box-sizing: border-box;
+            width: min(310px, calc(100vw - 24px));
+            max-width: calc(100vw - 24px);
+            padding: 12px;
+            border: 1px solid #b8c9d4;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 12px 28px #12324a26;
+        }
         .interest-page .month-picker-popover[hidden] { display: none; }
-        .interest-page .month-picker-year { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; color: var(--blue); font-weight: 700; }
-        .interest-page .month-picker-year button { width: 36px !important; min-height: 36px; margin: 0 !important; padding: 0 !important; border: 1px solid #c6d8e1; border-radius: 8px !important; background: #f7fbfd !important; color: var(--blue); box-shadow: none !important; font-size: 20px; line-height: 1; }
-        .interest-page .month-picker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
-        .interest-page .month-picker-grid button { min-height: 38px; margin: 0 !important; padding: 6px 4px !important; border: 1px solid #d1e0e7; border-radius: 8px !important; background: #fff !important; color: var(--ink); box-shadow: none !important; font-size: 14px; }
+        .interest-page .month-picker-year {
+            display: grid;
+            grid-template-columns: 36px minmax(0, 1fr) 36px;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            color: var(--blue);
+            font-weight: 700;
+        }
+        .interest-page .month-picker-year > span {
+            min-width: 0;
+            text-align: center;
+            white-space: nowrap;
+        }
+        .interest-page .month-picker-year button {
+            display: flex;
+            flex: 0 0 36px;
+            align-items: center;
+            justify-content: center;
+            width: 36px !important;
+            height: 36px;
+            min-height: 36px;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: 1px solid #c6d8e1;
+            border-radius: 8px !important;
+            background: #f7fbfd !important;
+            color: var(--blue);
+            box-shadow: none !important;
+            font-size: 20px;
+            line-height: 1;
+        }
+        .interest-page .month-picker-grid {
+            display: grid;
+            width: 100%;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 7px;
+        }
+        .interest-page .month-picker-grid button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100% !important;
+            min-height: 38px;
+            margin: 0 !important;
+            padding: 6px 4px !important;
+            border: 1px solid #d1e0e7;
+            border-radius: 8px !important;
+            background: #fff !important;
+            color: var(--ink);
+            box-shadow: none !important;
+            font-size: 14px;
+        }
         .interest-page .month-picker-grid button:hover, .interest-page .month-picker-grid button:focus { border-color: var(--blue); background: #eef8fb !important; }
         .interest-page .month-picker-grid button.is-selected { border-color: var(--blue); background: var(--blue) !important; color: #fff; }
         .interest-page .small { font-size: 13px; line-height: 1.35; }
@@ -168,7 +242,7 @@ $defaultReference = date('Y-m', strtotime('-2 months'));
     <div class="container-fluid"><div class="l-content-block"><div class="row">
         <div class="col-sm-9"><main class="c-main-content interest-page">
 <?php endif; ?>
-<div class="interest-shell">
+<div class="interest-shell" data-sos-tool-page="juros">
     <section class="hero-copy">
         <div class="eyebrow">● Ferramenta gratuita · dados oficiais</div>
         <h1>Compare os juros do seu contrato</h1>
@@ -177,6 +251,10 @@ $defaultReference = date('Y-m', strtotime('-2 months'));
     <div class="tool-card">
     <p class="section-label">Preencha os dados da operação</p>
     <div class="notice"><strong>Importante:</strong> a referência é a taxa média das novas operações de crédito <strong>com recursos livres</strong> divulgada pelo Banco Central para a mesma modalidade e mês. É uma comparação estatística: não declara, sozinha, que os juros são abusivos e não substitui a análise do contrato por um profissional.</div>
+    <div class="rate-help">
+        <p>Não sabe por onde começar? Veja os campos preenchidos com um exemplo fictício e depois substitua pelos números do seu contrato.</p>
+        <button id="fill-example" type="button">Preencher exemplo</button>
+    </div>
     <form id="compare-form">
         <div class="grid">
             <label>Qual é o tipo de contrato?
@@ -244,7 +322,20 @@ const esc = (value) => { const node = document.createElement('div'); node.textCo
 const sosVisitanteId = () => { const cookie = document.cookie.match(/(?:^|; )sos_anon_visitor=([^;]+)/); let id = cookie ? decodeURIComponent(cookie[1]) : ''; if (!id) { try { id = localStorage.getItem('sos_anon_visitor') || ''; } catch (error) {} } if (!/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(id)) { id = ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)); } try { localStorage.setItem('sos_anon_visitor', id); } catch (error) {} document.cookie = 'sos_anon_visitor=' + encodeURIComponent(id) + '; Max-Age=31536000; Path=/; SameSite=Lax'; return id; };
 const sosRegistrarResposta = () => { fetch('/ia_consumidor/usage_event.php', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ferramenta: 'juros', visitante_id: sosVisitanteId() }), keepalive: true }).catch(() => {}); };
 const rateValue = (input) => { const text = input.value.trim(); if (!text || text === '0,00' || text === '0' || text === '0,0' || text === '0,000') return ''; return text; };
-const numberValue = (id) => { const input = document.getElementById(id); const value = input.classList.contains('rate-input') ? rateValue(input) : input.value.trim(); return value.replace(/\./g, '').replace(',', '.'); };
+const normalizeLocaleDecimal = (value) => {
+    let raw = String(value ?? '').trim().replace(/[^\d,.]/g, '');
+    if (!raw) return '';
+    const comma = raw.lastIndexOf(',');
+    const dot = raw.lastIndexOf('.');
+    const separator = Math.max(comma, dot);
+    const digitsAfterSeparator = separator >= 0 ? raw.length - separator - 1 : 0;
+    const hasBothSeparators = comma >= 0 && dot >= 0;
+    const hasDecimal = separator >= 0 && (hasBothSeparators || digitsAfterSeparator <= 2);
+    const integer = (hasDecimal ? raw.slice(0, separator) : raw).replace(/\D/g, '');
+    const decimals = hasDecimal ? raw.slice(separator + 1).replace(/\D/g, '').slice(0, 2) : '';
+    return `${integer || '0'}${hasDecimal ? `,${decimals}` : ''}`;
+};
+const numberValue = (id) => { const input = document.getElementById(id); const value = input.classList.contains('rate-input') ? rateValue(input) : input.value.trim(); return normalizeLocaleDecimal(value).replace(',', '.'); };
 const pct = (value) => Number(value).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '%';
 const brl = (value) => Number(value).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 const monthlyInput = document.getElementById('taxa-mensal');
@@ -335,36 +426,115 @@ const formatRate = (value) => {
     return `${padded.slice(0, -2)},${padded.slice(-2)}`;
 };
 const valueInput = document.getElementById('valor');
-const normalizeMoneyTyping = (value) => {
-    const raw = String(value || '').replace(/[^\d,]/g, '');
-    if (!raw) return '';
-    const comma = raw.indexOf(',');
-    const integerDigits = (comma >= 0 ? raw.slice(0, comma) : raw)
-        .replace(/\D/g, '')
-        .replace(/^0+(?=\d)/, '') || '0';
-    const integer = Number(integerDigits).toLocaleString('pt-BR');
-    if (comma < 0) return integer;
-    const decimals = raw.slice(comma + 1).replace(/\D/g, '').slice(0, 2);
-    return `${integer},${decimals}`;
+const modalityInput = document.getElementById('modalidade');
+const installmentsInput = document.getElementById('parcelas');
+const exampleButton = document.getElementById('fill-example');
+const installMoneyMask = input => {
+    // money-mask-cents-v5: cada algarismo novo entra pelos centavos,
+    // inclusive em navegadores que anunciam beforeinput mas não o disparam.
+    let centsDigits='';
+    const clear = () => {centsDigits='';};
+    const normalizeCents = digits => String(digits??'')
+        .replace(/\D/g,'')
+        .replace(/^0+(?=\d)/,'')
+        .slice(0,15);
+    const setFromText = value => {
+        const raw=String(value??'').trim();
+        if(!raw){clear();return;}
+        if(/[,.]/.test(raw)){
+            const normalized=normalizeLocaleDecimal(raw);
+            if(!normalized){clear();return;}
+            const [integer, decimals='']=normalized.split(',');
+            centsDigits=normalizeCents(`${integer.replace(/\D/g,'')}${decimals.replace(/\D/g,'').padEnd(2,'0').slice(0,2)}`);
+            return;
+        }
+        centsDigits=normalizeCents(raw);
+    };
+    const render = final => {
+        if(!centsDigits)return final?'0,00':'';
+        const padded=centsDigits.padStart(3,'0');
+        const integerDigits=padded.slice(0,-2).replace(/^0+(?=\d)/,'')||'0';
+        const decimals=padded.slice(-2);
+        const integer=Number(integerDigits).toLocaleString('pt-BR');
+        return `${integer},${decimals}`;
+    };
+    const appendText = text => {
+        centsDigits=normalizeCents(`${centsDigits}${String(text??'').replace(/\D/g,'')}`);
+    };
+    const removeDigit = () => {
+        centsDigits=centsDigits.slice(0,-1);
+    };
+    const write = final => {
+        input.value=render(final);
+        if(document.activeElement===input && typeof input.setSelectionRange==='function'){
+            const end=input.value.length;
+            input.setSelectionRange(end,end);
+        }
+    };
+    const allSelected = () => input.selectionStart===0&&input.selectionEnd===input.value.length;
+    input.addEventListener('keydown',event => {
+        if(event.ctrlKey||event.metaKey||event.altKey)return;
+        if(/^\d$/.test(event.key)){
+            event.preventDefault();
+            if(allSelected())clear();
+            appendText(event.key);
+            write(false);
+            return;
+        }
+        if(event.key===','||event.key==='.'){
+            event.preventDefault();
+            return;
+        }
+        if(event.key==='Backspace'||event.key==='Delete'){
+            event.preventDefault();
+            if(allSelected())clear();
+            else removeDigit();
+            write(false);
+        }
+    });
+    input.addEventListener('beforeinput',event => {
+        const type=event.inputType||'';
+        if(['insertText','insertCompositionText','insertReplacementText'].includes(type)){
+            const inserted=String(event.data??'');
+            const digits=inserted.replace(/\D/g,'');
+            if(!digits){
+                if(/[,.]/.test(inserted))event.preventDefault();
+                return;
+            }
+            event.preventDefault();
+            if(allSelected())clear();
+            appendText(digits);
+            write(false);
+            return;
+        }
+        if(type==='deleteContentBackward'||type==='deleteContentForward'){
+            event.preventDefault();
+            if(allSelected())clear();
+            else removeDigit();
+            write(false);
+        }
+    });
+    input.addEventListener('paste',event => {
+        event.preventDefault();
+        setFromText(event.clipboardData?.getData('text')||'');
+        write(true);
+    });
+    input.addEventListener('input',event => {
+        if(event.isComposing)return;
+        // Fallback para teclado virtual/navegador que não permita cancelar
+        // beforeinput: o conteúdo visível volta a ser tratado como centavos.
+        centsDigits=normalizeCents(input.value);
+        write(false);
+    });
+    input.addEventListener('focus',()=>{if(input.value==='0,00'){clear();input.select();}});
+    const commit = () => {setFromText(input.value);write(true);};
+    input.addEventListener('blur',commit);
+    input.addEventListener('change',commit);
+    form.addEventListener('submit',commit);
+    setFromText(input.value);
+    write(true);
 };
-const formatMoneyBlur = (value) => {
-    const normalized = normalizeMoneyTyping(value);
-    if (!normalized) return '';
-    const [integer, decimals = ''] = normalized.split(',');
-    return `${integer},${(decimals + '00').slice(0, 2)}`;
-};
-valueInput.addEventListener('input', () => {
-    valueInput.value = normalizeMoneyTyping(valueInput.value);
-});
-valueInput.addEventListener('focus', () => {
-    if (valueInput.value === '0,00') valueInput.select();
-});
-const commitMoneyValue = () => {
-    valueInput.value = formatMoneyBlur(valueInput.value);
-};
-valueInput.addEventListener('blur', commitMoneyValue);
-valueInput.addEventListener('change', commitMoneyValue);
-form.addEventListener('submit', commitMoneyValue);
+installMoneyMask(valueInput);
 [monthlyInput, annualInput].forEach((input) => {
     input.addEventListener('input', () => { input.value = formatRate(input.value); });
     input.addEventListener('focus', () => { if (input.value === '0,00') input.select(); });
@@ -377,6 +547,19 @@ form.addEventListener('submit', commitMoneyValue);
 });
 monthlyInput.addEventListener('input', () => { annualInput.disabled = rateValue(monthlyInput) !== ''; });
 annualInput.addEventListener('input', () => { monthlyInput.disabled = rateValue(annualInput) !== ''; });
+if (exampleButton) exampleButton.addEventListener('click', () => {
+    modalityInput.value = 'credito-pessoal-nao-consignado';
+    monthlyInput.disabled = false;
+    monthlyInput.value = '2,50';
+    monthlyInput.dispatchEvent(new Event('input', { bubbles: true }));
+    annualInput.value = '0,00';
+    annualInput.disabled = true;
+    valueInput.value = '5000,00';
+    valueInput.dispatchEvent(new Event('change', { bubbles: true }));
+    installmentsInput.value = '24';
+    modalityInput.focus();
+    if (window.SOSFerramentas) window.SOSFerramentas.track('juros', 'inicio', 'exemplo');
+});
 
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -426,6 +609,7 @@ form.addEventListener('submit', async (event) => {
         html += `<p class="small">Séries BCB mensal ${esc(data.fonte.serie_mensal)} e anual ${esc(data.fonte.serie_anual)} — <a target="_blank" rel="noopener" href="${esc(data.fonte.url)}">consultar fonte oficial</a>.</p>`;
         result.innerHTML = html;
         sosRegistrarResposta();
+        if (window.SOSFerramentas) window.SOSFerramentas.track('juros', 'resultado', 'comparacao');
     } catch (error) {
         result.className = 'result error';
         result.textContent = error.message;

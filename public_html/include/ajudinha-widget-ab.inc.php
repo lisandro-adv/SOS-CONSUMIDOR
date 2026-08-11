@@ -7,7 +7,7 @@ define('SOS_AJUDINHA_RENDERED', true);
 
 $ajudinha_root = defined('PROJECT_ROOT') ? PROJECT_ROOT : '/';
 $ajudinha_root = rtrim((string) $ajudinha_root, '/') . '/';
-$ajudinha_asset = $ajudinha_root . 'assets/img/ajudinha/ajudinha-v5-alpha-b817b0c7.png';
+$ajudinha_asset = $ajudinha_root . 'assets/img/ajudinha/ajudinha-v5-440-20260809.webp';
 $ajudinha_video = $ajudinha_root . 'assets/video/ajudinha/ajudinha-video-a4b17375.mp4';
 $ajudinha_responde_url = $ajudinha_root . 'ia-consumidor/';
 ?>
@@ -25,7 +25,7 @@ $ajudinha_responde_url = $ajudinha_root . 'ia-consumidor/';
     .sos-ajudinha.is-video-ready .sos-ajudinha-video-canvas{opacity:1}
     .sos-ajudinha-toggle>.sos-ajudinha-label{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 20px 9px;border:2px solid #fff;border-radius:999px;background:#07557f;box-shadow:0 6px 18px #18324735;font-size:15px;font-weight:800;line-height:1.12;white-space:nowrap}
     .sos-ajudinha-toggle>.sos-ajudinha-label small{font-size:13px;font-weight:700}
-    .sos-ajudinha-panel{position:absolute;right:calc(100% + 28px);top:18%;box-sizing:border-box;width:min(510px,calc(100vw - 28px));padding:32px 30px 28px;border:3px solid #83bff2;border-radius:40px 46px 38px 44px;background:linear-gradient(145deg,#fff 0%,#f8fbff 100%);color:#183247;box-shadow:0 14px 34px #18324724,0 0 10px #83bff255;transform:translateY(-50%)}
+    .sos-ajudinha-panel{position:absolute;right:calc(100% + 28px);top:18%;z-index:5000;isolation:isolate;box-sizing:border-box;width:min(510px,calc(100vw - 28px));padding:32px 30px 28px;border:3px solid #83bff2;border-radius:40px 46px 38px 44px;background-color:#fff;background:linear-gradient(145deg,#fff 0%,#f8fbff 100%);color:#183247;box-shadow:0 14px 34px #18324724,0 0 10px #83bff255;transform:translateY(-50%)}
     .sos-ajudinha-panel::before{content:"";position:absolute;right:-31px;top:52%;width:37px;height:32px;background:#07557f;clip-path:polygon(0 0,100% 52%,0 100%);transform:translateY(-50%)}
     .sos-ajudinha-panel::after{content:"";position:absolute;right:-24px;top:52%;width:30px;height:24px;background:#fff;clip-path:polygon(0 0,100% 52%,0 100%);transform:translateY(-50%)}
     .sos-ajudinha-panel[hidden]{display:none}
@@ -52,8 +52,8 @@ $ajudinha_responde_url = $ajudinha_root . 'ia-consumidor/';
     .sos-ajudinha-actions a:hover,.sos-ajudinha-actions a:focus-visible{border-color:#83bff2;background:#f5fbff;box-shadow:0 8px 18px #17466e25;outline:none;transform:translateY(-1px)}
     .sos-ajudinha-close{position:absolute;top:18px;right:21px;border:0;background:transparent;color:#183247;font-size:32px;line-height:1;cursor:pointer}
     .sos-ajudinha-close:focus-visible{outline:2px solid #07557f;outline-offset:2px}
-    .sos-ajudinha-test-placement{position:sticky;top:18px;z-index:50;display:flex;justify-content:flex-start;margin:-18px 0 30px -8px;padding-top:8px}
-    .sos-ajudinha-test-placement .sos-ajudinha{position:relative;top:auto;right:auto;z-index:auto;width:max-content}
+    .sos-ajudinha-test-placement{position:sticky;top:18px;z-index:5000;display:flex;justify-content:flex-start;margin:-18px 0 30px -8px;padding-top:8px}
+    .sos-ajudinha-test-placement .sos-ajudinha{position:relative;top:auto;right:auto;z-index:5000;width:max-content;isolation:isolate}
     @media(max-width:767px){.sos-ajudinha-test-placement{position:relative;top:auto;justify-content:center;margin:0 0 28px;padding-top:0}}
     @media(max-width:580px){.sos-ajudinha{right:8px}.sos-ajudinha-character,.sos-ajudinha-stage{width:168px;height:168px}.sos-ajudinha-toggle>.sos-ajudinha-label{padding:7px 14px 8px;font-size:13px}.sos-ajudinha-toggle>.sos-ajudinha-label small{font-size:11px}.sos-ajudinha-panel{right:50%;top:auto;bottom:calc(100% + 26px);width:min(380px,calc(100vw - 20px));padding:31px 26px 26px;border-radius:36px 42px 34px 40px;transform:translateX(50%)}.sos-ajudinha-panel::before{right:26%;top:auto;bottom:-30px;clip-path:polygon(0 0,100% 0,70% 100%);transform:none}.sos-ajudinha-panel::after{right:calc(26% + 4px);top:auto;bottom:-22px;clip-path:polygon(0 0,100% 0,70% 100%);transform:none}.sos-ajudinha-panel h2{max-width:100%;padding-right:40px;font-size:21px}.sos-ajudinha-panel h2 span:nth-child(2){white-space:normal;font-size:1em;letter-spacing:normal}.sos-ajudinha-panel p{max-width:100%;font-size:17px}.sos-ajudinha-actions{grid-template-columns:1fr;gap:10px}.sos-ajudinha-actions a{min-height:64px;font-size:16px}.sos-ajudinha-action-icon{flex-basis:46px;width:46px;height:46px;border-radius:14px}.sos-ajudinha-close{top:15px;right:23px}}
 </style>
@@ -65,17 +65,17 @@ $ajudinha_responde_url = $ajudinha_root . 'ia-consumidor/';
         </div>
         <p id="sos-ajudinha-copy">Em que eu posso te ajudar:</p>
         <nav class="sos-ajudinha-actions" aria-label="Atalhos da Ajudinha">
-            <a href="<?php echo htmlspecialchars($ajudinha_responde_url, ENT_QUOTES, 'UTF-8'); ?>"><span class="sos-ajudinha-action-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.2 9a3.1 3.1 0 1 1 5.2 2.3c-1.3 1.1-2.4 1.5-2.4 3.2"/><path d="M12 18h.01"/></svg></span><span class="sos-ajudinha-action-copy"><strong>Tirar uma dúvida</strong><small>Encontre respostas sobre seus direitos.</small></span></a>
-            <a href="<?php echo htmlspecialchars($ajudinha_root . 'juros/', ENT_QUOTES, 'UTF-8'); ?>"><span class="sos-ajudinha-action-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8" cy="7" r="2.5"/><circle cx="16" cy="17" r="2.5"/><path d="M18.5 5.5 5.5 18.5"/></svg></span><span class="sos-ajudinha-action-copy"><strong>Comparar juros cobrados</strong><small>Veja se a taxa está acima da média.</small></span></a>
-            <a href="<?php echo htmlspecialchars($ajudinha_root . 'calculos/', ENT_QUOTES, 'UTF-8'); ?>"><span class="sos-ajudinha-action-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="8" y="5.5" width="8" height="3" rx=".5"/><path d="M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01M8 20h8"/></svg></span><span class="sos-ajudinha-action-copy"><strong>Calcular valores</strong><small>Atualize dívidas, parcelas e correção.</small></span></a>
+            <a href="<?php echo htmlspecialchars($ajudinha_responde_url, ENT_QUOTES, 'UTF-8'); ?>" data-sos-tool="ia" data-sos-source="ajudinha_panel" data-sos-impression><span class="sos-ajudinha-action-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.2 9a3.1 3.1 0 1 1 5.2 2.3c-1.3 1.1-2.4 1.5-2.4 3.2"/><path d="M12 18h.01"/></svg></span><span class="sos-ajudinha-action-copy"><strong>Tirar uma dúvida</strong><small>Encontre respostas sobre seus direitos.</small></span></a>
+            <a href="<?php echo htmlspecialchars($ajudinha_root . 'juros/', ENT_QUOTES, 'UTF-8'); ?>" data-sos-tool="juros" data-sos-source="ajudinha_panel" data-sos-impression><span class="sos-ajudinha-action-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8" cy="7" r="2.5"/><circle cx="16" cy="17" r="2.5"/><path d="M18.5 5.5 5.5 18.5"/></svg></span><span class="sos-ajudinha-action-copy"><strong>Comparar juros cobrados</strong><small>Veja se a taxa está acima da média.</small></span></a>
+            <a href="<?php echo htmlspecialchars($ajudinha_root . 'calculos/', ENT_QUOTES, 'UTF-8'); ?>" data-sos-tool="calculos" data-sos-source="ajudinha_panel" data-sos-impression><span class="sos-ajudinha-action-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="8" y="5.5" width="8" height="3" rx=".5"/><path d="M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01M8 20h8"/></svg></span><span class="sos-ajudinha-action-copy"><strong>Calcular valores</strong><small>Atualize dívidas, parcelas e correção.</small></span></a>
         </nav>
     </section>
     <button class="sos-ajudinha-toggle" id="sos-ajudinha-toggle" type="button" aria-expanded="false" aria-controls="sos-ajudinha-panel">
         <span class="sos-ajudinha-character" aria-hidden="true">
             <span class="sos-ajudinha-stage">
-                <img class="sos-ajudinha-poster" src="<?php echo htmlspecialchars($ajudinha_asset, ENT_QUOTES, 'UTF-8'); ?>" alt="">
-                <video class="sos-ajudinha-video" id="sos-ajudinha-video" muted loop playsinline preload="metadata" poster="<?php echo htmlspecialchars($ajudinha_asset, ENT_QUOTES, 'UTF-8'); ?>">
-                    <source src="<?php echo htmlspecialchars($ajudinha_video, ENT_QUOTES, 'UTF-8'); ?>" type="video/mp4">
+                <img class="sos-ajudinha-poster" src="<?php echo htmlspecialchars($ajudinha_asset, ENT_QUOTES, 'UTF-8'); ?>" alt="" width="440" height="440" decoding="async" fetchpriority="low">
+                <video class="sos-ajudinha-video" id="sos-ajudinha-video" muted loop playsinline preload="none" poster="<?php echo htmlspecialchars($ajudinha_asset, ENT_QUOTES, 'UTF-8'); ?>">
+                    <source data-src="<?php echo htmlspecialchars($ajudinha_video, ENT_QUOTES, 'UTF-8'); ?>" type="video/mp4">
                 </video>
                 <canvas class="sos-ajudinha-video-canvas" id="sos-ajudinha-video-canvas" width="320" height="320" aria-hidden="true"></canvas>
             </span>
@@ -88,7 +88,7 @@ $ajudinha_responde_url = $ajudinha_root . 'ia-consumidor/';
     var root=document.getElementById('sos-ajudinha'),toggle=document.getElementById('sos-ajudinha-toggle'),panel=document.getElementById('sos-ajudinha-panel'),close=document.getElementById('sos-ajudinha-close'),video=document.getElementById('sos-ajudinha-video'),canvas=document.getElementById('sos-ajudinha-video-canvas');
     if(!root||!toggle||!panel||!close)return;
     var media=window.matchMedia?window.matchMedia('(prefers-reduced-motion: reduce)'):null;
-    var canvasFrame=0,videoCallback=0;
+    var canvasFrame=0,videoCallback=0,videoLoaded=false;
     var canvasContext=canvas&&canvas.getContext?canvas.getContext('2d',{willReadFrequently:true}):null;
     function reduced(){return media&&media.matches;}
     function backgroundPixel(data,index){
@@ -129,19 +129,31 @@ $ajudinha_responde_url = $ajudinha_root . 'ia-consumidor/';
         if(videoCallback&&video.cancelVideoFrameCallback)video.cancelVideoFrameCallback(videoCallback);
         canvasFrame=0;videoCallback=0;renderVideo();
     }
+    function ensureVideo(){
+        if(!video||videoLoaded||reduced())return;
+        var source=video.querySelector('source[data-src]');
+        if(!source)return;
+        source.src=source.getAttribute('data-src');
+        source.removeAttribute('data-src');
+        videoLoaded=true;
+        video.load();
+        syncVideo();
+    }
     function syncVideo(forceStart){
-        if(!video)return;
+        if(!video||!videoLoaded)return;
         if(!reduced()||forceStart){
             video.muted=true;video.defaultMuted=true;
             var attempt=video.play();
             if(attempt&&attempt.then)attempt.then(startVideoRendering).catch(function(){});else startVideoRendering();
         }else{video.pause();}
     }
-    function updateMotion(){root.classList.toggle('is-paused',reduced());syncVideo();}
+    function updateMotion(){root.classList.toggle('is-paused',reduced());if(videoLoaded)syncVideo();}
     updateMotion();
     if(media){if(media.addEventListener)media.addEventListener('change',updateMotion);else if(media.addListener)media.addListener(updateMotion);}
     if(video){video.addEventListener('loadeddata',function(){removeVideoBackground();syncVideo();});video.addEventListener('seeked',removeVideoBackground);}
-    toggle.addEventListener('click',function(){var open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));panel.hidden=open;if(!open)close.focus();});
+    toggle.addEventListener('pointerenter',ensureVideo,{once:true});
+    toggle.addEventListener('focus',ensureVideo,{once:true});
+    toggle.addEventListener('click',function(){ensureVideo();var open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));panel.hidden=open;if(!open)close.focus();});
     close.addEventListener('click',function(){panel.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.focus();});
     document.addEventListener('keydown',function(event){if(event.key==='Escape'&&!panel.hidden){panel.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.focus();}});
 })();
