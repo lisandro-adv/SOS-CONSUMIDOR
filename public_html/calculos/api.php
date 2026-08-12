@@ -292,22 +292,19 @@ try {
             $payment = bounded_result($principal * $monthly / $denominator);
         }
         $amort = $principal / $periods;
+        // No Price a parcela é arredondada em centavos e a tabela é construída sobre o saldo
+        // devedor real, ajustando a última parcela. Assim amortização + juros fecha com a
+        // parcela exibida e a soma das parcelas fecha com o total informado.
+        $pricePayment = round($payment, 2);
+        $priceBalance = $principal;
         for ($n = 1; $n <= $periods; $n++) {
             $remaining = $periods - $n + 1;
             if ($system === 'price') {
-                if ($monthly > 1.0e-12) {
-                    $logFactor = log1p($monthly);
-                    $amortization = bounded_result($payment * exp(-$remaining * $logFactor));
-                    $interest = bounded_result($payment - $amortization);
-                    $balance = $remaining === 1
-                        ? 0.0
-                        : bounded_result($payment * -expm1(-($remaining - 1) * $logFactor) / $monthly);
-                } else {
-                    $amortization = $amort;
-                    $interest = 0.0;
-                    $balance = bounded_result($principal * ($remaining - 1) / $periods);
-                }
-                $installment = $payment;
+                $interest = round($priceBalance * $monthly, 2);
+                $amortization = $remaining === 1 ? round($priceBalance, 2) : round($pricePayment - $interest, 2);
+                $installment = bounded_result(round($amortization + $interest, 2));
+                $priceBalance = round($priceBalance - $amortization, 2);
+                $balance = $remaining === 1 ? 0.0 : $priceBalance;
             } else {
                 $balanceBefore = bounded_result($principal * $remaining / $periods);
                 $amortization = $amort;
@@ -364,6 +361,80 @@ try {
         $base = round($salary * $days / 30, 2);
         $third = round($base / 3, 2);
         respond(200, ['type' => 'vacation', 'salario' => round($salary, 2), 'dias' => $days, 'remuneracao' => $base, 'terco_constitucional' => $third, 'total_bruto' => round($base + $third, 2), 'observacao' => 'Esta é uma estimativa bruta. Abonos, médias de variáveis, INSS e IRPF podem alterar o valor final.']);
+    }
+
+    if ($action === 'severance') {
+        $salary = number_value($input['salario'] ?? null);
+        $reason = is_string($input['motivo'] ?? null) ? $input['motivo'] : '';
+        $admissionText = is_string($input['admissao'] ?? null) ? $input['admissao'] : '';
+        $terminationText = is_string($input['desligamento'] ?? null) ? $input['desligamento'] : '';
+        $noticeType = is_string($input['aviso'] ?? null) ? $input['aviso'] : '';
+        $overduePeriods = integer_value($input['ferias_vencidas'] ?? null);
+        $fgtsBalance = optional_number($input, 'fgts');
+        $validReasons = ['sem_justa_causa', 'pedido_demissao', 'acordo', 'justa_causa', 'termino_contrato'];
+        $validNoticeTypes = ['indenizado', 'trabalhado', 'nao_cumprido'];
+        if ($salary === null || $salary <= 0 || $salary > 10000000 || !valid_date($admissionText) || !valid_date($terminationText) || $terminationText < $admissionText || !in_array($reason, $validReasons, true) || !in_array($noticeType, $validNoticeTypes, true) || $overduePeriods === null || $overduePeriods < 0 || $overduePeriods > 5 || $fgtsBalance === null || $fgtsBalance < 0 || $fgtsBalance > 1000000000) {
+            respond(422, ['error' => 'Confira salário, motivo, datas e parcelas informados.']);
+        }
+
+        $admission = new DateTimeImmutable($admissionText);
+        $termination = new DateTimeImmutable($terminationText);
+        $completedYears = $admission->diff($termination)->y;
+        $noticeDays = min(90, 30 + (3 * $completedYears));
+        $noticeDaysForDiscount = $reason === 'pedido_demissao' ? 30 : $noticeDays;
+        $terminationDay = (int) $termination->format('j');
+        $lastDayOfMonth = (int) $termination->modify('last day of this month')->format('j');
+        $salaryDays = $terminationDay >= $lastDayOfMonth ? 30 : min(30, $terminationDay);
+        $salaryBalance = bounded_result($salary * $salaryDays / 30);
+        $noticeAmount = 0.0;
+        if ($reason === 'sem_justa_causa' && $noticeType === 'indenizado') {
+            $noticeAmount = bounded_result($salary * $noticeDays / 30);
+        } elseif ($reason === 'acordo' && $noticeType === 'indenizado') {
+            $noticeAmount = bounded_result($salary * $noticeDays / 60);
+        } elseif ($reason === 'pedido_demissao' && $noticeType === 'nao_cumprido') {
+            $noticeAmount = -bounded_result($salary * $noticeDaysForDiscount / 30);
+        }
+
+        $projected = $termination;
+        if (in_array($reason, ['sem_justa_causa', 'acordo'], true) && $noticeType === 'indenizado') {
+            $projected = $termination->modify('+' . $noticeDays . ' days');
+        }
+        $thirteenthAvos = 0;
+        if ($reason !== 'justa_causa') {
+            // O 13º é apurado por ano-calendário. Quando o aviso indenizado projeta o
+            // desligamento para o ano seguinte, são devidos os avos do ano do desligamento
+            // MAIS os avos proporcionais do ano da projeção.
+            $firstYear = (int) $termination->format('Y');
+            $lastYear = (int) $projected->format('Y');
+            for ($year = $firstYear; $year <= $lastYear; $year++) {
+                for ($month = 1; $month <= 12; $month++) {
+                    $monthStart = new DateTimeImmutable(sprintf('%04d-%02d-01', $year, $month));
+                    $monthEnd = $monthStart->modify('last day of this month');
+                    $workedStart = $admission > $monthStart ? $admission : $monthStart;
+                    $workedEnd = $projected < $monthEnd ? $projected : $monthEnd;
+                    if ($workedStart <= $workedEnd && $workedStart->diff($workedEnd)->days + 1 >= 15) $thirteenthAvos++;
+                }
+            }
+        }
+        $thirteenth = bounded_result($salary * $thirteenthAvos / 12);
+        $serviceTime = $admission->diff($projected);
+        $vacationAvos = $reason === 'justa_causa' ? 0 : min(12, $serviceTime->m + ($serviceTime->d >= 15 ? 1 : 0));
+        $overdueVacation = bounded_result($salary * $overduePeriods * 4 / 3);
+        $proportionalVacation = bounded_result($salary * $vacationAvos / 12 * 4 / 3);
+        $vacationTotal = bounded_result($overdueVacation + $proportionalVacation);
+        $fineRate = $reason === 'sem_justa_causa' ? 0.40 : ($reason === 'acordo' ? 0.20 : 0.0);
+        $fgtsFine = bounded_result($fgtsBalance * $fineRate);
+        $total = bounded_result($salaryBalance + $noticeAmount + $thirteenth + $vacationTotal + $fgtsFine);
+        respond(200, [
+            'type' => 'severance', 'salario' => round($salary, 2), 'motivo' => $reason,
+            'total_bruto' => round($total, 2), 'saldo_salario' => round($salaryBalance, 2),
+            'aviso_previo' => round($noticeAmount, 2), 'decimo_terceiro' => round($thirteenth, 2),
+            'ferias_vencidas' => round($overdueVacation, 2), 'ferias_proporcionais' => round($proportionalVacation, 2),
+            'ferias_total' => round($vacationTotal, 2), 'multa_fgts' => round($fgtsFine, 2),
+            'dias_saldo' => $salaryDays, 'dias_aviso' => $reason === 'pedido_demissao' ? 30 : $noticeDays,
+            'avos_decimo_terceiro' => $thirteenthAvos, 'avos_ferias' => $vacationAvos,
+            'observacao' => 'Estimativa bruta: não inclui INSS, IRPF, médias de parcelas variáveis, saldo do FGTS, descontos, férias em dobro ou regras específicas de contrato e convenção coletiva. A multa do FGTS só foi calculada quando o saldo informado foi incluído.'
+        ]);
     }
 
     respond(404, ['error' => 'Calculadora não encontrada.']);
