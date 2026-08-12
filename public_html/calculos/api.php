@@ -237,17 +237,22 @@ try {
         $start = is_string($input['inicio'] ?? null) ? $input['inicio'] : '';
         $end = is_string($input['fim'] ?? null) ? $input['fim'] : '';
         $interest = optional_number($input, 'juros_mensais');
-        if ($value === null || $value <= 0 || $value > 100000000000 || !valid_month($start) || !valid_month($end) || $start > $end || $interest === null || $interest < 0 || $interest > 100) respond(422, ['error' => 'Confira valor, índice, datas e juros informados.']);
+        $interestMode = is_string($input['modo'] ?? null) && $input['modo'] !== '' ? $input['modo'] : 'compound';
+        if ($value === null || $value <= 0 || $value > 100000000000 || !valid_month($start) || !valid_month($end) || $start > $end || $interest === null || $interest < 0 || $interest > 100 || !in_array($interestMode, ['simple', 'compound'], true)) respond(422, ['error' => 'Confira valor, índice, datas e juros informados.']);
         $expected = count(expected_months($start, $end));
         if ($expected > 1200) respond(422, ['error' => 'O período máximo permitido é de 1.200 meses.']);
         $rows = load_series($slug, $start, $end);
         if (count($rows) < $expected) respond(422, ['error' => 'A fonte ainda não possui todos os meses escolhidos para esse índice.']);
         $indexFactor = 1.0;
         foreach ($rows as $row) { $indexFactor = bounded_result($indexFactor * (1 + ($row['value'] / 100))); }
-        $interestFactor = compound_amount(1.0, $interest, count($rows));
+        // Juros simples: 1 + (taxa × meses). Juros compostos: (1 + taxa)^meses.
+        // Os juros de mora legais costumam ser simples; a capitalização mensal é o caso contratual.
+        $interestFactor = $interestMode === 'simple'
+            ? bounded_result(1.0 + (($interest / 100) * count($rows)))
+            : compound_amount(1.0, $interest, count($rows));
         $factor = bounded_result($indexFactor * $interestFactor);
         $corrected = bounded_result($value * $factor);
-        respond(200, ['type' => 'update_value', 'valor_original' => round($value, 2), 'valor_atualizado' => round($corrected, 2), 'fator' => round($factor, 8), 'variacao_indice' => round(($indexFactor - 1) * 100, 4), 'juros_mensais' => $interest, 'meses' => count($rows), 'indice' => series_definitions()[$slug]['name'], 'periodo' => month_label($start) . ' a ' . month_label($end), 'fonte' => 'Banco Central do Brasil — SGS', 'fonte_url' => 'https://www3.bcb.gov.br/sgspub/']);
+        respond(200, ['type' => 'update_value', 'valor_original' => round($value, 2), 'valor_atualizado' => round($corrected, 2), 'fator' => round($factor, 8), 'variacao_indice' => round(($indexFactor - 1) * 100, 4), 'juros_mensais' => $interest, 'modo' => $interestMode === 'simple' ? 'simples' : 'compostos', 'meses' => count($rows), 'indice' => series_definitions()[$slug]['name'], 'periodo' => month_label($start) . ' a ' . month_label($end), 'fonte' => 'Banco Central do Brasil — SGS', 'fonte_url' => 'https://www3.bcb.gov.br/sgspub/']);
     }
 
     if ($action === 'boleto') {
