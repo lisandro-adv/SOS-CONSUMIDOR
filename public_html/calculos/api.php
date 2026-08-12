@@ -266,7 +266,13 @@ try {
         $fineValue = $days > 0 ? bounded_result($value * ($fine / 100)) : 0.0;
         $interestValue = bounded_result($value * ($daily / 100) * $days);
         $total = bounded_result($value + $fineValue + $interestValue);
-        respond(200, ['type' => 'boleto', 'valor_original' => round($value, 2), 'dias_atraso' => $days, 'multa' => round($fineValue, 2), 'juros' => round($interestValue, 2), 'total' => round($total, 2), 'observacao' => 'A multa só é aplicada após o vencimento e os juros simples diários incidem sobre o valor original. Confira se os percentuais são permitidos no contrato e na lei aplicável.']);
+        // Art. 52, §1º, do CDC: em relação de consumo a multa de mora é limitada a 2%.
+        // O cálculo não é bloqueado — o percentual pode ser legítimo fora do consumo —, apenas sinalizado.
+        $fineText = rtrim(rtrim(number_format($fine, 2, ',', '.'), '0'), ',');
+        $alert = $days > 0 && $fine > 2
+            ? 'A multa informada é de ' . $fineText . '%. Em relação de consumo, o art. 52, §1º, do Código de Defesa do Consumidor limita a multa de mora a 2% do valor da prestação. Percentuais acima disso costumam ser irregulares — confira o contrato e a natureza da dívida.'
+            : null;
+        respond(200, ['type' => 'boleto', 'valor_original' => round($value, 2), 'dias_atraso' => $days, 'multa' => round($fineValue, 2), 'juros' => round($interestValue, 2), 'total' => round($total, 2), 'alerta' => $alert, 'observacao' =>'A multa só é aplicada após o vencimento e os juros simples diários incidem sobre o valor original. Confira se os percentuais são permitidos no contrato e na lei aplicável.']);
     }
 
     if ($action === 'interest') {
