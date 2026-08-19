@@ -69,10 +69,6 @@ try {
     $titulo = $perguntas_e_respostas_obj->getPergunta();
     $texto = $perguntas_e_respostas_obj->getResposta();
 
-    $texto = AdsTeamplate::replaceAdsbygoogle($texto);
-
-
-
     $mostrarMenuRedesSociais = 'id="MostrarFonte" style="display:show"';
     $mostrarVideo = 'id="MostrarVideo" style="display:show"';
     $mostrarComentarios= 'id="MostrarComentarios" style="display:show"';
@@ -90,8 +86,11 @@ try {
     }
 
 
-    $meta_keywords = $parametros->getMetaKeywords();
-    $description_site = $parametros->getMetaDescription();
+    $meta_keywords = '';
+    $description_site = ResumoTexto(limpa_tags_total($texto), 155);
+    $og_type = 'article';
+    $og_url = $url_noticia;
+    $og_description = $description_site;
 } catch (Exception $e) {
     #die($e->getMessage());
     Msg::add($e->getMessage());
@@ -103,14 +102,22 @@ try {
 <head>
     <?php include PROJECT_PATH . 'head.inc.php'; ?>
     <meta property="fb:app_id" content="500960907080311"/>
-    <meta property="og:type" content="article"/>
-    <meta property="og:url" content="<?php echo $url_noticia; ?>"/>
-    <meta property="og:site_name" content="<?php echo $titulo_site; ?>"/>
-    <meta property="og:title" content="<?php echo limpa_tags_total($titulo); ?>"/>
-    <meta property="og:description" content="<?php echo strip_tags(ResumoTexto($texto, 250)); ?>"/>
-    <?php if ($foto_salva) { ?>
-        <meta property="og:image" content="<?php echo $foto_salva; ?>"/>
-    <?php } ?>
+    <script type="application/ld+json">
+    <?php echo json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'Article',
+        'headline' => limpa_tags_total($titulo),
+        'description' => $description_site,
+        'mainEntityOfPage' => ['@type' => 'WebPage', '@id' => $url_noticia],
+        'image' => [$foto_salva],
+        'author' => ['@type' => 'Organization', 'name' => 'SOS Consumidor'],
+        'publisher' => [
+            '@type' => 'Organization',
+            'name' => 'SOS Consumidor',
+            'logo' => ['@type' => 'ImageObject', 'url' => 'https://www.sosconsumidor.com.br/img/logo.png']
+        ]
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>
+    </script>
 
     <style>
         .desize-texto-conteudo p { margin-bottom: 12pt; }
@@ -138,13 +145,7 @@ try {
                                                  class="o-link-secondary">&lt;
                                 Voltar
                                 para <?php echo $grupos_obj->getGrupoDesc() . ' - ' . $areas_obj->getAreaDesc(); ?></a>
-                            <div class="c-well well well-sm">
-                                <strong><?php echo $perguntas_e_respostas_obj->getAcessos(); ?></strong>
-                                pessoas já leram essa notícia&nbsp;&nbsp;
-                                <div class="pull-right">
-                                    <div class="addthis_sharing_toolbox"></div>
-                                </div>
-                            </div>
+                            <?php include PROJECT_PATH . 'ajudinha-artigo-banner.inc.php'; ?>
                             <h1 class="o-tit o-tit--22"><?php echo $perguntas_e_respostas_obj->getPergunta(); ?></h1>
                             <div class="o-img-wrapper">
                                 <?php if ($perguntas_e_respostas_obj->getFotoSalva()) { ?>
@@ -175,7 +176,7 @@ try {
                             <p></p>
                             <div class="c-well well well-sm" <?php echo $mostrarMenuRedesSociais;?>>
                                 <strong><?php echo $perguntas_e_respostas_obj->getAcessos(); ?></strong>
-                                pessoas já leram essa notícia&nbsp;&nbsp;
+                                pessoas já leram este conteúdo&nbsp;&nbsp;
                                 <div class="pull-right">
                                     <div class="addthis_sharing_toolbox"></div>
                                 </div>
@@ -278,25 +279,7 @@ try {
     </div>
 </div>
 <?php include PROJECT_PATH . 'footer.inc.php'; ?>
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-576a8459ce7f31ce"></script>
-<script type="text/javascript">
-    var addthis_share = {
-        // ... other options
-        url_transforms: {
-            clean: true,
-            shorten: {
-                twitter: 'bitly'
-            }
-        },
-        shorteners: {
-            bitly: {
-                login: '<?php echo BIT_LY_LOGIN ?>',
-                apiKey: '<?php echo BIT_LY_API_KEY ?>'
-            }
-        }
-    }
-</script>
+<!-- AddThis descontinuado (2023); bloco removido em 19/08/2026 para nao expor a chave bit.ly no HTML. -->
 
 <script type="text/javascript">
     $(document).ready(function() {

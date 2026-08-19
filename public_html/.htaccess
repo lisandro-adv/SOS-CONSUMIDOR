@@ -176,16 +176,42 @@ Header unset X-UA-Compatible
 </IfModule>
 
 # Bloquear acesso a arquivos sensíveis
+# Sintaxe Apache 2.4 (Require) com fallback 2.2 (Order/Deny): o "Order allow,deny"
+# sozinho depende do mod_access_compat e cairia silenciosamente sem ele.
 <FilesMatch "(config\.inc\.php|config_font\.inc\.php|composer\.json|composer\.lock|\.env)$">
-    Order allow,deny
-    Deny from all
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
 </FilesMatch>
 
 # Impedir a publicacao acidental de copias, dumps e registros internos.
 # O padrao tambem cobre nomes como arquivo.php.bak-20260810.
 <FilesMatch "(?i)(\.bak([.-].*)?$|\.old([.-].*)?$|\.orig([.-].*)?$|\.owner[0-9]+-original([.-].*)?$|\.save([.-].*)?$|\.sql$|\.log$|\.ini$|\.conf$|~$)">
-    Order allow,deny
-    Deny from all
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Bloquear cópias antigas de scripts que continuam executáveis por terminarem
+# em .php ou que podem vazar código-fonte (.php seguido de sufixo, nomes com
+# data e variantes -old/_old/_bk). Ex.: 2017-05-25-index.php,
+# noticias_ler.php310517, noticias_ler.php_disqus, newsletter_ler_db_old.php.
+<FilesMatch "(?i)(\.php[0-9_.-]|(19|20)[0-9]{2}.*\.php$|[-_](old|bk)[0-9]*\.php$)">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
 </FilesMatch>
 
 # Bloquear acesso à pasta admin por padrão (requer autenticação do próprio sistema)
