@@ -72,7 +72,7 @@ try {
                     <?php } ?>
                     <div class="row">
                         <div class="col-sm-6">
-                            <a id="QueroFazerUmaPergunta" href="<?php echo FORUM_CONSUMIDOR; ?>" class="o-btn o-btn--sm o-btn--primary">Quero fazer uma pergunta</a>
+                            <a id="QueroFazerUmaPergunta" href="<?php echo PROJECT_ROOT; ?>ia-consumidor/" class="o-btn o-btn--sm o-btn--primary">Perguntar ao SOS Responde</a>
                             <button id="MostrarFormcontato" type="button" class="o-btn o-btn--sm o-btn--secondary">Falar
                                 com os editores
                             </button>
