@@ -146,7 +146,13 @@ Alterações aplicadas na pasta canônica (ainda **não** publicadas no servidor
 4. `noticias_ler.php` e `perguntas_e_respostas_ler.php`: removido o bloco AddThis/bit.ly que **imprimia a chave bit.ly no HTML público**. O AddThis foi descontinuado em 2023; o bloco era código morto.
 5. `.htaccess`: bloqueios convertidos para sintaxe Apache 2.4 (`Require all denied`) com fallback 2.2 dentro de `IfModule`; novo `FilesMatch` bloqueia cópias datadas/variantes (`.php310517`, `2017-*-index.php`, `_old.php`, `_bk.php`, `.php_disqus` etc.). Validado contra os 335 arquivos versionados: nenhum arquivo ativo é atingido; 46 cópias antigas passam a ser bloqueadas.
 
-### Pendências para concluir os itens 1–3 (dependem do servidor)
+### Item 4 executado (árvore local) — limpeza do webroot
+
+- **79 arquivos** de backup/cópias datadas e **5 diretórios** (`apagar/` 17 MB, `vendor-old`, `vendor_old02-03-2020`, `2017-05-12-vendor`, `2017-08-09-upload_arquivo`) movidos — não apagados — para `ARQUIVO_HISTORICO/limpeza-webroot-20260819/`, preservando os caminhos relativos. Manifesto completo em `MANIFESTO_ARQUIVOS.txt` nessa pasta. Diretório vazio `www.sosconsumidor.com.br/` removido.
+- Verificado por grep que nenhum código ativo referencia os itens movidos.
+- Para repetir a limpeza no servidor: `scripts/limpeza_webroot_20260819.sh` (gerado a partir do manifesto; move para quarentena fora do webroot e apaga apenas `teste.php`/`_diag_*.php`). Uso: `sh limpeza_webroot_20260819.sh [WEBROOT] [QUARENTENA]`.
+
+### Pendências para concluir os itens 1–4 (dependem do servidor)
 
 Na ordem, para não interromper a newsletter:
 
