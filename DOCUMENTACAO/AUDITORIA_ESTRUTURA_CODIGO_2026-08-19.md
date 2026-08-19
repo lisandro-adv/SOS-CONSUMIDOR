@@ -152,7 +152,25 @@ Alterações aplicadas na pasta canônica (ainda **não** publicadas no servidor
 - Verificado por grep que nenhum código ativo referencia os itens movidos.
 - Para repetir a limpeza no servidor: `scripts/limpeza_webroot_20260819.sh` (gerado a partir do manifesto; move para quarentena fora do webroot e apaga apenas `teste.php`/`_diag_*.php`). Uso: `sh limpeza_webroot_20260819.sh [WEBROOT] [QUARENTENA]`.
 
-### Pendências para concluir os itens 1–4 (dependem do servidor)
+### Item 5 executado (árvore local) — senhas com password_hash
+
+Nova classe `admsite/classes/autoload/SenhaSegura.Class.php` (carregada pelo autoloader):
+
+- `SenhaSegura::confere()` — aceita `password_hash` **e** os formatos legados (MD5; e texto puro apenas na tabela `cadastro`, nunca na `usuarios`, para não permitir login apresentando o próprio hash). Usa `hash_equals` nas comparações legadas.
+- `SenhaSegura::migrar()` — no primeiro login legado bem-sucedido regrava a senha com `password_hash` (migração transparente, sem exigir troca de senha). Lê o valor de volta e desfaz se a coluna truncar o hash (proteção contra `VARCHAR(32)`), e nunca lança exceção — falha de migração não impede login.
+
+Alterações:
+
+- `Login.Class.php` (admin) — `checkPass()` com prepared statement no login e `SenhaSegura`; login lido cru (sem `addslashes`), senha mantém o tratamento original para preservar os hashes MD5 existentes.
+- `LoginFront.Class.php` e `LoginFrontAdv.Class.php` (tabela `cadastro`) — prepared statements + `SenhaSegura` com aceitação de texto puro legado. Compatível com qualquer formato que os fluxos do servidor gravem hoje (texto puro antigo, MD5 dos cadastros novos de advogado, ou hash novo).
+- `Usuario.Class.php` — gravação de senha do admin passa de `md5()` para `password_hash()` (fluxo verificado de ponta a ponta localmente: o formulário só envia senha quando digitada).
+- `migrations/20260819_senha_password_hash.sql` — **executar antes de publicar**: amplia `usuarios.senha` e `cadastro.senha` para `VARCHAR(255)` (conferir com `SHOW COLUMNS` antes) e traz consultas para acompanhar o progresso da migração.
+
+Não alterados de propósito (gravadores cujos chamadores estão só no servidor): `Cadastro.Class.php` e `AdvogadoDirectory::salvarCadastro()` seguem gravando como hoje — a cadeia de verificação dos logins cobre esses formatos e migra no primeiro login. Revisar esses gravadores (e os fluxos de trocar/recuperar senha do `forum_advogado` e `ia_consumidor` no servidor) num segundo passo, quando for possível inspecioná-los.
+
+Testes obrigatórios no ambiente de teste antes de publicar: login do admin com usuário existente (senha MD5) → deve entrar e a coluna virar `$2y$...`; segundo login do mesmo usuário (agora bcrypt); troca de senha pelo admsite; login errado (mensagem de senha inválida); login do fórum do advogado com conta existente e com conta recém-criada.
+
+### Pendências para concluir os itens 1–5 (dependem do servidor)
 
 Na ordem, para não interromper a newsletter:
 
