@@ -170,13 +170,25 @@ Não alterados de propósito (gravadores cujos chamadores estão só no servidor
 
 Testes obrigatórios no ambiente de teste antes de publicar: login do admin com usuário existente (senha MD5) → deve entrar e a coluna virar `$2y$...`; segundo login do mesmo usuário (agora bcrypt); troca de senha pelo admsite; login errado (mensagem de senha inválida); login do fórum do advogado com conta existente e com conta recém-criada.
 
-### Pendências para concluir os itens 1–5 (dependem do servidor)
+### Item 6 executado (árvore local) — E-goi descontinuada, 20/08/2026
+
+O usuário confirmou que a integração E-goi não é mais usada (o disparo de newsletter passou a ser feito por `scripts/enviar_newsletter.py` via API Brevo, agendado por cron). Como a chave da E-goi havia sido zerada no item 2 sem desligar os pontos que a chamavam, a árvore local ficaria **quebrada se publicada assim** (toda assinatura de newsletter falharia e desfaria o registro local, pois `addSubscriber` erraria com chave vazia). Correções:
+
+- `newsletter_ler_db.php` (assinatura pública): removida a chamada à E-goi; volta a apenas gravar localmente em `site_newsletter`, como antes de existir a integração.
+- `admsite/newsletter/boletim_enviar_db.php` e `boletim_enviar.php` (admin): os botões "Enviar teste"/"Enviar para todos" foram desativados com aviso explicando que o envio é automático via Brevo; o backend não tenta mais falar com a E-goi.
+- `admsite/classes/Egoi/` (6 arquivos, 24 KB) movido para `ARQUIVO_HISTORICO/limpeza-webroot-20260819/admsite/classes/Egoi/` — não há mais nenhuma referência ativa no código.
+- `config.inc.php`: comentário sobre `EGOI_API_KEY` removido (não é mais necessário rotacionar/definir essa chave).
+- `scripts/limpeza_webroot_20260819.sh`: adicionado `mv_item "admsite/classes/Egoi"` para espelhar a remoção no servidor.
+
+**Achado adicional (não corrigido, fora de escopo desta rodada):** `scripts/enviar_newsletter.py` envia para uma lista mantida do lado da Brevo (`listIds=[3]`), não a partir da tabela local `site_newsletter`. Não foi encontrado nenhum script que sincronize as duas. Ou seja, quem se cadastra hoje pelo formulário público do site grava localmente mas **não chega automaticamente à lista da Brevo** — só entra na lista quem foi importado/cadastrado direto na Brevo. Vale decidir: sincronizar `site_newsletter` → Brevo (script periódico ou chamada na hora do cadastro) ou aceitar que o cadastro do site é só um registro local.
+
+### Pendências para concluir os itens 1–6 (dependem do servidor)
 
 Na ordem, para não interromper a newsletter:
 
-1. **Rotacionar credenciais** (as antigas são públicas): SendPulse (`teste.php`), E-goi (painel E-goi → nova chave API) e bit.ly (se ainda usado; a integração AddThis morreu, provavelmente pode ser abandonada).
-2. Adicionar ao `/home/user/web/sosconsumidor.com.br/private/sos-db-credentials.php` no servidor:
-   `define('EGOI_API_KEY', '<nova chave>');` e, se aplicável, `define('BIT_LY_API_KEY', '<nova chave>');`
+1. **Rotacionar credenciais** (as antigas são públicas): SendPulse (`teste.php`) e bit.ly (se ainda usado; a integração AddThis morreu, provavelmente pode ser abandonada). A chave da E-goi **não precisa ser rotacionada** — a integração foi descontinuada (item 6); basta cancelar/desativar a conta E-goi para que a chave antiga vazada deixe de ter qualquer uso.
+2. Se for rotacionar bit.ly, adicionar ao `/home/user/web/sosconsumidor.com.br/private/sos-db-credentials.php` no servidor:
+   `define('BIT_LY_API_KEY', '<nova chave>');`
 3. Apagar no servidor: `teste.php`, `_diag_ia.php`, `_diag_tmpdir.php`.
-4. Publicar os arquivos alterados (config.inc.php, EgoiCustom.php, noticias_ler.php, perguntas_e_respostas_ler.php, .htaccess) e testar: home, uma notícia, uma pergunta/resposta, cadastro de newsletter e login do admin.
+4. Publicar os arquivos alterados (config.inc.php, noticias_ler.php, perguntas_e_respostas_ler.php, newsletter_ler_db.php, admsite/newsletter/boletim_enviar_db.php, admsite/newsletter/boletim_enviar.php, .htaccess) e testar: home, uma notícia, uma pergunta/resposta, cadastro de newsletter e login do admin. **Importante:** nada disso foi publicado ainda; a produção continua rodando o código anterior (com a chave E-goi antiga) até este passo — não há quebra em produção a corrigir às pressas, mas publicar o lote completo evita publicar só a chave zerada do item 2 sem o item 6 que a torna dispensável.
 5. Confirmar bloqueios: `curl -I https://www.sosconsumidor.com.br/teste.php` (404), `/noticias_ler.php310517` (403), `/2017-05-25-index.php` (403).
