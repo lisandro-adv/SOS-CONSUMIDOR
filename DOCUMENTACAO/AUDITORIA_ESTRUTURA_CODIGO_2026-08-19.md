@@ -180,7 +180,7 @@ O usuário confirmou que a integração E-goi não é mais usada (o disparo de n
 - `config.inc.php`: comentário sobre `EGOI_API_KEY` removido (não é mais necessário rotacionar/definir essa chave).
 - `scripts/limpeza_webroot_20260819.sh`: adicionado `mv_item "admsite/classes/Egoi"` para espelhar a remoção no servidor.
 
-**Achado adicional (não corrigido, fora de escopo desta rodada):** `scripts/enviar_newsletter.py` envia para uma lista mantida do lado da Brevo (`listIds=[3]`), não a partir da tabela local `site_newsletter`. Não foi encontrado nenhum script que sincronize as duas. Ou seja, quem se cadastra hoje pelo formulário público do site grava localmente mas **não chega automaticamente à lista da Brevo** — só entra na lista quem foi importado/cadastrado direto na Brevo. Vale decidir: sincronizar `site_newsletter` → Brevo (script periódico ou chamada na hora do cadastro) ou aceitar que o cadastro do site é só um registro local.
+**Achado adicional, corrigido no item 8:** `scripts/enviar_newsletter.py` envia para uma lista mantida do lado da Brevo (`listIds=[3]`), não a partir da tabela local `site_newsletter`, e não havia nada sincronizando as duas — quem se cadastrava pelo site não chegava à lista da Brevo. Ver item 8 abaixo.
 
 ### Item 7 executado (árvore local) — SendPulse descontinuado, 20/08/2026
 
@@ -194,7 +194,23 @@ Ações:
 
 **Ação fora do código (só o usuário pode fazer):** revogar/desativar a chave de API no painel do SendPulse (`login.sendpulse.com/settings/#api`) — ela esteve pública no `teste.php` e, como não há nenhuma integração viva, não há necessidade de gerar uma chave nova em lugar nenhum.
 
-### Pendências para concluir os itens 1–7 (dependem do servidor)
+### Item 8 executado (árvore local) — sincronização site_newsletter → Brevo, 20/08/2026
+
+Corrige o achado adicional do item 6: cadastros pelo formulário público não chegavam à lista da Brevo. Solução escolhida: manter o PHP "burro" (só grava local, como já fazia) e cobrir o gap com um script Python periódico, seguindo o mesmo padrão já usado pelo projeto (`enviar_newsletter.py`, `coletar_noticias.py` etc. — automação server-side por cron, não pela requisição web).
+
+- `migrations/20260820_site_newsletter_brevo_sync.sql` — adiciona `brevo_synced_at`, `brevo_sync_attempts`, `brevo_sync_error` em `site_newsletter` (idempotente via `IF NOT EXISTS`; confirmar versão do MySQL/MariaDB se falhar).
+- `scripts/sync_newsletter_brevo.py` (novo) — a cada execução, busca até 200 cadastros com `brevo_synced_at IS NULL` e `brevo_sync_attempts < 5`, e faz upsert na Brevo (`ContactsApi.create_contact` com `update_enabled=True`, que atualiza o contato e garante que ele fica na lista se já existir, sem erro de duplicidade). Sucesso grava `brevo_synced_at`; falha incrementa `brevo_sync_attempts` e grava `brevo_sync_error` — depois de 5 tentativas o registro para de ser tentado automaticamente (evita bater na API indefinidamente por causa de um e-mail inválido) e fica visível para revisão manual via a consulta que a migração deixou pronta.
+- `scripts/requirements.txt` — adicionado `sib-api-v3-sdk` (dependência que `enviar_newsletter.py` já usa em produção mas nunca tinha sido declarada; deixada sem versão fixa de propósito, para não arriscar trocar a versão já instalada no servidor — anotei como conferir a versão atual antes de fixar).
+
+**Pendência de servidor (não posso fazer daqui):**
+1. Rodar a migração SQL acima.
+2. Publicar `scripts/sync_newsletter_brevo.py` e o `requirements.txt` atualizado.
+3. Adicionar ao crontab (mesmo usuário/ambiente do `enviar_newsletter.py`):
+   `*/15 * * * * cd /caminho/para/scripts && /usr/bin/python3 sync_newsletter_brevo.py >> /var/log/sos/newsletter_sync.log 2>&1`
+4. Rodar uma vez manualmente para testar contra o backlog atual (`python3 sync_newsletter_brevo.py`) e conferir no painel da Brevo (lista ID 3) se os contatos antigos de `site_newsletter` aparecem.
+5. Cadastrar um e-mail de teste pelo formulário público, esperar o próximo ciclo do cron (ou rodar manualmente) e confirmar que ele aparece na Brevo.
+
+### Pendências para concluir os itens 1–8 (dependem do servidor)
 
 Na ordem, para não interromper a newsletter:
 
