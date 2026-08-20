@@ -19,7 +19,7 @@ Além disso, o webroot acumula ~71 arquivos de backup/cópias datadas e 4 cópia
 
 `public_html/teste.php` começa com `phpinfo(); die();` — qualquer visitante em `/teste.php` vê a configuração completa do PHP (caminhos, versões, extensões, variáveis de ambiente). Abaixo do `die()` há credenciais SendPulse hardcoded (`API_USER_ID`, `API_SECRET`). O arquivo não está no Git, mas está no webroot local (e presumivelmente no servidor).
 
-**Ação:** remover o arquivo do servidor e da árvore local; **trocar as credenciais SendPulse** (o segredo deve ser considerado comprometido — já esteve em backup exposto, conforme observação da auditoria de 02/08).
+**Ação:** remover o arquivo do servidor e da árvore local (feito); **revogar a chave SendPulse** no painel (o segredo deve ser considerado comprometido — já esteve em backup exposto, conforme observação da auditoria de 02/08). Como o item 7 confirmou que não há nenhuma integração SendPulse viva no código, não é necessário gerar uma chave nova em lugar nenhum — só cancelar a antiga.
 
 ### P0 — Senhas com MD5 (admin) e comparação direta (front)
 
@@ -124,7 +124,7 @@ O repositório versiona 335 arquivos (escopo curado — bom), mas o servidor rod
 
 | # | Ação | Esforço | Risco de regressão |
 |---|---|---|---|
-| 1 | Apagar `teste.php`, `_diag_*.php` do servidor; trocar credenciais SendPulse | Minutos | Nenhum |
+| 1 | Apagar `teste.php`, `_diag_*.php` do servidor; revogar chave SendPulse (sem integração viva, não precisa de chave nova) | Minutos | Nenhum |
 | 2 | Trocar chaves bit.ly e E-goi; mover todas p/ arquivo privado fora do webroot | Baixo | Baixo (testar newsletter) |
 | 3 | `.htaccess`: `Require all denied` + ampliar padrão p/ `.php` datados | Baixo | Baixo (testar rotas) |
 | 4 | Mover backups/cópias datadas/vendors antigos/`apagar/` p/ fora do webroot | Médio (inventário) | Baixo se mover, não apagar |
@@ -182,11 +182,23 @@ O usuário confirmou que a integração E-goi não é mais usada (o disparo de n
 
 **Achado adicional (não corrigido, fora de escopo desta rodada):** `scripts/enviar_newsletter.py` envia para uma lista mantida do lado da Brevo (`listIds=[3]`), não a partir da tabela local `site_newsletter`. Não foi encontrado nenhum script que sincronize as duas. Ou seja, quem se cadastra hoje pelo formulário público do site grava localmente mas **não chega automaticamente à lista da Brevo** — só entra na lista quem foi importado/cadastrado direto na Brevo. Vale decidir: sincronizar `site_newsletter` → Brevo (script periódico ou chamada na hora do cadastro) ou aceitar que o cadastro do site é só um registro local.
 
-### Pendências para concluir os itens 1–6 (dependem do servidor)
+### Item 7 executado (árvore local) — SendPulse descontinuado, 20/08/2026
+
+Levantamento a pedido do usuário: SendPulse não tinha nenhum uso ativo no código. Os únicos vestígios eram (1) o `teste.php` já removido no item 1 — um scratch que morria em `phpinfo(); die();` antes de chegar ao trecho com `Sendpulse\RestApi\ApiClient` e as credenciais hardcoded, portanto nunca executava; (2) um comentário em `admsite/noticias/db.php:70-73` confirmando que "o push antigo por SendPulse foi desativado temporariamente" e substituído pelo Web Push atual (VAPID, tabelas `sos_push_subscriptions`/`sos_push_events`); (3) a dependência `sendpulse/rest-api` no `composer.json`/`composer.lock`, sem nenhuma classe chamando-a.
+
+Ações:
+
+- `admsite/classes/composer.json` e `composer.lock`: removida a entrada `sendpulse/rest-api` (editado à mão; o `content-hash` do lock ficará desatualizado até um `composer update` real no servidor — isso não afeta o código em produção, que não lê o `.lock` em runtime, só o `composer install`/`update`).
+- `admsite/classes/vendor/sendpulse/` (100 KB) movido para `ARQUIVO_HISTORICO/limpeza-webroot-20260819/admsite/classes/vendor/sendpulse/`. Os arquivos gerados `vendor/composer/autoload_psr4.php` e `autoload_static.php` ainda citam o namespace `Sendpulse\RestApi` apontando para o diretório removido — isso é inofensivo (autoload só falha se algo tentar instanciar a classe, e nada tenta) e some sozinho na próxima vez que alguém rodar `composer dump-autoload`/`update` no servidor. Não editado à mão por serem arquivos gerados.
+- `scripts/limpeza_webroot_20260819.sh`: adicionado `mv_item "admsite/classes/vendor/sendpulse"` para espelhar no servidor.
+
+**Ação fora do código (só o usuário pode fazer):** revogar/desativar a chave de API no painel do SendPulse (`login.sendpulse.com/settings/#api`) — ela esteve pública no `teste.php` e, como não há nenhuma integração viva, não há necessidade de gerar uma chave nova em lugar nenhum.
+
+### Pendências para concluir os itens 1–7 (dependem do servidor)
 
 Na ordem, para não interromper a newsletter:
 
-1. **Rotacionar credenciais** (as antigas são públicas): SendPulse (`teste.php`) e bit.ly (se ainda usado; a integração AddThis morreu, provavelmente pode ser abandonada). A chave da E-goi **não precisa ser rotacionada** — a integração foi descontinuada (item 6); basta cancelar/desativar a conta E-goi para que a chave antiga vazada deixe de ter qualquer uso.
+1. **Credenciais expostas**: bit.ly é a única que ainda pode valer a pena **rotacionar** (se for mantida; a integração AddThis que a usava morreu, então também pode ser simplesmente abandonada). SendPulse e E-goi **não precisam de chave nova** — nenhuma das duas tem integração viva (itens 6 e 7); basta **revogar/cancelar o acesso** de cada uma nos respectivos painéis para neutralizar a chave antiga vazada.
 2. Se for rotacionar bit.ly, adicionar ao `/home/user/web/sosconsumidor.com.br/private/sos-db-credentials.php` no servidor:
    `define('BIT_LY_API_KEY', '<nova chave>');`
 3. Apagar no servidor: `teste.php`, `_diag_ia.php`, `_diag_tmpdir.php`.
