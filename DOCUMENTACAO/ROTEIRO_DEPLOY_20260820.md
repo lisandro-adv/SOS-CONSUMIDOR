@@ -1,5 +1,18 @@
 # Roteiro de deploy — correções de 19–20/08/2026
 
+## Execução — 21/08/2026
+
+Fases 0–4 executadas em produção (servidor `srv1400160.hstgr.cloud`, IP `187.77.48.16`), via SSH direto, com o usuário confirmando cada etapa de risco antes de rodar.
+
+- **Fase 0**: backup do dia confirmado (`user.2026-08-21_05-11-40.tar`, ~3,6 GB). Não foi preciso gerar novo.
+- **Fase 1**: as 2 migrações rodaram com sucesso. A migração 2 precisou de correção na hora: `ADD COLUMN IF NOT EXISTS` não é aceito neste MySQL (8.0.46), apesar de constar na documentação para 8.0.29+; rodada a versão sem `IF NOT EXISTS` (arquivo local já corrigido). `usuarios.senha`/`cadastro.senha` confirmados em `VARCHAR(255)`; `site_newsletter` confirmado com as 3 colunas novas.
+- **Fase 2**: antes de publicar, cada um dos 14 arquivos teve o conteúdo do servidor comparado (hash/diff) com a versão local — resultado: 3 arquivos (`head.inc.php`, `menu_lateral.inc.php`, `contatos_ler.php`) já estavam publicados fora do Git; os demais bateram exatamente com o esperado, sem drift. Publicação feita com transferência para pasta temporária + `mv` atômico + restauração de dono/permissões originais (capturados antes de cada substituição). Testes pós-deploy: home, notícia, pergunta/resposta, newsletter, login do admin — todos HTTP 200, sem erro novo no log.
+- **Fase 3**: script `limpeza_webroot_20260819.sh` rodado no servidor — 3 arquivos apagados (`teste.php`, `_diag_ia.php`, `_diag_tmpdir.php`, confirmado 404 depois), 79 itens movidos para `/root/limpeza-webroot-20260819` (91 MB liberados do webroot), 7 já não existiam. Site testado saudável depois.
+- **Fase 4**: `sync_newsletter_brevo.py` publicado em `/home/user/scripts/sosconsumidor-automacao/` (mesmo diretório do `enviar_newsletter.py`, mesmo Python do sistema, mesmas dependências já instaladas). Backlog histórico sincronizado por completo: **1211 de 1211** cadastros, 0 falhas. Cron agendado a cada 15 minutos com `flock`.
+
+Pendente: Fase 5 (testes de login/senha — precisa de credenciais de teste) e Fase 6 (revogar E-goi/SendPulse, decidir bit.ly — só o usuário pode fazer, fora do código).
+
+
 Cobre a publicação no servidor de tudo que foi corrigido na árvore local nesta rodada: `AUDITORIA_ESTRUTURA_CODIGO_2026-08-19.md` (itens 1–8). Siga a ordem — ela evita janelas em que o código novo espera algo que o banco/servidor ainda não tem, ou em que arquivos removidos ainda são chamados pelo código antigo.
 
 Regra do projeto (`CHECKLIST_MELHORIAS.md`): **backup antes de alterar o servidor**, **testar no servidor antes de considerar concluído**, **um lote por vez**.
