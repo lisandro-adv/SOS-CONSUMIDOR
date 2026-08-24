@@ -10,7 +10,16 @@ Fases 0–4 executadas em produção (servidor `srv1400160.hstgr.cloud`, IP `187
 - **Fase 3**: script `limpeza_webroot_20260819.sh` rodado no servidor — 3 arquivos apagados (`teste.php`, `_diag_ia.php`, `_diag_tmpdir.php`, confirmado 404 depois), 79 itens movidos para `/root/limpeza-webroot-20260819` (91 MB liberados do webroot), 7 já não existiam. Site testado saudável depois.
 - **Fase 4**: `sync_newsletter_brevo.py` publicado em `/home/user/scripts/sosconsumidor-automacao/` (mesmo diretório do `enviar_newsletter.py`, mesmo Python do sistema, mesmas dependências já instaladas). Backlog histórico sincronizado por completo: **1211 de 1211** cadastros, 0 falhas. Cron agendado a cada 15 minutos com `flock`.
 
-Pendente: Fase 5 (testes de login/senha — precisa de credenciais de teste) e Fase 6 (revogar E-goi/SendPulse, decidir bit.ly — só o usuário pode fazer, fora do código).
+**Fase 5**: login do admin testado pelo usuário (conta `lisandro`, já migrada para `password_hash`/bcrypt) e troca de senha pelo painel confirmada — grava corretamente no formato novo (`$2y$10$...`, 60 caracteres). Conta `admin` seguia em MD5 no momento do teste; migra sozinha no próximo login dela, sem ação necessária.
+
+Observação à parte, não relacionada às mudanças desta rodada: usuário reportou um toast de erro `SQLSTATE[42S21] ... column 'OAB'` em alguma tela do admin durante os testes. Não encontrada a origem exata (não é nenhuma das migrações ou arquivos publicados nesta rodada); parece pré-existente, ligada a alguma tela de advogados/OAB. Não bloqueou nenhum teste. Fica para investigação futura se voltar a aparecer.
+
+**Fase 6**: concluída.
+- SendPulse: chave antiga (`ID do cliente` terminado em `41ce`, confirmado como a mesma exposta no `teste.php`) regenerada pelo usuário no painel — a antiga fica automaticamente inválida.
+- E-goi: conta aparenta não existir mais (e-mail de recuperação de senha não chegou); risco já neutralizado por conta própria, nada a fazer.
+- bit.ly: sem ação necessária — a única exposição (bloco AddThis) já foi removida do código nesta rodada; a conta pode continuar existindo sem risco adicional pelo lado do site.
+
+## Status final: todas as 6 fases do roteiro concluídas em produção.
 
 
 Cobre a publicação no servidor de tudo que foi corrigido na árvore local nesta rodada: `AUDITORIA_ESTRUTURA_CODIGO_2026-08-19.md` (itens 1–8). Siga a ordem — ela evita janelas em que o código novo espera algo que o banco/servidor ainda não tem, ou em que arquivos removidos ainda são chamados pelo código antigo.
