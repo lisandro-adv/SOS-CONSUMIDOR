@@ -207,6 +207,12 @@ Corrige o achado adicional do item 6: cadastros pelo formulário público não c
 2. Publicar `scripts/sync_newsletter_brevo.py` e o `requirements.txt` atualizado.
 3. Adicionar ao crontab (mesmo usuário/ambiente do `enviar_newsletter.py`):
    `*/15 * * * * cd /caminho/para/scripts && /usr/bin/python3 sync_newsletter_brevo.py >> /var/log/sos/newsletter_sync.log 2>&1`
+
+### Item 9 — bug pré-existente corrigido diretamente em produção, 24/08/2026
+
+Durante os testes pós-deploy, usuário reportou toast recorrente `SQLSTATE[42S21]: Duplicate column name 'OAB'` na tela "Advogados aguardando liberação" do admsite. Investigação (log de queries do MySQL ativado temporariamente) encontrou a causa: `admsite/relatorios/listar.php:12` (link da sessão de menu id=113 na tabela `sessoes`) montava a consulta com a coluna `C.OAB` **duplicada** na lista de SELECT — erro de digitação estático, existente desde a criação do arquivo (mtime original de 2020), sem relação com qualquer mudança desta auditoria. Corrigido removendo a duplicata; testado com sucesso direto no banco e confirmado pelo usuário em produção. Backup do arquivo original feito antes da alteração (`/root/relatorios_listar.php.backup` no servidor, removido após confirmação).
+
+Nota: durante a investigação também foi corrigido `admsite/advogados/listar.php` (`is_null($page)` nunca era verdadeiro porque `AjustaInteiroGravar()` retorna `0`, nunca `null` — a busca em sessão nunca era resetada ao abrir a tela do zero). Não era a causa deste bug específico, mas é uma correção legítima e de baixo risco, mantida.
 4. Rodar uma vez manualmente para testar contra o backlog atual (`python3 sync_newsletter_brevo.py`) e conferir no painel da Brevo (lista ID 3) se os contatos antigos de `site_newsletter` aparecem.
 5. Cadastrar um e-mail de teste pelo formulário público, esperar o próximo ciclo do cron (ou rodar manualmente) e confirmar que ele aparece na Brevo.
 
