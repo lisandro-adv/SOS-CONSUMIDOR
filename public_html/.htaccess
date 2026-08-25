@@ -54,6 +54,15 @@ RewriteRule ^contato-forum/?$ - [G,L,NC]
 RewriteRule ^forum-consumidor(?:[-/].*)?/?$ /ia-consumidor/ [R=301,L,NE]
 RewriteRule ^forum_consumidor(?:/.*|\.php)?/?$ - [G,L,NC]
 
+# Cadastro de advogados e Forum de Advogados desativados temporariamente
+# a pedido do usuario em 25/08/2026 - o codigo permanece correto e intacto
+# (ja corrigido na auditoria de seguranca), sem uso previsto no momento mas
+# pode ser necessario futuramente. Usa 403 (nao 410) por ser reversivel:
+# para reativar, basta remover estas 3 linhas.
+RewriteRule ^cadastro_advogado(?:_db|_ativar)?\.php$ - [F,L,NC]
+RewriteRule ^forum-advogado(?:-.*)?/?$ - [F,L,NC]
+RewriteRule ^forum_advogado(?:/.*)?$ - [F,L,NC]
+
 #links antigos
 RewriteRule ^faq-([0-9]+),([0-9]+),([a-zA-Z0-9_-]+)\.html$ perguntas_e_respostas_mais.php?grupo_id=$1&area_id=$2
 RewriteRule ^faq_det-([0-9]+),([0-9]+),([0-9]+),([a-zA-Z0-9_-]+)\.html$ perguntas_e_respostas_ler.php?perguntas_e_respostas_id=$3

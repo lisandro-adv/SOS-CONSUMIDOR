@@ -50,7 +50,6 @@ unset($_SESSION['cadastro_adv_form']);
     <!-- Breadcrumb -->
     <ol class="breadcrumb adv-breadcrumb">
         <li><a href="<?php echo PROJECT_ROOT; ?>">Página Inicial</a></li>
-        <li><a href="<?php echo ADVOGADOS_DIR; ?>">Advogados</a></li>
         <li class="active">Cadastro</li>
     </ol>
 
@@ -73,7 +72,7 @@ unset($_SESSION['cadastro_adv_form']);
             Após a confirmação, seu cadastro será analisado e validado junto à OAB antes da publicação.
         </div>
         <div style="margin-top:20px;">
-            <a href="<?php echo ADVOGADOS_DIR; ?>" class="btn btn-primary"><i class="fa fa-search"></i> Ver diretório de advogados</a>
+            <a href="<?php echo PROJECT_ROOT; ?>" class="btn btn-primary"><i class="fa fa-home"></i> Voltar à página inicial</a>
         </div>
     </div>
     <?php else: ?>
